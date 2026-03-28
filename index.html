@@ -3,382 +3,289 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="VV Technologies — The Future of Urban Intelligence. Economia timpului, reputației și adevărului.">
+<meta name="description" content="VV Technologies — The Future of Urban Intelligence.">
 <title>VV Technologies | The Future of Urban Intelligence</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-tailwind.config = {
-    theme: {
-        extend: {
-            fontFamily: {
-                display: ['Outfit', 'sans-serif'],
-                mono: ['JetBrains Mono', 'monospace'],
-            },
-            colors: {
-                vv: {
-                    bg: '#030305',
-                    accent: '#D4AF37',
-                    blue: '#0A84FF',
-                    green: '#34c759',
-                    red: '#ff3b30',
-                },
-                glass: {
-                    DEFAULT: 'rgba(255,255,255,0.05)',
-                    hover: 'rgba(255,255,255,0.08)',
-                    strong: 'rgba(255,255,255,0.10)',
-                },
-                border: {
-                    DEFAULT: 'rgba(255,255,255,0.08)',
-                    hover: 'rgba(255,255,255,0.15)',
-                }
-            }
-        }
-    }
-}
+tailwind.config={theme:{extend:{fontFamily:{display:['Outfit','sans-serif'],mono:['JetBrains Mono','monospace']}}}}
 </script>
 <style>
-/* Doar ce Tailwind NU poate face nativ */
-body { background: #030305; }
-body::before {
-    content:''; position:fixed; inset:0; pointer-events:none; z-index:99999; opacity:0.35;
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-}
-body::after {
-    content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
-    background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
-    background-size: 80px 80px;
-}
-@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.4;transform:scale(.7);} }
-.animate-pulse-dot { animation: pulse-dot 2s infinite; }
-@keyframes fade-up { from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:translateY(0);} }
-.animate-fade-up { animation: fade-up 0.8s ease both; }
-.delay-1 { animation-delay: 0.1s; }
-.delay-2 { animation-delay: 0.2s; }
-.delay-3 { animation-delay: 0.3s; }
-.delay-5 { animation-delay: 0.5s; }
-/* Scroll reveal */
-.reveal { opacity:0; transform:translateY(40px); transition:all 0.7s cubic-bezier(0.16,1,0.3,1); }
-.reveal.visible { opacity:1; transform:translateY(0); }
+/* ===== CUSTOM THEME — Safari-safe, no arbitrary values ===== */
+body{background:#030305;font-family:'Outfit',sans-serif;color:#fff;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:99999;opacity:.35;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:80px 80px;}
+
+/* Reusable glass/color classes */
+.vv-glass{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);}
+.vv-glass:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);}
+.vv-nav{background:rgba(3,3,5,.7);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:1px solid rgba(255,255,255,.08);}
+.vv-nav.scrolled{background:rgba(3,3,5,.92);}
+.vv-text-dim{color:rgba(255,255,255,.5);}
+.vv-text-muted{color:rgba(255,255,255,.25);}
+.vv-accent{color:#D4AF37;}
+.vv-blue{color:#0A84FF;}
+.vv-green{color:#34c759;}
+.vv-red{color:#ff3b30;}
+.vv-border-subtle{border-bottom:1px solid rgba(255,255,255,.04);}
+.vv-btn-white{background:rgba(255,255,255,.92);color:#000;}
+.vv-btn-white:hover{background:#fff;box-shadow:0 8px 32px rgba(255,255,255,.15);}
+.vv-btn-glass{background:rgba(255,255,255,.05);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+.vv-btn-glass:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);color:#fff;}
+
+/* Card variants */
+.vv-card-blue{background:linear-gradient(135deg,rgba(10,132,255,.06),rgba(10,132,255,.02));border:1px solid rgba(10,132,255,.15);}
+.vv-card-green{background:linear-gradient(135deg,rgba(52,199,89,.06),rgba(52,199,89,.02));border:1px solid rgba(52,199,89,.15);}
+.vv-card-gold{background:linear-gradient(135deg,rgba(212,175,55,.04),rgba(212,175,55,.01));border:1px solid rgba(212,175,55,.15);}
+.vv-card-gold-strong{background:linear-gradient(135deg,rgba(212,175,55,.06),rgba(212,175,55,.01));border:1px solid rgba(212,175,55,.3);}
+
+/* Icon boxes */
+.vv-icon-blue{background:rgba(10,132,255,.12);border:1px solid rgba(10,132,255,.2);color:#0A84FF;}
+.vv-icon-red{background:rgba(255,59,48,.1);border:1px solid rgba(255,59,48,.2);color:#ff3b30;}
+.vv-icon-gold{background:rgba(212,175,55,.15);border:1px solid rgba(212,175,55,.25);color:#D4AF37;}
+
+/* Accent lines */
+.vv-line-gold{position:relative;}.vv-line-gold::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,#D4AF37,transparent);}
+.vv-line-blue{position:relative;}.vv-line-blue::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,#0A84FF,transparent);}
+.vv-line-green{position:relative;}.vv-line-green::before{content:'';position:absolute;top:-1px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,transparent,#34c759,transparent);}
+
 /* Gradient text */
-.text-gradient-gold { background:linear-gradient(135deg,#D4AF37,#fff3a0,#D4AF37); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-/* Glass backdrop */
-.backdrop-glass { backdrop-filter:blur(30px); -webkit-backdrop-filter:blur(30px); }
-.backdrop-glass-sm { backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
-/* Top accent line on cards */
-.accent-line-top::before { content:''; position:absolute; top:-1px; left:10%; right:10%; height:2px; border-radius:2px; }
-.accent-line-top.line-gold::before { background:linear-gradient(90deg,transparent,#D4AF37,transparent); }
-.accent-line-top.line-blue::before { background:linear-gradient(90deg,transparent,#0A84FF,transparent); }
-.accent-line-top.line-green::before { background:linear-gradient(90deg,transparent,#34c759,transparent); }
+.vv-gradient-text{background:linear-gradient(135deg,#D4AF37,#fff3a0,#D4AF37);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+/* Green dot pulse */
+.vv-dot{width:6px;height:6px;background:#34c759;border-radius:50%;box-shadow:0 0 8px #34c759;animation:pulseDot 2s infinite;}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+
+/* Vertical timeline line */
+.vv-timeline{position:relative;}
+.vv-timeline::before{content:'';position:absolute;left:20px;top:32px;bottom:32px;width:1px;background:linear-gradient(to bottom,rgba(255,255,255,.08),rgba(212,175,55,.3),rgba(255,255,255,.08));}
+@media(min-width:768px){.vv-timeline::before{left:24px;}}
+
+/* Step circle */
+.vv-step{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:#D4AF37;}
+
+/* Lang button active state */
+.lang-btn.active{background:rgba(255,255,255,.1) !important;color:#fff !important;}
+
+/* Fade up animation */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.animate-fade-up{animation:fadeUp .8s ease both;}
+.delay-1{animation-delay:.1s;}.delay-2{animation-delay:.2s;}.delay-3{animation-delay:.3s;}.delay-5{animation-delay:.5s;}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(40px);transition:all .7s cubic-bezier(.16,1,.3,1);}.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* Radial hero glow */
+.vv-hero-glow{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:80vw;max-width:800px;height:80vw;max-height:800px;background:radial-gradient(circle,rgba(212,175,55,.04) 0%,rgba(212,175,55,.01) 40%,transparent 70%);pointer-events:none;}
 </style>
 </head>
-<body class="font-display text-white overflow-x-hidden antialiased">
+<body class="font-display overflow-x-hidden antialiased">
 
-<!-- ========== NAV ========== -->
-<nav class="fixed top-0 left-0 right-0 z-[10000] px-5 md:px-7 py-3 md:py-4 flex justify-between items-center bg-[rgba(3,3,5,0.7)] backdrop-glass border-b border-border transition-all duration-300" id="main-nav">
-    <a href="#" class="text-xl md:text-2xl font-black tracking-[6px] text-white no-underline">
-        VV<span class="block text-vv-accent text-[10px] tracking-[3px] font-semibold -mt-0.5">TECHNOLOGIES</span>
-    </a>
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-50 px-5 md:px-7 py-3 md:py-4 flex justify-between items-center vv-nav transition-all duration-300" id="main-nav">
+    <a href="#" class="text-xl md:text-2xl font-black tracking-widest no-underline">VV<span class="block vv-accent text-xs tracking-wider font-semibold">TECHNOLOGIES</span></a>
     <div class="flex items-center gap-3">
-        <div class="flex bg-glass border border-border rounded-lg overflow-hidden">
-            <button class="lang-btn px-3 py-1.5 text-[11px] font-bold tracking-wider text-white/25 bg-transparent border-none cursor-pointer transition-all font-mono active" onclick="setLang('ro')">RO</button>
-            <button class="lang-btn px-3 py-1.5 text-[11px] font-bold tracking-wider text-white/25 bg-transparent border-none cursor-pointer transition-all font-mono" onclick="setLang('en')">EN</button>
+        <div class="flex vv-glass rounded-lg overflow-hidden">
+            <button class="lang-btn active px-3 py-1.5 text-xs font-bold tracking-wider vv-text-muted bg-transparent border-none cursor-pointer font-mono" onclick="setLang('ro')">RO</button>
+            <button class="lang-btn px-3 py-1.5 text-xs font-bold tracking-wider vv-text-muted bg-transparent border-none cursor-pointer font-mono" onclick="setLang('en')">EN</button>
         </div>
-        <a href="https://vv-technologies.github.io/VV-BETA/" target="_blank" class="hidden md:inline-block px-5 py-2.5 bg-white/90 text-black rounded-lg text-[11px] font-extrabold tracking-wider no-underline hover:bg-white hover:-translate-y-0.5 hover:shadow-[0_4px_20px_rgba(255,255,255,0.15)] transition-all" data-t="nav_cta">DESCHIDE APP</a>
+        <a href="https://vv-technologies.github.io/VV-BETA/" target="_blank" class="hidden md:inline-block px-5 py-2.5 vv-btn-white rounded-lg text-xs font-extrabold tracking-wider no-underline hover:-translate-y-0.5 transition-all" data-t="nav_cta">DESCHIDE APP</a>
     </div>
 </nav>
 
-<!-- ========== HERO ========== -->
-<section class="relative min-h-screen flex flex-col items-center justify-center text-center px-5 md:px-8 pt-28 pb-16 md:pt-32 md:pb-20 z-[1] overflow-hidden">
-    <!-- Radial glow -->
-    <div class="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[min(800px,90vw)] h-[min(800px,90vw)] bg-[radial-gradient(circle,rgba(212,175,55,0.04)_0%,rgba(212,175,55,0.01)_40%,transparent_70%)] pointer-events-none"></div>
+<!-- HERO -->
+<section class="relative min-h-screen flex flex-col items-center justify-center text-center px-5 md:px-8 pt-28 pb-16 md:pt-32 md:pb-20 z-10 overflow-hidden">
+    <div class="vv-hero-glow"></div>
 
-    <div class="inline-flex items-center gap-2 bg-glass border border-border rounded-full px-5 md:px-6 py-2.5 mb-10 text-xs font-bold tracking-[3px] text-white/50 backdrop-glass-sm animate-fade-up">
-        <span class="w-1.5 h-1.5 bg-vv-green rounded-full shadow-[0_0_8px_#34c759] animate-pulse-dot"></span>
+    <div class="inline-flex items-center gap-2 vv-glass rounded-full px-5 md:px-6 py-2.5 mb-10 text-xs font-bold tracking-widest vv-text-dim animate-fade-up">
+        <span class="vv-dot"></span>
         <span data-t="hero_badge">BETA ACTIV · BUCUREȘTI</span>
     </div>
 
-    <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] tracking-tighter mb-7 md:mb-8 max-w-[min(900px,90vw)] animate-fade-up delay-1">
+    <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-none tracking-tighter mb-8 max-w-4xl animate-fade-up delay-1">
         <span data-t="hero_t1">The Future of</span><br>
-        <span class="text-gradient-gold" data-t="hero_t2">Urban Intelligence</span>
+        <span class="vv-gradient-text" data-t="hero_t2">Urban Intelligence</span>
     </h1>
 
-    <p class="text-base sm:text-lg md:text-xl text-white/50 leading-relaxed max-w-[min(620px,85vw)] mb-10 md:mb-12 font-light animate-fade-up delay-2" data-t="hero_sub">Strânge VV Coins rezolvând misiuni reale. Fii printre primii Insideri care deblochează statutul exclusiv ONYX la lansarea VV 1.0.</p>
+    <p class="text-base sm:text-lg md:text-xl vv-text-dim leading-relaxed max-w-2xl mb-12 font-light animate-fade-up delay-2" data-t="hero_sub">Strânge VV Coins rezolvând misiuni reale. Fii printre primii Insideri care deblochează statutul exclusiv ONYX la lansarea VV 1.0.</p>
 
     <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto animate-fade-up delay-3">
-        <a href="https://vv-technologies.github.io/VV-BETA/" target="_blank" class="inline-flex items-center justify-center gap-2.5 px-8 md:px-10 py-4 md:py-5 bg-white/90 text-black rounded-xl text-sm md:text-base font-extrabold tracking-wide no-underline hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] transition-all">
-            <i class="fas fa-rocket"></i>
-            <span data-t="hero_btn1">LANSEAZĂ VV BETA</span>
-        </a>
-        <a href="#concept" class="inline-flex items-center justify-center gap-2.5 px-8 md:px-10 py-4 md:py-5 bg-glass text-white/50 border border-border rounded-xl text-sm md:text-base font-bold no-underline backdrop-glass-sm hover:bg-glass-hover hover:border-border-hover hover:text-white transition-all">
-            <i class="fas fa-play"></i>
-            <span data-t="hero_btn2">Cum funcționează</span>
-        </a>
+        <a href="https://vv-technologies.github.io/VV-BETA/" target="_blank" class="inline-flex items-center justify-center gap-2.5 px-8 md:px-10 py-4 md:py-5 vv-btn-white rounded-xl text-sm md:text-base font-extrabold tracking-wide no-underline hover:-translate-y-0.5 transition-all"><i class="fas fa-rocket"></i><span data-t="hero_btn1">LANSEAZĂ VV BETA</span></a>
+        <a href="#concept" class="inline-flex items-center justify-center gap-2.5 px-8 md:px-10 py-4 md:py-5 vv-btn-glass rounded-xl text-sm md:text-base font-bold no-underline hover:-translate-y-0.5 transition-all"><i class="fas fa-play"></i><span data-t="hero_btn2">Cum funcționează</span></a>
     </div>
 
     <!-- PILLARS -->
     <div class="flex flex-col sm:flex-row items-center gap-6 sm:gap-10 md:gap-14 mt-14 md:mt-16 animate-fade-up delay-5">
-        <div class="text-center min-w-[100px]">
-            <div class="text-2xl md:text-3xl mb-2">⏱</div>
-            <div class="text-sm md:text-base font-extrabold tracking-[3px] text-vv-accent" data-t="pil1">TIMP</div>
-            <div class="text-xs text-white/25 mt-1 tracking-wider whitespace-nowrap" data-t="pil1s">Economisești ore</div>
-        </div>
-        <div class="hidden sm:block w-px h-12 bg-white/[0.08]"></div>
-        <div class="text-center min-w-[100px]">
-            <div class="text-2xl md:text-3xl mb-2">⭐</div>
-            <div class="text-sm md:text-base font-extrabold tracking-[3px] text-vv-accent" data-t="pil2">REPUTAȚIE</div>
-            <div class="text-xs text-white/25 mt-1 tracking-wider whitespace-nowrap" data-t="pil2s">Devino Insider Elite</div>
-        </div>
-        <div class="hidden sm:block w-px h-12 bg-white/[0.08]"></div>
-        <div class="text-center min-w-[100px]">
-            <div class="text-2xl md:text-3xl mb-2">🔍</div>
-            <div class="text-sm md:text-base font-extrabold tracking-[3px] text-vv-accent" data-t="pil3">ADEVĂR</div>
-            <div class="text-xs text-white/25 mt-1 tracking-wider whitespace-nowrap" data-t="pil3s">Zero fake, zero filtre</div>
-        </div>
+        <div class="text-center"><div class="text-2xl md:text-3xl mb-2">⏱</div><div class="text-sm md:text-base font-extrabold tracking-widest vv-accent" data-t="pil1">TIMP</div><div class="text-xs vv-text-muted mt-1 tracking-wider whitespace-nowrap" data-t="pil1s">Economisești ore</div></div>
+        <div class="hidden sm:block w-px h-12 bg-white/10"></div>
+        <div class="text-center"><div class="text-2xl md:text-3xl mb-2">⭐</div><div class="text-sm md:text-base font-extrabold tracking-widest vv-accent" data-t="pil2">REPUTAȚIE</div><div class="text-xs vv-text-muted mt-1 tracking-wider whitespace-nowrap" data-t="pil2s">Devino Insider Elite</div></div>
+        <div class="hidden sm:block w-px h-12 bg-white/10"></div>
+        <div class="text-center"><div class="text-2xl md:text-3xl mb-2">🔍</div><div class="text-sm md:text-base font-extrabold tracking-widest vv-accent" data-t="pil3">ADEVĂR</div><div class="text-xs vv-text-muted mt-1 tracking-wider whitespace-nowrap" data-t="pil3s">Zero fake, zero filtre</div></div>
     </div>
 </section>
 
-<!-- ========== MISSION STATEMENT ========== -->
-<section class="relative z-[1] px-5 md:px-8 pt-6 pb-16">
-    <div class="max-w-[min(800px,90vw)] mx-auto bg-gradient-to-br from-[rgba(212,175,55,0.06)] to-[rgba(212,175,55,0.02)] border border-[rgba(212,175,55,0.15)] rounded-2xl p-8 md:p-10 text-center relative overflow-hidden accent-line-top line-gold reveal">
-        <p class="text-xl sm:text-2xl md:text-3xl font-extrabold leading-snug mb-4" data-t="mission_q">Într-o lume plină de fake, <em class="not-italic text-vv-accent">VV</em> e singurul loc unde vezi <em class="not-italic text-vv-accent">realitatea</em> — dovedită la fața locului, în timp real.</p>
-        <p class="text-sm md:text-base text-white/50 leading-relaxed max-w-[min(500px,90%)] mx-auto" data-t="mission_d">Nu contează cine ești — student, freelancer, patron sau turist. Rezolvă misiuni, strânge VV Coins și fii printre primii care deblochează luni gratuite de abonament exclusiv VV ONYX.</p>
+<!-- MISSION STATEMENT -->
+<section class="relative z-10 px-5 md:px-8 pt-6 pb-16">
+    <div class="max-w-3xl mx-auto vv-card-gold rounded-2xl p-8 md:p-10 text-center relative overflow-hidden vv-line-gold reveal">
+        <p class="text-xl sm:text-2xl md:text-3xl font-extrabold leading-snug mb-4" data-t="mission_q">Într-o lume plină de fake, <em class="not-italic vv-accent">VV</em> e singurul loc unde vezi <em class="not-italic vv-accent">realitatea</em> — dovedită la fața locului, în timp real.</p>
+        <p class="text-sm md:text-base vv-text-dim leading-relaxed max-w-lg mx-auto" data-t="mission_d">Nu contează cine ești — student, freelancer, patron sau turist. Rezolvă misiuni, strânge VV Coins și fii printre primii care deblochează luni gratuite de abonament exclusiv VV ONYX.</p>
     </div>
 </section>
 
-<!-- ========== CONCEPT ========== -->
-<section id="concept" class="relative z-[1] px-5 md:px-8 py-16 md:py-24">
+<!-- CONCEPT -->
+<section id="concept" class="relative z-10 px-5 md:px-8 py-16 md:py-24">
     <div class="reveal text-center mb-12 md:mb-16">
-        <div class="text-[11px] tracking-[4px] text-vv-accent font-bold mb-4" data-t="concept_label">CONCEPTUL</div>
+        <div class="text-xs tracking-widest vv-accent font-bold mb-4" data-t="concept_label">CONCEPTUL</div>
         <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4" data-t="concept_title">Trei pași. O singură misiune.</h2>
-        <p class="text-base md:text-lg text-white/50 max-w-[min(540px,85vw)] mx-auto leading-relaxed font-light" data-t="concept_sub">Explorează, acționează, câștigă reputație. Atât de simplu.</p>
+        <p class="text-base md:text-lg vv-text-dim max-w-xl mx-auto leading-relaxed font-light" data-t="concept_sub">Explorează, acționează, câștigă reputație. Atât de simplu.</p>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-[min(1000px,92vw)] mx-auto">
-        <div class="bg-glass border border-border rounded-2xl p-7 md:p-9 hover:bg-glass-hover hover:border-border-hover hover:-translate-y-1 transition-all relative overflow-hidden accent-line-top line-gold reveal">
-            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-[rgba(10,132,255,0.12)] border border-[rgba(10,132,255,0.2)] flex items-center justify-center text-vv-blue text-lg md:text-xl mb-5"><i class="fas fa-satellite-dish"></i></div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+        <div class="vv-glass rounded-2xl p-7 md:p-9 relative overflow-hidden vv-line-gold reveal hover:-translate-y-1 transition-all">
+            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl vv-icon-blue flex items-center justify-center text-lg md:text-xl mb-5"><i class="fas fa-satellite-dish"></i></div>
             <h3 class="text-lg md:text-xl font-extrabold mb-2" data-t="card1_title">Explorează</h3>
-            <p class="text-sm md:text-base text-white/50 leading-relaxed font-light" data-t="card1_desc">Deschide harta și vezi contractele active. Fiecare pin e o oportunitate — cineva vrea să știe ce se întâmplă acolo, chiar acum.</p>
-            <span class="inline-block mt-4 text-[10px] font-bold tracking-[2px] text-white/25 bg-glass border border-border px-3 py-1 rounded font-mono" data-t="card1_tag">SCANEAZĂ · DESCOPERĂ</span>
+            <p class="text-sm md:text-base vv-text-dim leading-relaxed font-light" data-t="card1_desc">Deschide harta și vezi contractele active. Fiecare pin e o oportunitate — cineva vrea să știe ce se întâmplă acolo.</p>
+            <span class="inline-block mt-4 text-xs font-bold tracking-widest vv-text-muted vv-glass px-3 py-1 rounded font-mono" data-t="card1_tag">SCANEAZĂ · DESCOPERĂ</span>
         </div>
-        <div class="bg-glass border border-border rounded-2xl p-7 md:p-9 hover:bg-glass-hover hover:border-border-hover hover:-translate-y-1 transition-all relative overflow-hidden accent-line-top line-gold reveal">
-            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-[rgba(255,59,48,0.1)] border border-[rgba(255,59,48,0.2)] flex items-center justify-center text-vv-red text-lg md:text-xl mb-5"><i class="fas fa-crosshairs"></i></div>
+        <div class="vv-glass rounded-2xl p-7 md:p-9 relative overflow-hidden vv-line-gold reveal hover:-translate-y-1 transition-all">
+            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl vv-icon-red flex items-center justify-center text-lg md:text-xl mb-5"><i class="fas fa-crosshairs"></i></div>
             <h3 class="text-lg md:text-xl font-extrabold mb-2" data-t="card2_title">Acționează</h3>
-            <p class="text-sm md:text-base text-white/50 leading-relaxed font-light" data-t="card2_desc">Acceptă misiunea, deplasează-te și trimite dovada live prin camera VV Proof. Watermark GPS automat, zero galerie.</p>
-            <span class="inline-block mt-4 text-[10px] font-bold tracking-[2px] text-white/25 bg-glass border border-border px-3 py-1 rounded font-mono" data-t="card2_tag">MERGI · CAPTUREAZĂ · DOVEDEȘTE</span>
+            <p class="text-sm md:text-base vv-text-dim leading-relaxed font-light" data-t="card2_desc">Acceptă misiunea, deplasează-te și trimite dovada live prin camera VV Proof. Watermark GPS automat.</p>
+            <span class="inline-block mt-4 text-xs font-bold tracking-widest vv-text-muted vv-glass px-3 py-1 rounded font-mono" data-t="card2_tag">MERGI · CAPTUREAZĂ · DOVEDEȘTE</span>
         </div>
-        <div class="bg-glass border border-border rounded-2xl p-7 md:p-9 hover:bg-glass-hover hover:border-border-hover hover:-translate-y-1 transition-all relative overflow-hidden accent-line-top line-gold reveal">
-            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-[rgba(212,175,55,0.15)] border border-[rgba(212,175,55,0.25)] flex items-center justify-center text-vv-accent text-lg md:text-xl mb-5"><i class="fas fa-coins"></i></div>
+        <div class="vv-glass rounded-2xl p-7 md:p-9 relative overflow-hidden vv-line-gold reveal hover:-translate-y-1 transition-all">
+            <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl vv-icon-gold flex items-center justify-center text-lg md:text-xl mb-5"><i class="fas fa-coins"></i></div>
             <h3 class="text-lg md:text-xl font-extrabold mb-2" data-t="card3_title">Acumulează</h3>
-            <p class="text-sm md:text-base text-white/50 leading-relaxed font-light" data-t="card3_desc">Dovada aprobată = VV Coins. Acumulează în Beta și deblochează luni gratuite de ONYX la lansarea VV 1.0.</p>
-            <span class="inline-block mt-4 text-[10px] font-bold tracking-[2px] text-white/25 bg-glass border border-border px-3 py-1 rounded font-mono" data-t="card3_tag">STRÂNGE · URCĂ · DEBLOCHEAZĂ</span>
+            <p class="text-sm md:text-base vv-text-dim leading-relaxed font-light" data-t="card3_desc">Dovada aprobată = VV Coins. Acumulează în Beta și deblochează ONYX gratuit la VV 1.0.</p>
+            <span class="inline-block mt-4 text-xs font-bold tracking-widest vv-text-muted vv-glass px-3 py-1 rounded font-mono" data-t="card3_tag">STRÂNGE · URCĂ · DEBLOCHEAZĂ</span>
         </div>
     </div>
 </section>
 
-<!-- ========== TOURIST + B2B ========== -->
-<section id="solutions" class="relative z-[1] px-5 md:px-8 py-16 md:py-24">
+<!-- SOLUTIONS: TOURIST + B2B -->
+<section id="solutions" class="relative z-10 px-5 md:px-8 py-16 md:py-24">
     <div class="reveal text-center mb-12 md:mb-16">
-        <div class="text-[11px] tracking-[4px] text-vv-accent font-bold mb-4" data-t="sol_label">SOLUȚII VV</div>
+        <div class="text-xs tracking-widest vv-accent font-bold mb-4" data-t="sol_label">SOLUȚII VV</div>
         <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4" data-t="sol_title">Nu doar pentru Insideri</h2>
-        <p class="text-base md:text-lg text-white/50 max-w-[min(540px,85vw)] mx-auto leading-relaxed font-light" data-t="sol_sub">VV rezolvă probleme reale — pentru turiști care vor adevărul și pentru business-uri care vor transparență.</p>
+        <p class="text-base md:text-lg vv-text-dim max-w-xl mx-auto leading-relaxed font-light" data-t="sol_sub">VV rezolvă probleme reale — pentru turiști și business-uri.</p>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-[min(1000px,92vw)] mx-auto">
-        <!-- TOURIST -->
-        <div class="bg-gradient-to-br from-[rgba(10,132,255,0.06)] to-[rgba(10,132,255,0.02)] border border-[rgba(10,132,255,0.15)] rounded-2xl p-8 md:p-10 relative overflow-hidden hover:-translate-y-1 transition-all accent-line-top line-blue reveal">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-5xl mx-auto">
+        <div class="vv-card-blue rounded-2xl p-8 md:p-10 relative overflow-hidden vv-line-blue reveal hover:-translate-y-1 transition-all">
             <div class="text-4xl mb-5">🧭</div>
-            <h3 class="text-xl md:text-2xl font-black mb-3 leading-snug text-vv-blue" data-t="tour_title">Ești în trecere? Află adevărul de la fața locului.</h3>
-            <p class="text-sm md:text-base text-white/50 leading-relaxed font-light mb-5" data-t="tour_desc">Nu mai pierde timpul la cozi uriașe sau în locații goale. Lansează o misiune și un Insider îți arată situația reală din teren, în timp real. Zero recenzii false, doar realitatea necenzurată.</p>
-            <span class="text-[10px] font-bold tracking-[2px] text-white/25 font-mono" data-t="tour_tag">TURIȘTI · CĂLĂTORI · PUBLICUL LARG</span>
+            <h3 class="text-xl md:text-2xl font-black mb-3 leading-snug vv-blue" data-t="tour_title">Ești în trecere? Află adevărul de la fața locului.</h3>
+            <p class="text-sm md:text-base vv-text-dim leading-relaxed font-light mb-5" data-t="tour_desc">Nu mai pierde timpul la cozi uriașe sau în locații goale. Lansează o misiune și un Insider îți arată situația reală din teren, în timp real. Zero recenzii false, doar realitatea necenzurată.</p>
+            <span class="text-xs font-bold tracking-widest vv-text-muted font-mono" data-t="tour_tag">TURIȘTI · CĂLĂTORI · PUBLICUL LARG</span>
         </div>
-        <!-- B2B -->
-        <div class="bg-gradient-to-br from-[rgba(52,199,89,0.06)] to-[rgba(52,199,89,0.02)] border border-[rgba(52,199,89,0.15)] rounded-2xl p-8 md:p-10 relative overflow-hidden hover:-translate-y-1 transition-all accent-line-top line-green reveal">
+        <div class="vv-card-green rounded-2xl p-8 md:p-10 relative overflow-hidden vv-line-green reveal hover:-translate-y-1 transition-all">
             <div class="text-4xl mb-5">🏢</div>
-            <h3 class="text-xl md:text-2xl font-black mb-3 leading-snug text-vv-green" data-t="b2b_title">VV Business: Arată-le că ești pe val.</h3>
-            <p class="text-sm md:text-base text-white/50 leading-relaxed font-light mb-5" data-t="b2b_desc">Fii transparent și atrage clienții care contează. Revendică-ți locația pe harta VV, demonstrează că ai casa plină cu ajutorul sistemului VV Proof și devino o atracție verificată.</p>
-            <span class="text-[10px] font-bold tracking-[2px] text-white/25 font-mono" data-t="b2b_tag">CLUBURI · RESTAURANTE · MUZEE · EVENTS</span>
+            <h3 class="text-xl md:text-2xl font-black mb-3 leading-snug vv-green" data-t="b2b_title">VV Business: Arată-le că ești pe val.</h3>
+            <p class="text-sm md:text-base vv-text-dim leading-relaxed font-light mb-5" data-t="b2b_desc">Fii transparent și atrage clienții care contează. Revendică-ți locația pe harta VV, demonstrează că ai casa plină cu VV Proof și devino o atracție verificată.</p>
+            <span class="text-xs font-bold tracking-widest vv-text-muted font-mono" data-t="b2b_tag">CLUBURI · RESTAURANTE · MUZEE · EVENTS</span>
         </div>
     </div>
 </section>
 
-<!-- ========== WHO IS VV FOR ========== -->
-<section id="who" class="relative z-[1] px-5 md:px-8 py-16 md:py-24">
+<!-- WHO ARE INSIDERS -->
+<section id="who" class="relative z-10 px-5 md:px-8 py-16 md:py-24">
     <div class="reveal text-center mb-12 md:mb-16">
-        <div class="text-[11px] tracking-[4px] text-vv-accent font-bold mb-4" data-t="who_label">CINE SUNT INSIDERII?</div>
+        <div class="text-xs tracking-widest vv-accent font-bold mb-4" data-t="who_label">CINE SUNT INSIDERII?</div>
         <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4" data-t="who_title">Oricine prețuiește timpul, reputația și adevărul</h2>
-        <p class="text-base md:text-lg text-white/50 max-w-[min(540px,85vw)] mx-auto leading-relaxed font-light" data-t="who_sub">Strânge VV Coins, urcă în clasament și deblochează ONYX.</p>
+        <p class="text-base md:text-lg vv-text-dim max-w-xl mx-auto leading-relaxed font-light" data-t="who_sub">Strânge VV Coins, urcă în clasament și deblochează ONYX.</p>
     </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-[min(1000px,92vw)] mx-auto">
-        <div class="bg-glass border border-border rounded-2xl p-6 md:p-7 hover:bg-glass-hover hover:border-border-hover transition-all reveal">
-            <div class="text-3xl mb-4">🎓</div>
-            <h3 class="text-base md:text-lg font-extrabold mb-2" data-t="w1_title">Studenți</h3>
-            <p class="text-sm text-white/50 leading-relaxed font-light" data-t="w1_desc">Rezolvă misiuni între cursuri. 5 min = VV Coins + pas spre ONYX.</p>
-        </div>
-        <div class="bg-glass border border-border rounded-2xl p-6 md:p-7 hover:bg-glass-hover hover:border-border-hover transition-all reveal">
-            <div class="text-3xl mb-4">💼</div>
-            <h3 class="text-base md:text-lg font-extrabold mb-2" data-t="w2_title">Freelanceri</h3>
-            <p class="text-sm text-white/50 leading-relaxed font-light" data-t="w2_desc">Contracte în pauze. VV Coins și reputație fără program.</p>
-        </div>
-        <div class="bg-glass border border-border rounded-2xl p-6 md:p-7 hover:bg-glass-hover hover:border-border-hover transition-all reveal">
-            <div class="text-3xl mb-4">🏃</div>
-            <h3 class="text-base md:text-lg font-extrabold mb-2" data-t="w3_title">Exploratori Urbani</h3>
-            <p class="text-sm text-white/50 leading-relaxed font-light" data-t="w3_desc">Cunoști orașul? VV Coins + statut Insider Elite.</p>
-        </div>
-        <div class="bg-glass border border-border rounded-2xl p-6 md:p-7 hover:bg-glass-hover hover:border-border-hover transition-all reveal">
-            <div class="text-3xl mb-4">🌙</div>
-            <h3 class="text-base md:text-lg font-extrabold mb-2" data-t="w5_title">Night Owls</h3>
-            <p class="text-sm text-white/50 leading-relaxed font-light" data-t="w5_desc">Misiuni de noapte = recompense VV premium.</p>
-        </div>
-        <!-- HIGHLIGHT CARD -->
-        <div class="sm:col-span-2 lg:col-span-4 bg-gradient-to-br from-[rgba(212,175,55,0.04)] to-[rgba(212,175,55,0.01)] border border-[rgba(212,175,55,0.15)] rounded-2xl p-7 md:p-8 hover:bg-glass-hover transition-all reveal">
-            <div class="text-3xl mb-4">🏆</div>
-            <h3 class="text-base md:text-lg font-extrabold mb-2" data-t="w7_title">Obiectivul Beta</h3>
-            <p class="text-sm text-white/50 leading-relaxed font-light" data-t="w7_desc">Strânge VV Coins acum, urcă în Top Insideri și fii printre primii care primesc luni gratuite de abonament exclusiv VV ONYX la lansarea oficială 1.0.</p>
-            <div class="font-mono text-xl md:text-2xl font-bold text-vv-accent mt-3" data-t="w7_target">ȚINTA: 500 VV → 1 LUNĂ ONYX GRATUIT</div>
-        </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
+        <div class="vv-glass rounded-2xl p-6 md:p-7 reveal hover:-translate-y-1 transition-all"><div class="text-3xl mb-4">🎓</div><h3 class="text-base md:text-lg font-extrabold mb-2" data-t="w1_title">Studenți</h3><p class="text-sm vv-text-dim leading-relaxed font-light" data-t="w1_desc">Rezolvă misiuni între cursuri. 5 min = VV Coins + pas spre ONYX.</p></div>
+        <div class="vv-glass rounded-2xl p-6 md:p-7 reveal hover:-translate-y-1 transition-all"><div class="text-3xl mb-4">💼</div><h3 class="text-base md:text-lg font-extrabold mb-2" data-t="w2_title">Freelanceri</h3><p class="text-sm vv-text-dim leading-relaxed font-light" data-t="w2_desc">Contracte în pauze. VV Coins și reputație fără program.</p></div>
+        <div class="vv-glass rounded-2xl p-6 md:p-7 reveal hover:-translate-y-1 transition-all"><div class="text-3xl mb-4">🏃</div><h3 class="text-base md:text-lg font-extrabold mb-2" data-t="w3_title">Exploratori Urbani</h3><p class="text-sm vv-text-dim leading-relaxed font-light" data-t="w3_desc">Cunoști orașul? VV Coins + statut Insider Elite.</p></div>
+        <div class="vv-glass rounded-2xl p-6 md:p-7 reveal hover:-translate-y-1 transition-all"><div class="text-3xl mb-4">🌙</div><h3 class="text-base md:text-lg font-extrabold mb-2" data-t="w5_title">Night Owls</h3><p class="text-sm vv-text-dim leading-relaxed font-light" data-t="w5_desc">Misiuni de noapte = recompense VV premium.</p></div>
+        <div class="sm:col-span-2 lg:col-span-4 vv-card-gold rounded-2xl p-7 md:p-8 reveal hover:-translate-y-1 transition-all"><div class="text-3xl mb-4">🏆</div><h3 class="text-base md:text-lg font-extrabold mb-2" data-t="w7_title">Obiectivul Beta</h3><p class="text-sm vv-text-dim leading-relaxed font-light" data-t="w7_desc">Strânge VV Coins acum. 500 VV = 1 lună ONYX gratuit la VV 1.0.</p><div class="font-mono text-xl md:text-2xl font-bold vv-accent mt-3" data-t="w7_target">ȚINTA: 500 VV → 1 LUNĂ ONYX GRATUIT</div></div>
     </div>
 </section>
 
-<!-- ========== HOW IT WORKS ========== -->
-<section id="tutorial" class="relative z-[1] px-5 md:px-8 py-16 md:py-24">
+<!-- HOW IT WORKS -->
+<section id="tutorial" class="relative z-10 px-5 md:px-8 py-16 md:py-24">
     <div class="reveal text-center mb-12 md:mb-16">
-        <div class="text-[11px] tracking-[4px] text-vv-accent font-bold mb-4" data-t="steps_label">CUM FUNCȚIONEAZĂ</div>
+        <div class="text-xs tracking-widest vv-accent font-bold mb-4" data-t="steps_label">CUM FUNCȚIONEAZĂ</div>
         <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4" data-t="steps_title">De la 0 la primul VV Coin</h2>
-        <p class="text-base md:text-lg text-white/50 max-w-[min(540px,85vw)] mx-auto leading-relaxed font-light" data-t="steps_sub">Ai nevoie de o cheie de acces de la un Insider sau de la echipa VV. Restul e simplu.</p>
+        <p class="text-base md:text-lg vv-text-dim max-w-xl mx-auto leading-relaxed font-light" data-t="steps_sub">Ai nevoie de o cheie de la un Insider sau echipa VV.</p>
     </div>
-
-    <div class="max-w-[min(700px,92vw)] mx-auto flex flex-col relative">
-        <!-- Vertical line -->
-        <div class="absolute left-5 md:left-6 top-8 bottom-8 w-px bg-gradient-to-b from-border via-[rgba(212,175,55,0.3)] to-border"></div>
-
-        <div class="flex gap-5 md:gap-6 py-5 md:py-6 items-start reveal">
-            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-glass border border-border flex items-center justify-center font-mono text-sm font-bold text-vv-accent shrink-0 relative z-[1]">01</div>
-            <div class="pt-1.5 md:pt-2"><h3 class="text-base md:text-lg font-extrabold mb-1" data-t="s1_t">Primește o cheie de acces</h3><p class="text-sm md:text-base text-white/50 leading-relaxed font-light" data-t="s1_d">Cere o cheie de la un Insider activ sau contactează echipa VV. Fiecare user primește 3 chei pentru prieteni.</p></div>
-        </div>
-        <div class="flex gap-5 md:gap-6 py-5 md:py-6 items-start reveal">
-            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-glass border border-border flex items-center justify-center font-mono text-sm font-bold text-vv-accent shrink-0 relative z-[1]">02</div>
-            <div class="pt-1.5 md:pt-2"><h3 class="text-base md:text-lg font-extrabold mb-1" data-t="s2_t">Deschide VV Beta</h3><p class="text-sm md:text-base text-white/50 leading-relaxed font-light" data-t="s2_d">Introdu cheia, acceptă regulamentul și alege-ți numele de cod Insider. Primești 100 VV Coins cadou.</p></div>
-        </div>
-        <div class="flex gap-5 md:gap-6 py-5 md:py-6 items-start reveal">
-            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-glass border border-border flex items-center justify-center font-mono text-sm font-bold text-vv-accent shrink-0 relative z-[1]">03</div>
-            <div class="pt-1.5 md:pt-2"><h3 class="text-base md:text-lg font-extrabold mb-1" data-t="s3_t">Explorează harta</h3><p class="text-sm md:text-base text-white/50 leading-relaxed font-light" data-t="s3_d">Caută adrese sau navighează liber. Contractele active apar pe hartă cu recompense VV Coins.</p></div>
-        </div>
-        <div class="flex gap-5 md:gap-6 py-5 md:py-6 items-start reveal">
-            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-glass border border-border flex items-center justify-center font-mono text-sm font-bold text-vv-accent shrink-0 relative z-[1]">04</div>
-            <div class="pt-1.5 md:pt-2"><h3 class="text-base md:text-lg font-extrabold mb-1" data-t="s4_t">Completează misiunea</h3><p class="text-sm md:text-base text-white/50 leading-relaxed font-light" data-t="s4_d">Deplasează-te la locație, deschide camera VV Proof și trimite dovada live. GPS verificat automat.</p></div>
-        </div>
-        <div class="flex gap-5 md:gap-6 py-5 md:py-6 items-start reveal">
-            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-glass border border-border flex items-center justify-center font-mono text-sm font-bold text-vv-accent shrink-0 relative z-[1]">05</div>
-            <div class="pt-1.5 md:pt-2"><h3 class="text-base md:text-lg font-extrabold mb-1" data-t="s5_t">Acumulează VV Coins</h3><p class="text-sm md:text-base text-white/50 leading-relaxed font-light" data-t="s5_d">Dovada aprobată = VV Coins instant. Strânge 500 VV în Beta și deblochezi 1 lună ONYX gratuit la VV 1.0.</p></div>
-        </div>
+    <div class="max-w-2xl mx-auto flex flex-col vv-timeline">
+        <div class="flex gap-5 md:gap-6 py-5 md:py-6 items-start reveal"><div class="w-10 h-10 md:w-12 md:h-12 rounded-full vv-step flex items-center justify-center font-mono text-sm font-bold shrink-0 relative z-10">01</div><div class="pt-1.5 md:pt-2"><h3 class="text-base md:text-lg font-extrabold mb-1" data-t="s1_t">Primește o cheie</h3><p class="text-sm md:text-base vv-text-dim leading-relaxed font-light" data-t="s1_d">Cere cheie de la un Insider activ sau echipa VV.</p></div></div>
+        <div class="flex gap-5 md:gap-6 py-5 md:py-6 items-start reveal"><div class="w-10 h-10 md:w-12 md:h-12 rounded-full vv-step flex items-center justify-center font-mono text-sm font-bold shrink-0 relative z-10">02</div><div class="pt-1.5 md:pt-2"><h3 class="text-base md:text-lg font-extrabold mb-1" data-t="s2_t">Deschide VV Beta</h3><p class="text-sm md:text-base vv-text-dim leading-relaxed font-light" data-t="s2_d">Introdu cheia, acceptă regulamentul, alege-ți numele. Primești 100 VV Coins.</p></div></div>
+        <div class="flex gap-5 md:gap-6 py-5 md:py-6 items-start reveal"><div class="w-10 h-10 md:w-12 md:h-12 rounded-full vv-step flex items-center justify-center font-mono text-sm font-bold shrink-0 relative z-10">03</div><div class="pt-1.5 md:pt-2"><h3 class="text-base md:text-lg font-extrabold mb-1" data-t="s3_t">Explorează harta</h3><p class="text-sm md:text-base vv-text-dim leading-relaxed font-light" data-t="s3_d">Contracte active cu recompense VV Coins.</p></div></div>
+        <div class="flex gap-5 md:gap-6 py-5 md:py-6 items-start reveal"><div class="w-10 h-10 md:w-12 md:h-12 rounded-full vv-step flex items-center justify-center font-mono text-sm font-bold shrink-0 relative z-10">04</div><div class="pt-1.5 md:pt-2"><h3 class="text-base md:text-lg font-extrabold mb-1" data-t="s4_t">Completează misiunea</h3><p class="text-sm md:text-base vv-text-dim leading-relaxed font-light" data-t="s4_d">Camera VV Proof, dovadă live, GPS verificat.</p></div></div>
+        <div class="flex gap-5 md:gap-6 py-5 md:py-6 items-start reveal"><div class="w-10 h-10 md:w-12 md:h-12 rounded-full vv-step flex items-center justify-center font-mono text-sm font-bold shrink-0 relative z-10">05</div><div class="pt-1.5 md:pt-2"><h3 class="text-base md:text-lg font-extrabold mb-1" data-t="s5_t">Acumulează VV Coins</h3><p class="text-sm md:text-base vv-text-dim leading-relaxed font-light" data-t="s5_d">500 VV în Beta = 1 lună ONYX gratuit la lansare.</p></div></div>
     </div>
 </section>
 
-<!-- ========== PRICING ========== -->
-<section id="pricing" class="relative z-[1] px-5 md:px-8 py-16 md:py-24">
+<!-- PRICING -->
+<section id="pricing" class="relative z-10 px-5 md:px-8 py-16 md:py-24">
     <div class="reveal text-center mb-12 md:mb-16">
-        <div class="text-[11px] tracking-[4px] text-vv-accent font-bold mb-4" data-t="pr_label">ACCES TIMPURIU</div>
+        <div class="text-xs tracking-widest vv-accent font-bold mb-4" data-t="pr_label">ACCES TIMPURIU</div>
         <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight leading-tight mb-4" data-t="pr_title">Fii Insider de la început</h2>
-        <p class="text-base md:text-lg text-white/50 max-w-[min(540px,85vw)] mx-auto leading-relaxed font-light" data-t="pr_sub">VV Beta e gratuit. VV Coins strânse acum = luni gratuite ONYX la lansarea oficială.</p>
+        <p class="text-base md:text-lg vv-text-dim max-w-xl mx-auto leading-relaxed font-light" data-t="pr_sub">Beta e gratuit. VV Coins strânse acum = ONYX gratuit la VV 1.0.</p>
     </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[min(900px,92vw)] mx-auto">
-        <!-- INSIDER FREE -->
-        <div class="bg-glass border border-border rounded-2xl p-8 md:p-10 text-center relative reveal">
-            <div class="text-[10px] tracking-[3px] text-white/25 font-bold mb-3" data-t="p1_l">ACCES BETA</div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+        <div class="vv-glass rounded-2xl p-8 md:p-10 text-center relative reveal">
+            <div class="text-xs tracking-widest vv-text-muted font-bold mb-3" data-t="p1_l">ACCES BETA</div>
             <div class="text-2xl font-black mb-2">Insider</div>
-            <div class="font-mono text-4xl md:text-5xl font-bold mb-1">0 <span class="text-base text-white/25">LEI</span></div>
-            <div class="text-sm text-white/25 mb-6" data-t="p1_p">Gratuit cu cheie de invitație</div>
+            <div class="font-mono text-4xl md:text-5xl font-bold mb-1">0 <span class="text-base vv-text-muted">LEI</span></div>
+            <div class="text-sm vv-text-muted mb-6" data-t="p1_p">Gratuit cu cheie de invitație</div>
             <ul class="text-left mb-7 space-y-0">
-                <li class="flex items-center gap-2.5 py-2 text-sm text-white/50 border-b border-white/[0.04]"><i class="fas fa-check text-vv-green text-xs w-4"></i><span data-t="p1_f1">100 VV Coins cadou la start</span></li>
-                <li class="flex items-center gap-2.5 py-2 text-sm text-white/50 border-b border-white/[0.04]"><i class="fas fa-check text-vv-green text-xs w-4"></i><span data-t="p1_f2">3 chei de invitație</span></li>
-                <li class="flex items-center gap-2.5 py-2 text-sm text-white/50 border-b border-white/[0.04]"><i class="fas fa-check text-vv-green text-xs w-4"></i><span data-t="p1_f3">Acces complet la misiuni</span></li>
-                <li class="flex items-center gap-2.5 py-2 text-sm text-white/50 border-b border-white/[0.04]"><i class="fas fa-check text-vv-green text-xs w-4"></i><span data-t="p1_f4">Camera VV Proof</span></li>
-                <li class="flex items-center gap-2.5 py-2 text-sm text-white/50"><i class="fas fa-check text-vv-green text-xs w-4"></i><span data-t="p1_f5">Clasament Top Insideri</span></li>
+                <li class="flex items-center gap-2.5 py-2 text-sm vv-text-dim vv-border-subtle"><i class="fas fa-check vv-green text-xs w-4"></i><span data-t="p1_f1">100 VV Coins cadou</span></li>
+                <li class="flex items-center gap-2.5 py-2 text-sm vv-text-dim vv-border-subtle"><i class="fas fa-check vv-green text-xs w-4"></i><span data-t="p1_f2">3 chei de invitație</span></li>
+                <li class="flex items-center gap-2.5 py-2 text-sm vv-text-dim vv-border-subtle"><i class="fas fa-check vv-green text-xs w-4"></i><span data-t="p1_f3">Acces complet misiuni</span></li>
+                <li class="flex items-center gap-2.5 py-2 text-sm vv-text-dim vv-border-subtle"><i class="fas fa-check vv-green text-xs w-4"></i><span data-t="p1_f4">Camera VV Proof</span></li>
+                <li class="flex items-center gap-2.5 py-2 text-sm vv-text-dim"><i class="fas fa-check vv-green text-xs w-4"></i><span data-t="p1_f5">Top Insideri clasament</span></li>
             </ul>
-            <a href="https://vv-technologies.github.io/VV-BETA/" target="_blank" class="block w-full py-3.5 bg-white/90 text-black rounded-xl text-sm font-extrabold tracking-wide no-underline text-center hover:bg-white transition-all" data-t="p1_btn">ÎNCEPE ACUM</a>
+            <a href="https://vv-technologies.github.io/VV-BETA/" target="_blank" class="block w-full py-3.5 vv-btn-white rounded-xl text-sm font-extrabold tracking-wide no-underline text-center transition-all" data-t="p1_btn">ÎNCEPE ACUM</a>
         </div>
-        <!-- ONYX -->
-        <div class="bg-gradient-to-br from-[rgba(212,175,55,0.06)] to-[rgba(212,175,55,0.01)] border border-[rgba(212,175,55,0.3)] rounded-2xl p-8 md:p-10 text-center relative accent-line-top line-gold reveal">
-            <div class="text-[10px] tracking-[3px] text-vv-accent font-bold mb-3">FOUNDER'S PASS</div>
-            <div class="text-2xl font-black text-vv-accent mb-2">VV ONYX</div>
-            <div class="font-mono text-4xl md:text-5xl font-bold text-vv-accent mb-1">29 <span class="text-base text-white/25">LEI/lună</span></div>
-            <div class="text-sm text-white/25 mb-6" data-t="p2_p">Sau gratuit cu 500 VV Coins din Beta</div>
+        <div class="vv-card-gold-strong rounded-2xl p-8 md:p-10 text-center relative vv-line-gold reveal">
+            <div class="text-xs tracking-widest vv-accent font-bold mb-3">FOUNDER'S PASS</div>
+            <div class="text-2xl font-black vv-accent mb-2">VV ONYX</div>
+            <div class="font-mono text-4xl md:text-5xl font-bold vv-accent mb-1">29 <span class="text-base vv-text-muted">LEI/lună</span></div>
+            <div class="text-sm vv-text-muted mb-6" data-t="p2_p">Sau gratuit cu 500 VV Coins din Beta</div>
             <ul class="text-left mb-7 space-y-0">
-                <li class="flex items-center gap-2.5 py-2 text-sm text-white/50 border-b border-white/[0.04]"><i class="fas fa-check text-vv-green text-xs w-4"></i><span data-t="p2_f1">Tot ce include Insider</span></li>
-                <li class="flex items-center gap-2.5 py-2 text-sm text-white/50 border-b border-white/[0.04]"><i class="fas fa-check text-vv-green text-xs w-4"></i><span data-t="p2_f2">Prioritate misiuni premium</span></li>
-                <li class="flex items-center gap-2.5 py-2 text-sm text-white/50 border-b border-white/[0.04]"><i class="fas fa-check text-vv-green text-xs w-4"></i><span data-t="p2_f3">Rază extinsă scanare</span></li>
-                <li class="flex items-center gap-2.5 py-2 text-sm text-white/50 border-b border-white/[0.04]"><i class="fas fa-check text-vv-green text-xs w-4"></i><span data-t="p2_f4">Badge ONYX exclusiv</span></li>
-                <li class="flex items-center gap-2.5 py-2 text-sm text-white/50"><i class="fas fa-check text-vv-green text-xs w-4"></i><span data-t="p2_f5">Acces Global Feed</span></li>
+                <li class="flex items-center gap-2.5 py-2 text-sm vv-text-dim vv-border-subtle"><i class="fas fa-check vv-green text-xs w-4"></i><span data-t="p2_f1">Tot ce include Insider</span></li>
+                <li class="flex items-center gap-2.5 py-2 text-sm vv-text-dim vv-border-subtle"><i class="fas fa-check vv-green text-xs w-4"></i><span data-t="p2_f2">Prioritate premium</span></li>
+                <li class="flex items-center gap-2.5 py-2 text-sm vv-text-dim vv-border-subtle"><i class="fas fa-check vv-green text-xs w-4"></i><span data-t="p2_f3">Rază extinsă</span></li>
+                <li class="flex items-center gap-2.5 py-2 text-sm vv-text-dim vv-border-subtle"><i class="fas fa-check vv-green text-xs w-4"></i><span data-t="p2_f4">Badge ONYX exclusiv</span></li>
+                <li class="flex items-center gap-2.5 py-2 text-sm vv-text-dim"><i class="fas fa-check vv-green text-xs w-4"></i><span data-t="p2_f5">Global Feed</span></li>
             </ul>
-            <button class="w-full py-3.5 bg-glass text-white/50 border border-border rounded-xl text-sm font-extrabold tracking-wide cursor-pointer transition-all" data-t="p2_btn">DEBLOCHEAZĂ CU VV COINS</button>
+            <button class="w-full py-3.5 vv-btn-glass rounded-xl text-sm font-extrabold tracking-wide cursor-pointer" data-t="p2_btn">DEBLOCHEAZĂ CU VV COINS</button>
         </div>
     </div>
 </section>
 
-<!-- ========== FOOTER ========== -->
-<footer class="relative z-[1] border-t border-border px-5 md:px-8 pt-14 pb-10 text-center">
-    <div class="text-3xl md:text-4xl font-black tracking-[8px] mb-1">VV</div>
-    <div class="text-[11px] text-white/25 tracking-[3px] mb-8">THE ERA OF FAKE REALITY IS OVER</div>
+<!-- FOOTER -->
+<footer class="relative z-10 px-5 md:px-8 pt-14 pb-10 text-center" style="border-top:1px solid rgba(255,255,255,.08);">
+    <div class="text-3xl md:text-4xl font-black tracking-widest mb-1">VV</div>
+    <div class="text-xs vv-text-muted tracking-widest mb-8">THE ERA OF FAKE REALITY IS OVER</div>
     <div class="flex justify-center gap-5 md:gap-6 mb-8 flex-wrap">
-        <a href="#concept" class="text-white/50 no-underline text-sm font-semibold hover:text-white transition-colors" data-t="f1">Concept</a>
-        <a href="#solutions" class="text-white/50 no-underline text-sm font-semibold hover:text-white transition-colors" data-t="f2">Soluții</a>
-        <a href="#who" class="text-white/50 no-underline text-sm font-semibold hover:text-white transition-colors" data-t="f3">Insideri</a>
-        <a href="#tutorial" class="text-white/50 no-underline text-sm font-semibold hover:text-white transition-colors" data-t="f4">Cum funcționează</a>
-        <a href="#pricing" class="text-white/50 no-underline text-sm font-semibold hover:text-white transition-colors" data-t="f5">Prețuri</a>
+        <a href="#concept" class="vv-text-dim no-underline text-sm font-semibold hover:text-white transition-colors" data-t="f1">Concept</a>
+        <a href="#solutions" class="vv-text-dim no-underline text-sm font-semibold hover:text-white transition-colors" data-t="f2">Soluții</a>
+        <a href="#who" class="vv-text-dim no-underline text-sm font-semibold hover:text-white transition-colors" data-t="f3">Insideri</a>
+        <a href="#tutorial" class="vv-text-dim no-underline text-sm font-semibold hover:text-white transition-colors" data-t="f4">Cum funcționează</a>
+        <a href="#pricing" class="vv-text-dim no-underline text-sm font-semibold hover:text-white transition-colors" data-t="f5">Prețuri</a>
     </div>
     <div class="flex justify-center gap-3 md:gap-4 mb-8">
-        <a href="#" class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-glass border border-border flex items-center justify-center text-white/50 text-base no-underline hover:bg-glass-hover hover:border-border-hover hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-glass border border-border flex items-center justify-center text-white/50 text-base no-underline hover:bg-glass-hover hover:border-border-hover hover:text-white transition-all"><i class="fab fa-tiktok"></i></a>
-        <a href="#" class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-glass border border-border flex items-center justify-center text-white/50 text-base no-underline hover:bg-glass-hover hover:border-border-hover hover:text-white transition-all"><i class="fab fa-discord"></i></a>
-        <a href="https://github.com/vv-technologies" target="_blank" class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-glass border border-border flex items-center justify-center text-white/50 text-base no-underline hover:bg-glass-hover hover:border-border-hover hover:text-white transition-all"><i class="fab fa-github"></i></a>
+        <a href="#" class="w-10 h-10 md:w-11 md:h-11 rounded-xl vv-glass flex items-center justify-center vv-text-dim text-base no-underline hover:text-white transition-all"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="w-10 h-10 md:w-11 md:h-11 rounded-xl vv-glass flex items-center justify-center vv-text-dim text-base no-underline hover:text-white transition-all"><i class="fab fa-tiktok"></i></a>
+        <a href="#" class="w-10 h-10 md:w-11 md:h-11 rounded-xl vv-glass flex items-center justify-center vv-text-dim text-base no-underline hover:text-white transition-all"><i class="fab fa-discord"></i></a>
+        <a href="https://github.com/vv-technologies" target="_blank" class="w-10 h-10 md:w-11 md:h-11 rounded-xl vv-glass flex items-center justify-center vv-text-dim text-base no-underline hover:text-white transition-all"><i class="fab fa-github"></i></a>
     </div>
-    <div class="text-[11px] text-white/25 tracking-wider">© 2026 VV Technologies · București, România</div>
+    <div class="text-xs vv-text-muted tracking-wider">© 2026 VV Technologies · București, România</div>
 </footer>
 
-<!-- ========== SCRIPTS ========== -->
 <script>
 var T={
-ro:{nav_cta:'DESCHIDE APP',hero_badge:'BETA ACTIV · BUCUREȘTI',hero_t1:'The Future of',hero_t2:'Urban Intelligence',hero_sub:'Strânge VV Coins rezolvând misiuni reale. Fii printre primii Insideri care deblochează statutul exclusiv ONYX la lansarea VV 1.0.',hero_btn1:'LANSEAZĂ VV BETA',hero_btn2:'Cum funcționează',pil1:'TIMP',pil1s:'Economisești ore',pil2:'REPUTAȚIE',pil2s:'Devino Insider Elite',pil3:'ADEVĂR',pil3s:'Zero fake, zero filtre',mission_q:'Într-o lume plină de fake, VV e singurul loc unde vezi realitatea — dovedită la fața locului, în timp real.',mission_d:'Nu contează cine ești — student, freelancer, patron sau turist. Rezolvă misiuni, strânge VV Coins și fii printre primii care deblochează luni gratuite de abonament exclusiv VV ONYX.',concept_label:'CONCEPTUL',concept_title:'Trei pași. O singură misiune.',concept_sub:'Explorează, acționează, câștigă reputație.',card1_title:'Explorează',card1_desc:'Deschide harta și vezi contractele active. Fiecare pin e o oportunitate.',card1_tag:'SCANEAZĂ · DESCOPERĂ',card2_title:'Acționează',card2_desc:'Acceptă misiunea, deplasează-te și trimite dovada live prin camera VV Proof.',card2_tag:'MERGI · CAPTUREAZĂ · DOVEDEȘTE',card3_title:'Acumulează',card3_desc:'Dovada aprobată = VV Coins. Acumulează în Beta și deblochează ONYX gratuit la VV 1.0.',card3_tag:'STRÂNGE · URCĂ · DEBLOCHEAZĂ',sol_label:'SOLUȚII VV',sol_title:'Nu doar pentru Insideri',sol_sub:'VV rezolvă probleme reale — pentru turiști și business-uri.',tour_title:'Ești în trecere? Află adevărul de la fața locului.',tour_desc:'Nu mai pierde timpul la cozi uriașe sau în locații goale. Lansează o misiune și un Insider îți arată situația reală din teren, în timp real. Zero recenzii false, doar realitatea necenzurată.',tour_tag:'TURIȘTI · CĂLĂTORI · PUBLICUL LARG',b2b_title:'VV Business: Arată-le că ești pe val.',b2b_desc:'Fii transparent și atrage clienții care contează. Revendică-ți locația pe harta VV, demonstrează că ai casa plină cu VV Proof și devino o atracție verificată.',b2b_tag:'CLUBURI · RESTAURANTE · MUZEE · EVENTS',who_label:'CINE SUNT INSIDERII?',who_title:'Oricine prețuiește timpul, reputația și adevărul',who_sub:'Strânge VV Coins, urcă în clasament și deblochează ONYX.',w1_title:'Studenți',w1_desc:'Rezolvă misiuni între cursuri. 5 min = VV Coins + pas spre ONYX.',w2_title:'Freelanceri',w2_desc:'Contracte în pauze. VV Coins și reputație fără program.',w3_title:'Exploratori Urbani',w3_desc:'Cunoști orașul? VV Coins + statut Insider Elite.',w5_title:'Night Owls',w5_desc:'Misiuni de noapte = recompense VV premium.',w7_title:'Obiectivul Beta',w7_desc:'Strânge VV Coins acum. 500 VV = 1 lună ONYX gratuit la VV 1.0.',w7_target:'ȚINTA: 500 VV → 1 LUNĂ ONYX GRATUIT',steps_label:'CUM FUNCȚIONEAZĂ',steps_title:'De la 0 la primul VV Coin',steps_sub:'Ai nevoie de o cheie de la un Insider sau echipa VV.',s1_t:'Primește o cheie',s1_d:'Cere cheie de la un Insider activ sau echipa VV.',s2_t:'Deschide VV Beta',s2_d:'Introdu cheia, acceptă regulamentul, alege-ți numele Insider. Primești 100 VV Coins.',s3_t:'Explorează harta',s3_d:'Contracte active cu recompense VV Coins.',s4_t:'Completează misiunea',s4_d:'Camera VV Proof, dovadă live, GPS verificat.',s5_t:'Acumulează VV Coins',s5_d:'500 VV în Beta = 1 lună ONYX gratuit la lansare.',pr_label:'ACCES TIMPURIU',pr_title:'Fii Insider de la început',pr_sub:'Beta e gratuit. VV Coins strânse acum = ONYX gratuit la VV 1.0.',p1_l:'ACCES BETA',p1_p:'Gratuit cu cheie de invitație',p1_f1:'100 VV Coins cadou',p1_f2:'3 chei de invitație',p1_f3:'Acces complet misiuni',p1_f4:'Camera VV Proof',p1_f5:'Top Insideri clasament',p1_btn:'ÎNCEPE ACUM',p2_p:'Sau gratuit cu 500 VV Coins din Beta',p2_f1:'Tot ce include Insider',p2_f2:'Prioritate premium',p2_f3:'Rază extinsă',p2_f4:'Badge ONYX exclusiv',p2_f5:'Global Feed',p2_btn:'DEBLOCHEAZĂ CU VV COINS',f1:'Concept',f2:'Soluții',f3:'Insideri',f4:'Cum funcționează',f5:'Prețuri'},
-en:{nav_cta:'OPEN APP',hero_badge:'BETA LIVE · BUCHAREST',hero_t1:'The Future of',hero_t2:'Urban Intelligence',hero_sub:'Earn VV Coins by completing real missions. Be among the first Insiders to unlock exclusive ONYX status at VV 1.0 launch.',hero_btn1:'LAUNCH VV BETA',hero_btn2:'How it works',pil1:'TIME',pil1s:'Save hours',pil2:'REPUTATION',pil2s:'Become Elite Insider',pil3:'TRUTH',pil3s:'Zero fake, zero filters',mission_q:'In a world full of fake, VV is the only place where you see reality — proven on-site, in real time.',mission_d:"Doesn't matter who you are — student, freelancer, business owner or tourist. Complete missions, earn VV Coins and unlock free months of exclusive VV ONYX.",concept_label:'THE CONCEPT',concept_title:'Three steps. One mission.',concept_sub:'Explore, act, build reputation.',card1_title:'Explore',card1_desc:'Open the map and see active contracts. Each pin is an opportunity.',card1_tag:'SCAN · DISCOVER',card2_title:'Action',card2_desc:'Accept the mission, go there, submit live proof via VV Proof camera.',card2_tag:'GO · CAPTURE · PROVE',card3_title:'Accumulate',card3_desc:'Approved proof = VV Coins. Accumulate during Beta and unlock free ONYX at VV 1.0.',card3_tag:'EARN · CLIMB · UNLOCK',sol_label:'VV SOLUTIONS',sol_title:'Not just for Insiders',sol_sub:'VV solves real problems — for tourists and businesses.',tour_title:'Just passing through? Get the truth from the ground.',tour_desc:"Stop wasting time in huge queues or empty venues. Launch a mission and an Insider shows you the real situation on-site. Zero fake reviews, just uncensored reality.",tour_tag:'TOURISTS · TRAVELERS · GENERAL PUBLIC',b2b_title:"VV Business: Show them you're the real deal.",b2b_desc:'Be transparent and attract the clients that matter. Claim your location on the VV map, prove your venue is packed with VV Proof and become a verified attraction.',b2b_tag:'CLUBS · RESTAURANTS · MUSEUMS · EVENTS',who_label:'WHO ARE THE INSIDERS?',who_title:'Anyone who values time, reputation, and truth',who_sub:'Earn VV Coins, climb the ranks, unlock ONYX.',w1_title:'Students',w1_desc:'Complete missions between classes. 5 min = VV Coins + step toward ONYX.',w2_title:'Freelancers',w2_desc:'Contracts on breaks. VV Coins and reputation, no schedule.',w3_title:'Urban Explorers',w3_desc:'Know the city? VV Coins + Elite Insider status.',w5_title:'Night Owls',w5_desc:'Night missions = premium VV rewards.',w7_title:'Beta Objective',w7_desc:'Earn VV Coins now. 500 VV = 1 free month of ONYX at VV 1.0.',w7_target:'TARGET: 500 VV → 1 FREE MONTH ONYX',steps_label:'HOW IT WORKS',steps_title:'From zero to first VV Coin',steps_sub:'You need an access key from an Insider or VV team.',s1_t:'Get an access key',s1_d:'Ask an active Insider or contact VV team.',s2_t:'Open VV Beta',s2_d:'Enter key, accept terms, choose your Insider name. Get 100 VV Coins.',s3_t:'Explore the map',s3_d:'Active contracts with VV Coin rewards.',s4_t:'Complete the mission',s4_d:'VV Proof camera, live evidence, GPS verified.',s5_t:'Accumulate VV Coins',s5_d:'500 VV in Beta = 1 free month ONYX at launch.',pr_label:'EARLY ACCESS',pr_title:'Be an Insider from day one',pr_sub:'Beta is free. VV Coins earned now = free ONYX at VV 1.0.',p1_l:'BETA ACCESS',p1_p:'Free with invite key',p1_f1:'100 VV Coins welcome gift',p1_f2:'3 invite keys',p1_f3:'Full mission access',p1_f4:'VV Proof Camera',p1_f5:'Top Insiders leaderboard',p1_btn:'START NOW',p2_p:'Or free with 500 VV Coins from Beta',p2_f1:'Everything in Insider',p2_f2:'Priority premium',p2_f3:'Extended radius',p2_f4:'Exclusive ONYX badge',p2_f5:'Global Feed',p2_btn:'UNLOCK WITH VV COINS',f1:'Concept',f2:'Solutions',f3:'Insiders',f4:'How it works',f5:'Pricing'}
+ro:{nav_cta:'DESCHIDE APP',hero_badge:'BETA ACTIV · BUCUREȘTI',hero_t1:'The Future of',hero_t2:'Urban Intelligence',hero_sub:'Strânge VV Coins rezolvând misiuni reale. Fii printre primii Insideri care deblochează statutul exclusiv ONYX la lansarea VV 1.0.',hero_btn1:'LANSEAZĂ VV BETA',hero_btn2:'Cum funcționează',pil1:'TIMP',pil1s:'Economisești ore',pil2:'REPUTAȚIE',pil2s:'Devino Insider Elite',pil3:'ADEVĂR',pil3s:'Zero fake, zero filtre',mission_q:'Într-o lume plină de fake, VV e singurul loc unde vezi realitatea — dovedită la fața locului, în timp real.',mission_d:'Nu contează cine ești — student, freelancer, patron sau turist. Rezolvă misiuni, strânge VV Coins și deblochează luni gratuite de VV ONYX.',concept_label:'CONCEPTUL',concept_title:'Trei pași. O singură misiune.',concept_sub:'Explorează, acționează, câștigă reputație.',card1_title:'Explorează',card1_desc:'Deschide harta și vezi contractele active. Fiecare pin e o oportunitate.',card1_tag:'SCANEAZĂ · DESCOPERĂ',card2_title:'Acționează',card2_desc:'Acceptă misiunea, deplasează-te și trimite dovada live prin camera VV Proof.',card2_tag:'MERGI · CAPTUREAZĂ · DOVEDEȘTE',card3_title:'Acumulează',card3_desc:'Dovada aprobată = VV Coins. Acumulează în Beta și deblochează ONYX gratuit la VV 1.0.',card3_tag:'STRÂNGE · URCĂ · DEBLOCHEAZĂ',sol_label:'SOLUȚII VV',sol_title:'Nu doar pentru Insideri',sol_sub:'VV rezolvă probleme reale — pentru turiști și business-uri.',tour_title:'Ești în trecere? Află adevărul de la fața locului.',tour_desc:'Nu mai pierde timpul la cozi uriașe sau în locații goale. Lansează o misiune și un Insider îți arată situația reală din teren. Zero recenzii false, doar realitatea necenzurată.',tour_tag:'TURIȘTI · CĂLĂTORI · PUBLICUL LARG',b2b_title:'VV Business: Arată-le că ești pe val.',b2b_desc:'Fii transparent și atrage clienții care contează. Revendică-ți locația pe harta VV, demonstrează că ai casa plină cu VV Proof.',b2b_tag:'CLUBURI · RESTAURANTE · MUZEE · EVENTS',who_label:'CINE SUNT INSIDERII?',who_title:'Oricine prețuiește timpul, reputația și adevărul',who_sub:'Strânge VV Coins, urcă în clasament și deblochează ONYX.',w1_title:'Studenți',w1_desc:'Misiuni între cursuri. 5 min = VV Coins.',w2_title:'Freelanceri',w2_desc:'Contracte în pauze. Fără program.',w3_title:'Exploratori Urbani',w3_desc:'Cunoști orașul? VV Coins + Elite.',w5_title:'Night Owls',w5_desc:'Noapte = recompense premium.',w7_title:'Obiectivul Beta',w7_desc:'500 VV = 1 lună ONYX gratuit la VV 1.0.',w7_target:'ȚINTA: 500 VV → 1 LUNĂ ONYX GRATUIT',steps_label:'CUM FUNCȚIONEAZĂ',steps_title:'De la 0 la primul VV Coin',steps_sub:'Ai nevoie de cheie de la un Insider sau echipa VV.',s1_t:'Primește o cheie',s1_d:'Cere de la un Insider sau echipa VV.',s2_t:'Deschide VV Beta',s2_d:'Introdu cheia, alege-ți numele. Primești 100 VV.',s3_t:'Explorează harta',s3_d:'Contracte active cu recompense VV.',s4_t:'Completează misiunea',s4_d:'Camera VV Proof, dovadă live.',s5_t:'Acumulează VV Coins',s5_d:'500 VV = 1 lună ONYX gratuit.',pr_label:'ACCES TIMPURIU',pr_title:'Fii Insider de la început',pr_sub:'Beta e gratuit. VV Coins = ONYX gratuit la VV 1.0.',p1_l:'ACCES BETA',p1_p:'Gratuit cu cheie',p1_f1:'100 VV Coins cadou',p1_f2:'3 chei invitație',p1_f3:'Acces complet misiuni',p1_f4:'Camera VV Proof',p1_f5:'Top Insideri',p1_btn:'ÎNCEPE ACUM',p2_p:'Sau gratuit cu 500 VV din Beta',p2_f1:'Tot din Insider',p2_f2:'Prioritate premium',p2_f3:'Rază extinsă',p2_f4:'Badge ONYX',p2_f5:'Global Feed',p2_btn:'DEBLOCHEAZĂ CU VV COINS',f1:'Concept',f2:'Soluții',f3:'Insideri',f4:'Cum funcționează',f5:'Prețuri'},
+en:{nav_cta:'OPEN APP',hero_badge:'BETA LIVE · BUCHAREST',hero_t1:'The Future of',hero_t2:'Urban Intelligence',hero_sub:'Earn VV Coins completing real missions. Be among the first Insiders to unlock exclusive ONYX at VV 1.0.',hero_btn1:'LAUNCH VV BETA',hero_btn2:'How it works',pil1:'TIME',pil1s:'Save hours',pil2:'REPUTATION',pil2s:'Become Elite Insider',pil3:'TRUTH',pil3s:'Zero fake, zero filters',mission_q:'In a world full of fake, VV is the only place where you see reality — proven on-site, in real time.',mission_d:"Student, freelancer, business owner or tourist. Complete missions, earn VV Coins and unlock free months of VV ONYX.",concept_label:'THE CONCEPT',concept_title:'Three steps. One mission.',concept_sub:'Explore, act, build reputation.',card1_title:'Explore',card1_desc:'Open the map and see active contracts. Each pin is an opportunity.',card1_tag:'SCAN · DISCOVER',card2_title:'Action',card2_desc:'Accept the mission, go there, submit live proof via VV Proof camera.',card2_tag:'GO · CAPTURE · PROVE',card3_title:'Accumulate',card3_desc:'Approved proof = VV Coins. Accumulate during Beta, unlock free ONYX at VV 1.0.',card3_tag:'EARN · CLIMB · UNLOCK',sol_label:'VV SOLUTIONS',sol_title:'Not just for Insiders',sol_sub:'VV solves real problems — for tourists and businesses.',tour_title:'Just passing through? Get the truth from the ground.',tour_desc:'Stop wasting time in huge queues or empty venues. Launch a mission and an Insider shows you the real situation on-site. Zero fake reviews.',tour_tag:'TOURISTS · TRAVELERS · PUBLIC',b2b_title:"VV Business: Show them you're the real deal.",b2b_desc:'Be transparent and attract clients that matter. Claim your location on the VV map, prove your venue is packed with VV Proof.',b2b_tag:'CLUBS · RESTAURANTS · MUSEUMS · EVENTS',who_label:'WHO ARE THE INSIDERS?',who_title:'Anyone who values time, reputation, and truth',who_sub:'Earn VV Coins, climb ranks, unlock ONYX.',w1_title:'Students',w1_desc:'Missions between classes. 5 min = VV Coins.',w2_title:'Freelancers',w2_desc:'Contracts on breaks. No schedule.',w3_title:'Urban Explorers',w3_desc:'Know the city? VV Coins + Elite.',w5_title:'Night Owls',w5_desc:'Night = premium rewards.',w7_title:'Beta Objective',w7_desc:'500 VV = 1 free month ONYX at VV 1.0.',w7_target:'TARGET: 500 VV → 1 FREE MONTH ONYX',steps_label:'HOW IT WORKS',steps_title:'From zero to first VV Coin',steps_sub:'You need a key from an Insider or VV team.',s1_t:'Get an access key',s1_d:'Ask an Insider or VV team.',s2_t:'Open VV Beta',s2_d:'Enter key, choose your name. Get 100 VV.',s3_t:'Explore the map',s3_d:'Active contracts with VV rewards.',s4_t:'Complete the mission',s4_d:'VV Proof camera, live evidence.',s5_t:'Accumulate VV Coins',s5_d:'500 VV = 1 free month ONYX.',pr_label:'EARLY ACCESS',pr_title:'Be an Insider from day one',pr_sub:'Beta is free. VV Coins = free ONYX at VV 1.0.',p1_l:'BETA ACCESS',p1_p:'Free with invite key',p1_f1:'100 VV Coins gift',p1_f2:'3 invite keys',p1_f3:'Full mission access',p1_f4:'VV Proof Camera',p1_f5:'Top Insiders',p1_btn:'START NOW',p2_p:'Or free with 500 VV from Beta',p2_f1:'Everything in Insider',p2_f2:'Priority premium',p2_f3:'Extended radius',p2_f4:'ONYX badge',p2_f5:'Global Feed',p2_btn:'UNLOCK WITH VV COINS',f1:'Concept',f2:'Solutions',f3:'Insiders',f4:'How it works',f5:'Pricing'}
 };
 var currentLang='ro';
-function setLang(l){
-    currentLang=l;
-    document.querySelectorAll('.lang-btn').forEach(function(b){
-        var isActive=b.textContent.trim()===l.toUpperCase();
-        b.classList.toggle('active',isActive);
-        b.style.background=isActive?'rgba(255,255,255,0.1)':'transparent';
-        b.style.color=isActive?'#fff':'rgba(255,255,255,0.25)';
-    });
-    document.querySelectorAll('[data-t]').forEach(function(el){
-        var k=el.getAttribute('data-t');
-        if(T[l]&&T[l][k])el.textContent=T[l][k];
-    });
-    document.documentElement.lang=l;
-}
-
-// Scroll reveal
-function initReveal(){
-    var obs=new IntersectionObserver(function(entries){
-        entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});
-    },{threshold:0.12,rootMargin:'0px 0px -30px 0px'});
-    document.querySelectorAll('.reveal').forEach(function(el,i){
-        el.style.transitionDelay=(i%6)*80+'ms';
-        obs.observe(el);
-    });
-}
-
-// Nav scroll
-window.addEventListener('scroll',function(){
-    var n=document.getElementById('main-nav');
-    if(n)n.style.background=window.scrollY>60?'rgba(3,3,5,0.92)':'rgba(3,3,5,0.7)';
-});
-
+function setLang(l){currentLang=l;document.querySelectorAll('.lang-btn').forEach(function(b){var a=b.textContent.trim()===l.toUpperCase();b.classList.toggle('active',a);});document.querySelectorAll('[data-t]').forEach(function(el){var k=el.getAttribute('data-t');if(T[l]&&T[l][k])el.textContent=T[l][k];});document.documentElement.lang=l;}
+function initReveal(){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -30px 0px'});document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=(i%6)*80+'ms';obs.observe(el);});}
+window.addEventListener('scroll',function(){var n=document.getElementById('main-nav');if(n){if(window.scrollY>60)n.classList.add('scrolled');else n.classList.remove('scrolled');}});
 document.addEventListener('DOMContentLoaded',initReveal);
 </script>
 </body>
