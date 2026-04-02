@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>VV HYBRID UNIVERS — Activare</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-weight='900' fill='%23D4AF37'>V</text></svg>">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;background:#030305;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;}
+
+/* ANTI-SCREENSHOT: blur on visibility change */
+.blur-guard{transition:filter 0.15s;}
+.blur-guard.blurred{filter:blur(30px) brightness(0.3);}
+
+/* Disable text selection on key */
+.no-select{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+/* But allow copy button to work */
+.allow-select{-webkit-user-select:text;user-select:text;}
+
+body{display:flex;align-items:center;justify-content:center;}
+
+.container{text-align:center;padding:24px;width:100%;max-width:400px;}
+
+.vv-logo{font-size:64px;font-weight:900;letter-spacing:-3px;margin-bottom:4px;color:#fff;}
+.vv-sub{font-size:10px;letter-spacing:4px;color:rgba(212,175,55,0.6);margin-bottom:40px;font-weight:700;}
+
+/* Timer ring */
+.timer-ring{width:100px;height:100px;margin:0 auto 24px;position:relative;}
+.timer-ring svg{transform:rotate(-90deg);width:100px;height:100px;}
+.timer-ring circle{fill:none;stroke-width:3;}
+.timer-bg{stroke:rgba(255,255,255,0.06);}
+.timer-progress{stroke:#D4AF37;stroke-linecap:round;transition:stroke-dashoffset 1s linear;stroke-dasharray:283;stroke-dashoffset:0;}
+.timer-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:900;font-family:monospace;color:#fff;}
+
+/* Key display */
+.key-container{background:rgba(255,255,255,0.04);border:1px solid rgba(212,175,55,0.2);border-radius:20px;padding:28px 20px;margin-bottom:20px;position:relative;overflow:hidden;}
+.key-container::before{content:'';position:absolute;top:-1px;left:15%;right:15%;height:2px;background:linear-gradient(90deg,transparent,#D4AF37,transparent);}
+.key-label{font-size:10px;letter-spacing:3px;color:rgba(212,175,55,0.5);margin-bottom:14px;font-weight:700;}
+.key-value{font-family:monospace;font-size:22px;font-weight:900;letter-spacing:3px;color:#D4AF37;margin-bottom:16px;word-break:break-all;line-height:1.4;}
+
+/* Copy button — glass Apple style */
+.btn-copy{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 40px;background:rgba(255,255,255,0.08);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.15);border-radius:14px;color:#fff;font-size:14px;font-weight:800;letter-spacing:0.5px;cursor:pointer;transition:all 0.25s;width:100%;}
+.btn-copy:active{transform:scale(0.97);background:rgba(255,255,255,0.15);}
+.btn-copy.copied{background:rgba(52,199,89,0.15);border-color:rgba(52,199,89,0.3);color:#34c759;}
+
+.msg-sub{font-size:11px;color:rgba(255,255,255,0.2);margin-top:16px;line-height:1.6;max-width:300px;margin-left:auto;margin-right:auto;}
+
+/* Expired state */
+.expired .key-value{filter:blur(12px);color:rgba(255,255,255,0.1);}
+.expired .btn-copy{opacity:0.2;pointer-events:none;}
+.expired .timer-text{color:#ff3b30;}
+
+/* Already claimed */
+.claimed-msg{text-align:center;padding:40px 24px;}
+.claimed-icon{font-size:48px;margin-bottom:16px;}
+.claimed-title{font-size:20px;font-weight:900;margin-bottom:8px;color:#fff;}
+.claimed-sub{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.6;}
+
+/* Loading */
+.loading{text-align:center;padding:60px;}
+.loading-text{font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:2px;font-weight:600;margin-top:16px;}
+.spinner{width:40px;height:40px;border:3px solid rgba(255,255,255,0.06);border-top:3px solid #D4AF37;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto;}
+@keyframes spin{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+
+/* No keys left */
+.no-keys{text-align:center;padding:40px 24px;}
+.no-keys-icon{font-size:48px;margin-bottom:16px;}
+.no-keys-title{font-size:20px;font-weight:900;margin-bottom:8px;}
+.no-keys-sub{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.6;}
+</style>
+</head>
+<body class="blur-guard">
+
+<!-- LOADING STATE -->
+<div class="container" id="state-loading">
+    <div class="loading">
+        <div class="vv-logo no-select">VV</div>
+        <div class="vv-sub no-select">HYBRID UNIVERS</div>
+        <div class="spinner"></div>
+        <div class="loading-text">SE GENEREAZĂ ACREDITAREA...</div>
+    </div>
+</div>
+
+<!-- ALREADY CLAIMED STATE -->
+<div class="container" id="state-claimed" style="display:none;">
+    <div class="claimed-msg">
+        <div class="vv-logo no-select">VV</div>
+        <div class="vv-sub no-select">HYBRID UNIVERS</div>
+        <div class="claimed-icon">✅</div>
+        <div class="claimed-title">Acreditare deja obținută</div>
+        <div class="claimed-sub">Ai primit deja o cheie de acces de pe acest dispozitiv.<br><br>Introdu cheia în aplicația VV Beta pentru a-ți activa contul.</div>
+        <div id="claimed-key-display" style="margin-top:20px;font-family:monospace;font-size:18px;font-weight:900;color:#D4AF37;letter-spacing:2px;"></div>
+    </div>
+</div>
+
+<!-- KEY STATE -->
+<div class="container" id="state-key" style="display:none;">
+    <div class="vv-logo no-select">VV</div>
+    <div class="vv-sub no-select">HYBRID UNIVERS</div>
+
+    <!-- Timer -->
+    <div class="timer-ring no-select">
+        <svg viewBox="0 0 100 100">
+            <circle class="timer-bg" cx="50" cy="50" r="45"/>
+            <circle class="timer-progress" id="timer-circle" cx="50" cy="50" r="45"/>
+        </svg>
+        <div class="timer-text" id="timer-text">60</div>
+    </div>
+
+    <!-- Key -->
+    <div class="key-container" id="key-box">
+        <div class="key-label no-select">CHEIE DE ACCES VV BETA</div>
+        <div class="key-value" id="key-display">—</div>
+        <button class="btn-copy" id="btn-copy" onclick="copyKey()">
+            <span>📋</span> COPIAZĂ CHEIA
+        </button>
+    </div>
+
+    <div class="msg-sub no-select" id="msg-sub">Această cheie se autodistruge în 60 de secunde. Copiaz-o acum sau va fi salvată automat.</div>
+</div>
+
+<!-- NO KEYS STATE -->
+<div class="container" id="state-nokeys" style="display:none;">
+    <div class="no-keys">
+        <div class="vv-logo no-select">VV</div>
+        <div class="vv-sub no-select">HYBRID UNIVERS</div>
+        <div class="no-keys-icon">🔒</div>
+        <div class="no-keys-title">Acces Epuizat</div>
+        <div class="no-keys-sub">Toate acreditările din acest lot au fost revendicate.<br><br>Urmărește-ne pentru următorul val de invitații.</div>
+    </div>
+</div>
+
+<script>
+// ============================================================
+// CONFIG — Înlocuiește cu URL-ul tău de Apps Script
+// ============================================================
+var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx1T8_uL8FoN6C9_SbT8YRiDF72lsqHD3d-sDpAhQMdLl97xpyhp-Xk3rSCnBSxbyEcBA/exec';
+
+var currentKey = null;
+var timerInterval = null;
+var secondsLeft = 60;
+
+// ============================================================
+// ANTI-SCREENSHOT: blur on visibility change / app switch
+// ============================================================
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) {
+        document.body.classList.add('blurred');
+    } else {
+        // Delay removing blur to catch quick screenshot attempts
+        setTimeout(function() {
+            document.body.classList.remove('blurred');
+        }, 500);
+    }
+});
+
+// Also blur on window blur (alt-tab, etc)
+window.addEventListener('blur', function() {
+    document.body.classList.add('blurred');
+});
+window.addEventListener('focus', function() {
+    setTimeout(function() {
+        document.body.classList.remove('blurred');
+    }, 300);
+});
+
+// Disable right-click
+document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+
+// Disable keyboard shortcuts for screenshot (Ctrl+Shift+S, PrintScreen, etc)
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'PrintScreen' || (e.ctrlKey && e.shiftKey && (e.key === 'S' || e.key === 's' || e.key === 'I' || e.key === 'i'))) {
+        e.preventDefault();
+        document.body.classList.add('blurred');
+        setTimeout(function() { document.body.classList.remove('blurred'); }, 2000);
+    }
+});
+
+// ============================================================
+// DETECT DEVICE
+// ============================================================
+function getDeviceInfo() {
+    var ua = navigator.userAgent;
+    if (/iPhone/.test(ua)) return 'iPhone';
+    if (/iPad/.test(ua)) return 'iPad';
+    if (/Android/.test(ua)) return 'Android';
+    if (/Mac/.test(ua)) return 'Mac';
+    if (/Windows/.test(ua)) return 'Windows';
+    return 'Other';
+}
+
+// ============================================================
+// BOOT — check localStorage, then fetch key
+// ============================================================
+window.onload = function() {
+    // Log visit first
+    logVisit();
+
+    // Check if already claimed
+    var savedKey = localStorage.getItem('vv_activation_key');
+    if (savedKey) {
+        showState('claimed');
+        document.getElementById('claimed-key-display').textContent = savedKey;
+        return;
+    }
+
+    // Fetch a key from Google Sheets
+    fetchKey();
+};
+
+function showState(state) {
+    document.getElementById('state-loading').style.display = 'none';
+    document.getElementById('state-claimed').style.display = 'none';
+    document.getElementById('state-key').style.display = 'none';
+    document.getElementById('state-nokeys').style.display = 'none';
+    document.getElementById('state-' + state).style.display = 'block';
+}
+
+// ============================================================
+// FETCH KEY from Google Sheets via Apps Script
+// ============================================================
+function fetchKey() {
+    showState('loading');
+
+    fetch(APPS_SCRIPT_URL + '?action=getKey')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            if (data.status === 'ok' && data.key) {
+                currentKey = data.key;
+                
+                // Save to localStorage immediately (anti-refresh protection)
+                localStorage.setItem('vv_activation_key', currentKey);
+                
+                // Show key
+                document.getElementById('key-display').textContent = currentKey;
+                showState('key');
+                
+                // Start countdown
+                startTimer();
+            } else {
+                // No keys available
+                showState('nokeys');
+            }
+        })
+        .catch(function(err) {
+            console.error('Fetch error:', err);
+            // Show error as no keys
+            showState('nokeys');
+        });
+}
+
+// ============================================================
+// TIMER — 60 second countdown
+// ============================================================
+function startTimer() {
+    secondsLeft = 60;
+    var circle = document.getElementById('timer-circle');
+    var text = document.getElementById('timer-text');
+    var circumference = 2 * Math.PI * 45; // r=45
+    circle.style.strokeDasharray = circumference;
+    circle.style.strokeDashoffset = '0';
+
+    timerInterval = setInterval(function() {
+        secondsLeft--;
+        text.textContent = secondsLeft;
+        
+        // Update circle
+        var offset = circumference * (1 - secondsLeft / 60);
+        circle.style.strokeDashoffset = offset;
+        
+        // Color changes
+        if (secondsLeft <= 10) {
+            circle.style.stroke = '#ff3b30';
+            text.style.color = '#ff3b30';
+        } else if (secondsLeft <= 20) {
+            circle.style.stroke = '#ff9500';
+            text.style.color = '#ff9500';
+        }
+
+        if (secondsLeft <= 0) {
+            clearInterval(timerInterval);
+            expirePage();
+        }
+    }, 1000);
+}
+
+// ============================================================
+// EXPIRE — auto-destruct the page
+// ============================================================
+function expirePage() {
+    document.getElementById('state-key').classList.add('expired');
+    document.getElementById('timer-text').textContent = '✕';
+    document.getElementById('msg-sub').textContent = 'Timpul a expirat. Cheia a fost salvată automat pe dispozitivul tău.';
+    
+    // Key is already saved in localStorage from fetchKey
+}
+
+// ============================================================
+// COPY KEY
+// ============================================================
+function copyKey() {
+    if (!currentKey) return;
+    
+    // Try clipboard API
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(currentKey).then(function() {
+            showCopied();
+        }).catch(function() {
+            fallbackCopy();
+        });
+    } else {
+        fallbackCopy();
+    }
+}
+
+function fallbackCopy() {
+    // Fallback: create temp input
+    var temp = document.createElement('textarea');
+    temp.value = currentKey;
+    temp.style.position = 'fixed';
+    temp.style.left = '-9999px';
+    document.body.appendChild(temp);
+    temp.select();
+    temp.setSelectionRange(0, 99999);
+    try {
+        document.execCommand('copy');
+        showCopied();
+    } catch(e) {
+        // Even if copy fails, key is saved in localStorage
+        alert('Cheia ta: ' + currentKey + '\n\nA fost salvată automat pe dispozitiv.');
+    }
+    document.body.removeChild(temp);
+}
+
+function showCopied() {
+    var btn = document.getElementById('btn-copy');
+    btn.classList.add('copied');
+    btn.innerHTML = '<span>✅</span> CHEIE COPIATĂ!';
+    
+    setTimeout(function() {
+        btn.classList.remove('copied');
+        btn.innerHTML = '<span>📋</span> COPIAZĂ CHEIA';
+    }, 3000);
+}
+
+// ============================================================
+// LOG VISIT to Google Sheets
+// ============================================================
+function logVisit() {
+    var device = getDeviceInfo();
+    
+    // Use image trick for simple GET (more reliable than fetch for CORS)
+    var url = APPS_SCRIPT_URL + '?action=logVisit&device=' + encodeURIComponent(device);
+    
+    fetch(url, { mode: 'no-cors' }).catch(function() {
+        // Silent fail — visit logging is not critical
+    });
+}
+</script>
+</body>
+</html>
