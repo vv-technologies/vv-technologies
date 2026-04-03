@@ -9,6 +9,10 @@
 <meta name="keywords" content="VV Hybrid, aplicatie Bucuresti, urban intelligence, Insider Bucuresti, VV Coins, adevar urban, nightlife Bucuresti, P2P platform, real-time missions">
 <meta name="author" content="VV HYBRID UNIVERS">
 <meta name="robots" content="index, follow">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="DENY">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
 <meta property="og:title" content="VV HYBRID UNIVERS | The Future of Urban Intelligence">
 <meta property="og:description" content="Alătură-te VV HYBRID UNIVERS. Fii printre primii Insideri din București care transformă adevărul din teren în recompense.">
 <meta property="og:type" content="website">
@@ -98,9 +102,169 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;back
 
 /* Radial hero glow */
 .vv-hero-glow{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:80vw;max-width:800px;height:80vw;max-height:800px;background:radial-gradient(circle,rgba(212,175,55,.04) 0%,rgba(212,175,55,.01) 40%,transparent 70%);pointer-events:none;}
+
+/* ===== KEY MODAL ===== */
+.vv-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);z-index:10000;display:none;align-items:center;justify-content:center;padding:20px;}
+.vv-modal-overlay.open{display:flex;}
+.vv-modal-box{background:rgba(10,10,14,0.98);border:1px solid rgba(255,255,255,.1);border-radius:28px;padding:40px 32px;max-width:420px;width:100%;text-align:center;position:relative;animation:modalSlide .4s cubic-bezier(.16,1,.3,1);}
+@keyframes modalSlide{from{opacity:0;transform:scale(0.92) translateY(20px);}to{opacity:1;transform:scale(1) translateY(0);}}
+.vv-modal-top-line{position:absolute;top:-1px;left:15%;right:15%;height:2px;background:linear-gradient(90deg,transparent,#D4AF37,transparent);}
+.vv-modal-icon{width:72px;height:72px;border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:28px;}
+.modal-icon-gold{background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.3);}
+.modal-icon-green{background:rgba(52,199,89,.1);border:1px solid rgba(52,199,89,.3);}
+.modal-icon-red{background:rgba(255,59,48,.1);border:1px solid rgba(255,59,48,.3);}
+.vv-modal-title{font-size:20px;font-weight:900;letter-spacing:2px;margin-bottom:12px;color:#fff;}
+.vv-modal-text{font-size:13px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:20px;}
+.vv-key-display{background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.3);border-radius:14px;padding:18px 20px;margin:16px 0;}
+.vv-key-label{font-size:10px;letter-spacing:3px;color:rgba(212,175,55,.6);margin-bottom:8px;}
+.vv-key-value{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:#fff;letter-spacing:3px;word-break:break-all;}
+.vv-key-sub{font-size:11px;color:rgba(255,255,255,.25);margin-top:14px;line-height:1.6;font-style:italic;}
+.vv-modal-close{margin-top:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);border-radius:12px;padding:12px 28px;font-size:13px;font-weight:700;letter-spacing:1px;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s;}
+.vv-modal-close:hover{background:rgba(255,255,255,.1);color:#fff;}
+.vv-spinner{width:32px;height:32px;border:3px solid rgba(212,175,55,.2);border-top-color:#D4AF37;border-radius:50%;animation:spin .8s linear infinite;margin:16px auto;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* ===== LEGAL MODALS ===== */
+.legal-modal{position:fixed;inset:0;background:rgba(0,0,0,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);z-index:10001;display:none;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;}
+.legal-modal.open{display:flex;}
+.legal-box{background:rgba(10,10,14,0.99);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:40px 28px;max-width:700px;width:100%;margin:40px auto;position:relative;}
+.legal-box h1{font-size:24px;font-weight:900;margin-bottom:8px;letter-spacing:-0.5px;}
+.legal-box h2{font-size:16px;font-weight:800;color:#D4AF37;margin-top:28px;margin-bottom:10px;letter-spacing:0.5px;}
+.legal-box p,.legal-box li{font-size:13px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:8px;}
+.legal-box ul{padding-left:20px;margin-bottom:16px;}
+.legal-box .legal-date{font-size:11px;color:rgba(255,255,255,.2);letter-spacing:1px;margin-bottom:24px;}
+.legal-close{position:sticky;top:0;background:rgba(10,10,14,0.95);padding:12px 0;text-align:right;z-index:2;}
+.legal-close button{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);border-radius:10px;padding:10px 24px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;letter-spacing:1px;}
+
+/* ===== CREATORS CARD ===== */
+.vv-creators-glow{position:relative;overflow:hidden;}
+.vv-creators-glow::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:conic-gradient(from 0deg,transparent,rgba(10,132,255,0.05),transparent,rgba(212,175,55,0.05),transparent);animation:creatorsRotate 8s linear infinite;}
+@keyframes creatorsRotate{to{transform:rotate(360deg);}}
+
 </style>
 </head>
 <body class="font-display overflow-x-hidden antialiased">
+<!-- KEY MODAL -->
+<div class="vv-modal-overlay" id="key-modal">
+  <div class="vv-modal-box">
+    <div class="vv-modal-top-line"></div>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+
+
+<!-- TERMS MODAL -->
+<div class="legal-modal" id="terms-modal">
+<div class="legal-box">
+<div class="legal-close"><button onclick="document.getElementById('terms-modal').classList.remove('open')">✕ ÎNCHIDE</button></div>
+<h1>Termeni și Condiții</h1>
+<div class="legal-date">Ultima actualizare: Aprilie 2026 · VV HYBRID UNIVERS</div>
+
+<h2>1. Acceptarea Termenilor</h2>
+<p>Prin accesarea site-ului vv-technologies.github.io și/sau utilizarea platformei VV HYBRID UNIVERS ("Platforma"), confirmi că ai citit, înțeles și acceptat în totalitate acești Termeni și Condiții. Dacă nu ești de acord, te rugăm să nu utilizezi Platforma.</p>
+
+<h2>2. Descrierea Serviciului</h2>
+<p>VV HYBRID UNIVERS este o platformă P2P de verificare urbană în timp real, aflată în faza Beta. Utilizatorii pot crea și rezolva "Spot-uri" (cereri de verificare a locațiilor) în schimbul VV Coins, o monedă virtuală internă.</p>
+
+<h2>3. Eligibilitate</h2>
+<p>Platforma este destinată exclusiv persoanelor cu vârsta de minimum 18 ani. Prin utilizarea Platformei, confirmi că ai împlinit această vârstă.</p>
+
+<h2>4. Contul de Utilizator</h2>
+<p>Accesul se face prin chei de invitație unice. Fiecare cont este legat de un singur dispozitiv fizic. Este interzisă partajarea, vânzarea sau transferul cheilor de acces sau al conturilor.</p>
+
+<h2>5. VV Coins</h2>
+<ul>
+<li>VV Coins sunt o unitate de recompensă internă, disponibilă exclusiv în cadrul Platformei.</li>
+<li>VV Coins <strong style="color:rgba(255,255,255,.7);">nu constituie monedă electronică</strong> în sensul legislației în vigoare.</li>
+<li>VV Coins nu pot fi convertiți în valută fiat în perioada Beta.</li>
+<li>Conversia va fi posibilă exclusiv la lansarea VV 1.0, conform regulamentului publicat la acea dată.</li>
+<li>VV Coins pot fi utilizați pentru deblocarea abonamentelor ONYX (500 VV = 1 lună, 1000 VV = 2 luni, 1500 VV = 3 luni).</li>
+</ul>
+
+<h2>6. Conținut și Conduită</h2>
+<ul>
+<li>Este strict interzisă utilizarea filtrelor, a conținutului preînregistrat sau din galerie.</li>
+<li>Filmarea persoanelor fără acord explicit este interzisă.</li>
+<li>Conținutul ilegal, violent, sexual explicit sau discriminatoriu este strict interzis.</li>
+<li>Orice tentativă de fraudă duce la suspendarea permanentă a contului.</li>
+</ul>
+
+<h2>7. Proprietate Intelectuală</h2>
+<p>Toate elementele Platformei (design, cod, brand, logo, concepte) sunt proprietatea VV HYBRID UNIVERS și sunt protejate de legislația privind drepturile de autor și proprietatea intelectuală din România și UE. Reproducerea, copierea sau distribuirea neautorizată este strict interzisă.</p>
+
+<h2>8. Limitarea Răspunderii</h2>
+<p>VV HYBRID UNIVERS acționează ca intermediar tehnic. Nu răspundem pentru conținutul generat de utilizatori, pentru pierderi financiare rezultate din utilizarea VV Coins sau pentru indisponibilitatea temporară a serviciului în perioada Beta.</p>
+
+<h2>9. Modificarea Termenilor</h2>
+<p>Ne rezervăm dreptul de a modifica acești termeni. Continuarea utilizării după publicarea modificărilor constituie acceptarea lor.</p>
+
+<h2>10. Legislație Aplicabilă</h2>
+<p>Acești termeni sunt guvernați de legislația română. Orice litigiu va fi soluționat de instanțele competente din București, România.</p>
+
+<p style="margin-top:32px;color:rgba(255,255,255,.2);font-size:11px;text-align:center;letter-spacing:1px;">© 2026 VV HYBRID UNIVERS · București, România</p>
+</div>
+</div>
+
+<!-- PRIVACY MODAL -->
+<div class="legal-modal" id="privacy-modal">
+<div class="legal-box">
+<div class="legal-close"><button onclick="document.getElementById('privacy-modal').classList.remove('open')">✕ ÎNCHIDE</button></div>
+<h1>Politica de Confidențialitate</h1>
+<div class="legal-date">Ultima actualizare: Aprilie 2026 · VV HYBRID UNIVERS · Conform GDPR (Regulamentul UE 679/2016)</div>
+
+<h2>1. Operatorul de Date</h2>
+<p>VV HYBRID UNIVERS, cu sediul în București, România, este operatorul datelor personale colectate prin intermediul Platformei și al site-ului web.</p>
+
+<h2>2. Date Colectate</h2>
+<ul>
+<li><strong style="color:rgba(255,255,255,.7);">Adresa de email</strong> — doar dacă te înscrii voluntar pe lista de așteptare (Formspree).</li>
+<li><strong style="color:rgba(255,255,255,.7);">Locația GPS</strong> — doar în aplicația VV Beta, pentru verificarea pozițiilor la Spot-uri.</li>
+<li><strong style="color:rgba(255,255,255,.7);">Tipul dispozitivului</strong> — informații anonime (iPhone, Android, etc.) pentru statistici de vizite.</li>
+<li><strong style="color:rgba(255,255,255,.7);">Conținut media</strong> — fotografii realizate prin camera VV Proof, cu watermark GPS.</li>
+</ul>
+
+<h2>3. Scopul Prelucrării</h2>
+<ul>
+<li>Furnizarea și îmbunătățirea serviciului VV HYBRID UNIVERS.</li>
+<li>Comunicarea cu utilizatorii înscriși (actualizări, lansare oficială).</li>
+<li>Prevenirea fraudei și menținerea integrității Platformei.</li>
+<li>Statistici anonime de utilizare.</li>
+</ul>
+
+<h2>4. Baza Legală</h2>
+<p>Prelucrarea se bazează pe: consimțământul explicit al utilizatorului (Art. 6(1)(a) GDPR), executarea contractului de utilizare (Art. 6(1)(b) GDPR) și interesul legitim al operatorului pentru securitate (Art. 6(1)(f) GDPR).</p>
+
+<h2>5. Partajarea Datelor</h2>
+<p><strong style="color:#34c759;">Nu vindem, nu închiriem și nu distribuim datele tale personale terților.</strong></p>
+<p>Servicii terțe utilizate: Firebase (Google) pentru autentificare și stocare, Formspree pentru formulare, GitHub Pages pentru găzduire. Aceste servicii au propriile politici de confidențialitate conforme GDPR.</p>
+
+<h2>6. Durata Stocării</h2>
+<p>Datele sunt stocate pe durata utilizării Platformei și maximum 12 luni după ultima activitate. Emailurile de pe lista de așteptare sunt stocate până la dezabonare sau lansarea VV 1.0.</p>
+
+<h2>7. Drepturile Tale (GDPR)</h2>
+<ul>
+<li><strong style="color:rgba(255,255,255,.7);">Dreptul de acces</strong> — poți solicita o copie a datelor tale.</li>
+<li><strong style="color:rgba(255,255,255,.7);">Dreptul la rectificare</strong> — poți cere corectarea datelor incorecte.</li>
+<li><strong style="color:rgba(255,255,255,.7);">Dreptul la ștergere</strong> ("dreptul de a fi uitat") — poți cere ștergerea datelor.</li>
+<li><strong style="color:rgba(255,255,255,.7);">Dreptul la portabilitate</strong> — poți primi datele într-un format structurat.</li>
+<li><strong style="color:rgba(255,255,255,.7);">Dreptul de opoziție</strong> — poți refuza prelucrarea în anumite situații.</li>
+<li><strong style="color:rgba(255,255,255,.7);">Dreptul de a depune plângere</strong> la ANSPDCP (Autoritatea Națională de Supraveghere).</li>
+</ul>
+<p>Pentru exercitarea drepturilor, contactează-ne la adresa indicată în secțiunea Contact.</p>
+
+<h2>8. Securitate</h2>
+<p>Implementăm măsuri tehnice și organizatorice adecvate: criptare SSL, autentificare anonimă Firebase, verificare Device ID, watermark GPS pe conținut media.</p>
+
+<h2>9. Cookie-uri</h2>
+<p>Site-ul nu folosește cookie-uri de tracking. Utilizăm exclusiv localStorage pentru funcționalitate (chei de acces, preferințe de limbă).</p>
+
+<h2>10. Contact</h2>
+<p>Pentru orice întrebări privind datele tale personale:<br>VV HYBRID UNIVERS · București, România<br>GitHub: <a href="https://github.com/vv-technologies" style="color:#0A84FF;" target="_blank">github.com/vv-technologies</a></p>
+
+<p style="margin-top:32px;color:rgba(255,255,255,.2);font-size:11px;text-align:center;letter-spacing:1px;">© 2026 VV HYBRID UNIVERS · Toate drepturile rezervate.</p>
+</div>
+</div>
 
 <!-- NAV -->
 <nav class="fixed top-0 left-0 right-0 z-50 px-5 md:px-7 py-3 md:py-4 flex justify-between items-center vv-nav transition-all duration-300" id="main-nav">
@@ -131,13 +295,13 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;back
     <p class="text-base sm:text-lg md:text-xl vv-text-dim leading-relaxed max-w-2xl mb-12 font-light animate-fade-up delay-2" data-t="hero_sub">Strânge VV Coins rezolvând misiuni reale. Fii printre primii Insideri care deblochează statutul exclusiv ONYX la lansarea VV 1.0.</p>
 
     <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto animate-fade-up delay-3">
-        <a href="https://vv-technologies.github.io/vv-technologies/ceo.html" target="_blank" class="inline-flex items-center justify-center gap-2.5 px-8 md:px-10 py-4 md:py-5 vv-btn-white rounded-xl text-sm md:text-base font-extrabold tracking-wide no-underline hover:-translate-y-0.5 transition-all"><i class="fas fa-rocket"></i><span data-t="hero_btn1">LANSEAZĂ VV BETA</span></a>
+        <button onclick="openKeyModal()" class="inline-flex items-center justify-center gap-2.5 px-8 md:px-10 py-4 md:py-5 vv-btn-white rounded-xl text-sm md:text-base font-extrabold tracking-wide cursor-pointer border-none hover:-translate-y-0.5 transition-all"><i class="fas fa-rocket"></i><span data-t="hero_btn1">LANSEAZĂ VV BETA</span></button>
         <a href="#concept" class="inline-flex items-center justify-center gap-2.5 px-8 md:px-10 py-4 md:py-5 vv-btn-glass rounded-xl text-sm md:text-base font-bold no-underline hover:-translate-y-0.5 transition-all"><i class="fas fa-play"></i><span data-t="hero_btn2">Cum funcționează</span></a>
     </div>
 
     <!-- ACTIVATE VV BUTTON -->
     <div class="mt-8 flex flex-col items-center animate-fade-up delay-3">
-        <a href="https://vv-technologies.github.io/vv-technologies/activate.html" target="_blank"
+        <a href="#" onclick="event.preventDefault();openKeyModal();"
             class="inline-flex items-center justify-center gap-3 px-10 md:px-12 py-4 md:py-5 rounded-2xl text-base md:text-lg font-black tracking-wide no-underline transition-all hover:-translate-y-1"
             style="background:linear-gradient(135deg,rgba(212,175,55,0.15),rgba(212,175,55,0.05));border:1px solid rgba(212,175,55,0.3);color:#D4AF37;box-shadow:0 0 30px rgba(212,175,55,0.08);">
             <i class="fas fa-key"></i>
@@ -292,7 +456,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;back
                 <li class="flex items-center gap-2.5 py-2 text-sm vv-text-dim vv-border-subtle"><i class="fas fa-check vv-green text-xs w-4"></i><span data-t="p1_f4">Camera VV Proof</span></li>
                 <li class="flex items-center gap-2.5 py-2 text-sm vv-text-dim"><i class="fas fa-check vv-green text-xs w-4"></i><span data-t="p1_f5">Top Insideri clasament</span></li>
             </ul>
-            <a href="https://vv-technologies.github.io/vv-technologies/ceo.html" target="_blank" class="block w-full py-3.5 vv-btn-white rounded-xl text-sm font-extrabold tracking-wide no-underline text-center transition-all" data-t="p1_btn">ÎNCEPE ACUM</a>
+            <button onclick="openKeyModal()" class="block w-full py-3.5 vv-btn-white rounded-xl text-sm font-extrabold tracking-wide cursor-pointer border-none transition-all" data-t="p1_btn">ÎNCEPE ACUM</button>
         </div>
         <div class="vv-card-gold-strong rounded-2xl p-8 md:p-10 text-center relative vv-line-gold reveal">
             <div class="text-xs tracking-widest vv-accent font-bold mb-3">FOUNDER'S PASS</div>
@@ -405,6 +569,31 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;back
     </div>
 </section>
 
+
+<!-- VV CREATORS -->
+<section id="creators" class="relative z-10 px-5 md:px-8 py-16 md:py-24">
+    <div class="max-w-3xl mx-auto text-center reveal">
+        <div class="rounded-2xl p-8 md:p-10 relative overflow-hidden vv-creators-glow" style="background:linear-gradient(135deg,rgba(10,132,255,0.06),rgba(212,175,55,0.04));border:1px solid rgba(10,132,255,0.15);">
+            <div class="relative z-10">
+                <div class="text-4xl mb-4">🎬</div>
+                <div class="text-xs tracking-widest font-bold mb-3" style="color:rgba(10,132,255,0.6);">COMING SOON</div>
+                <h2 class="text-2xl md:text-3xl font-black mb-3" data-t="cr_title">VV CREATORS</h2>
+                <p class="text-sm md:text-base leading-relaxed mb-6" style="color:rgba(255,255,255,0.45);" data-t="cr_desc">Ești influencer, artist sau creator de conținut? VV îți oferă un nou mod de a arăta realitatea publicului tău. Fără filtre, fără fake — doar tu și orașul, verificat GPS în timp real. Aplică pentru acces anticipat.</p>
+                <div class="flex flex-wrap gap-2 justify-center mb-6">
+                    <span class="text-xs font-bold tracking-wider px-3 py-1 rounded-full" style="background:rgba(10,132,255,0.1);color:rgba(10,132,255,0.6);">INFLUENCERI</span>
+                    <span class="text-xs font-bold tracking-wider px-3 py-1 rounded-full" style="background:rgba(212,175,55,0.1);color:rgba(212,175,55,0.6);">ARTIȘTI</span>
+                    <span class="text-xs font-bold tracking-wider px-3 py-1 rounded-full" style="background:rgba(52,199,89,0.1);color:rgba(52,199,89,0.6);">DJ & MUZICIENI</span>
+                    <span class="text-xs font-bold tracking-wider px-3 py-1 rounded-full" style="background:rgba(255,59,48,0.1);color:rgba(255,59,48,0.6);">CONTENT CREATORS</span>
+                </div>
+                <div class="inline-flex items-center gap-2 px-6 py-3 rounded-xl cursor-default" style="background:rgba(10,132,255,0.08);border:1px solid rgba(10,132,255,0.2);">
+                    <i class="fas fa-lock text-sm" style="color:rgba(10,132,255,0.5);"></i>
+                    <span class="text-xs font-bold tracking-wider" style="color:rgba(10,132,255,0.5);" data-t="cr_btn">DISPONIBIL LA VV 1.0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- WAITLIST & COMUNITATE -->
 <section id="interest" class="relative z-10 px-5 md:px-8 py-16 md:py-24">
     <div class="max-w-2xl mx-auto text-center reveal">
@@ -476,13 +665,18 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;back
         <a href="#" class="w-10 h-10 md:w-11 md:h-11 rounded-xl vv-glass flex items-center justify-center vv-text-dim text-base no-underline hover:text-white transition-all"><i class="fab fa-discord"></i></a>
         <a href="https://github.com/vv-technologies/vv-technologies" target="_blank" class="w-10 h-10 md:w-11 md:h-11 rounded-xl vv-glass flex items-center justify-center vv-text-dim text-base no-underline hover:text-white transition-all"><i class="fab fa-github"></i></a>
     </div>
-    <div class="text-xs vv-text-muted tracking-wider">© 2026 VV HYBRID UNIVERS · București, România</div>
+    <div class="flex justify-center gap-4 mb-4">
+        <a href="#" onclick="event.preventDefault();document.getElementById('terms-modal').classList.add('open');" class="text-xs vv-text-muted no-underline hover:text-white transition-colors cursor-pointer">Termeni și Condiții</a>
+        <span class="text-xs vv-text-muted">·</span>
+        <a href="#" onclick="event.preventDefault();document.getElementById('privacy-modal').classList.add('open');" class="text-xs vv-text-muted no-underline hover:text-white transition-colors cursor-pointer">Confidențialitate</a>
+    </div>
+    <div class="text-xs vv-text-muted tracking-wider">© 2026 VV HYBRID UNIVERS · București, România · Toate drepturile rezervate.</div>
 </footer>
 
 <script>
 var T={
-ro:{nav_cta:'DESCHIDE APP',hero_badge:'BETA ACTIV · BUCUREȘTI',hero_t1:'The Future of',hero_t2:'Urban Intelligence',hero_sub:'Strânge VV Coins rezolvând misiuni reale. Fii printre primii Insideri care deblochează statutul exclusiv ONYX la lansarea VV 1.0.',hero_btn1:'LANSEAZĂ VV BETA',hero_btn2:'Cum funcționează',pil1:'TIMP',pil1s:'Economisești ore',pil2:'REPUTAȚIE',pil2s:'Devino Insider Elite',pil3:'ADEVĂR',pil3s:'Zero fake, zero filtre',mission_q:'Într-o lume plină de fake, VV e singurul loc unde vezi realitatea — dovedită la fața locului, în timp real.',mission_d:'Nu contează cine ești — student, freelancer, patron sau turist. Rezolvă misiuni, strânge VV Coins și deblochează luni gratuite de VV ONYX.',concept_label:'CONCEPTUL',concept_title:'Trei pași. O singură misiune.',concept_sub:'Explorează, acționează, câștigă reputație.',card1_title:'Explorează',card1_desc:'Deschide harta și vezi contractele active. Fiecare pin e o oportunitate.',card1_tag:'SCANEAZĂ · DESCOPERĂ',card2_title:'Acționează',card2_desc:'Acceptă misiunea, deplasează-te și trimite dovada live prin camera VV Proof.',card2_tag:'MERGI · CAPTUREAZĂ · DOVEDEȘTE',card3_title:'Acumulează',card3_desc:'Dovada aprobată = VV Coins. Acumulează în Beta și deblochează ONYX gratuit la VV 1.0.',card3_tag:'STRÂNGE · URCĂ · DEBLOCHEAZĂ',sol_label:'SOLUȚII VV',sol_title:'Nu doar pentru Insideri',sol_sub:'VV rezolvă probleme reale — pentru turiști și business-uri.',tour_title:'Ești în trecere? Află adevărul de la fața locului.',tour_desc:'Nu mai pierde timpul la cozi uriașe sau în locații goale. Lansează o misiune și un Insider îți arată situația reală din teren. Zero recenzii false, doar realitatea necenzurată.',tour_tag:'TURIȘTI · CĂLĂTORI · PUBLICUL LARG',b2b_title:'VV VENUE: Arată-le că ești pe val.',b2b_desc:'Fii transparent și atrage clienții care contează. Revendică-ți locația pe harta VV, demonstrează că ai casa plină cu VV Proof.',b2b_tag:'CLUBURI · RESTAURANTE · MUZEE · EVENTS',who_label:'CINE SUNT INSIDERII?',who_title:'Oricine prețuiește timpul, reputația și adevărul',who_sub:'Strânge VV Coins, urcă în clasament și deblochează ONYX.',w1_title:'Studenți',w1_desc:'Misiuni între cursuri. 5 min = VV Coins.',w2_title:'Freelanceri',w2_desc:'Contracte în pauze. Fără program.',w3_title:'Exploratori Urbani',w3_desc:'Cunoști orașul? VV Coins + Elite.',w5_title:'Night Owls',w5_desc:'Noapte = recompense premium.',w7_title:'Obiectivul Beta',w7_desc:'500 VV = 1 lună ONYX gratuit la VV 1.0.',w7_target:'ȚINTA: 500 VV → 1 LUNĂ ONYX GRATUIT',steps_label:'CUM FUNCȚIONEAZĂ',steps_title:'De la 0 la primul VV Coin',steps_sub:'Ai nevoie de cheie de la un Insider sau echipa VV.',s1_t:'Primește o cheie',s1_d:'Cere de la un Insider sau echipa VV.',s2_t:'Deschide VV Beta',s2_d:'Introdu cheia, alege-ți numele. Primești 100 VV.',s3_t:'Explorează harta',s3_d:'Contracte active cu recompense VV.',s4_t:'Completează misiunea',s4_d:'Camera VV Proof, dovadă live.',s5_t:'Acumulează VV Coins',s5_d:'500 VV = 1 lună ONYX gratuit.',pr_label:'ACCES TIMPURIU',pr_title:'Fii Insider de la început',pr_sub:'Beta e gratuit. VV Coins = ONYX gratuit la VV 1.0.',p1_l:'ACCES BETA',p1_p:'Gratuit cu cheie',p1_f1:'100 VV Coins cadou',p1_f2:'3 chei invitație',p1_f3:'Acces complet misiuni',p1_f4:'Camera VV Proof',p1_f5:'Top Insideri',p1_btn:'ÎNCEPE ACUM',p2_p:'Sau gratuit cu 500 VV din Beta',p2_f1:'Tot din Insider',p2_f2:'Prioritate premium',p2_f3:'Rază extinsă',p2_f4:'Badge ONYX',p2_f5:'Global Feed',p2_btn:'DEBLOCHEAZĂ CU VV COINS',f1:'Concept',f2:'Soluții',f3:'Insideri',f4:'Cum funcționează',f5:'Prețuri',prive_title:'VV PRIVÉ',prive_sub:'Există un nivel pe care nu-l vezi. Încă.',prive_desc:'Evenimente private. Locații exclusiviste. Orare care nu apar pe nicio aplicație. VV PRIVÉ este un ecosistem separat, construit pentru cei care operează într-o altă realitate — unde confidențialitatea și accesul sunt totul.',prive_f1:'MONACO · DUBAI · MYKONOS',prive_f2:'DOAR MEMBRI VERIFICAȚI',prive_btn:'ACCES PRIN INVITAȚIE',prive_note:'Detalii disponibile exclusiv membrilor verificați.',p2_m1:'1 LUNĂ ONYX GRATUIT',p2_m2:'2 LUNI ONYX GRATUIT',p2_m3:'3 LUNI ONYX GRATUIT',v_label:'ABONAMENT LOCAȚII',v_name:'VV VENUE',v_desc:'Prezența ta digitală premium pe harta VV. Pagină web gratuită cu meniuri, poze și feed actualizat în timp real.',v_t1:'PAGINĂ WEB GRATUITĂ',v_t2:'GLOBAL FEED',v_t3:'30 ZILE ACTUALIZARE',v_f1:'Pin premium pe harta VV',v_f2:'Pagină web cu meniuri & poze',v_f3:'Feed Global — evenimente live',v_f4:'Conținut actualizat max 30 zile',v_f5:'VV Proof — atracție verificată',v_btn:'DISPONIBIL LA VV 1.0',int_label:'COMUNITATEA VV',int_title:'Fii primul care află.',int_sub:'Lasă-ți emailul și vei fi printre primii Insideri care primesc acces, actualizări și beneficii exclusive.',int_btn:'ALĂTURĂ-TE LISTEI DE AȘTEPTARE',int_gdpr:'Sunt de acord să fiu contactat pe email cu privire la lansarea oficială, actualizări și beneficii în cadrul ecosistemului VV HYBRID UNIVERS.',int_success:'Bine ai venit în comunitate! Te vom contacta curând.',int_count:'persoane înscrise',int_note:'Datele tale sunt protejate conform GDPR (Regulamentul UE 679/2016). Nu vindem și nu distribuim adresa ta de email terților.',vt_title:'VV TURIST: Descoperă orașul real.',vt_desc:'Ești într-un oraș nou și vrei să știi ce se întâmplă cu adevărat? Pune un Spot pe locația care te interesează — un Explorator local îți trimite o captură live, verificată GPS. Fără recenzii vechi, fără filtre. Doar realitatea, acum.',vt_tag:'LIVE FEED · GPS VERIFIED · ACCES VERIFICAT',hero_activate:'ACTIVEAZĂ VV',hero_activate_sub:'Acces limitat. Mulțumim că ajuți la construcția celui mai mare ecosistem de realitate verificată din lume.',f7:'Comunitate',f6:'VV Privé'},
-en:{nav_cta:'OPEN APP',hero_badge:'BETA LIVE · BUCHAREST',hero_t1:'The Future of',hero_t2:'Urban Intelligence',hero_sub:'Earn VV Coins completing real missions. Be among the first Insiders to unlock exclusive ONYX at VV 1.0.',hero_btn1:'LAUNCH VV BETA',hero_btn2:'How it works',pil1:'TIME',pil1s:'Save hours',pil2:'REPUTATION',pil2s:'Become Elite Insider',pil3:'TRUTH',pil3s:'Zero fake, zero filters',mission_q:'In a world full of fake, VV is the only place where you see reality — proven on-site, in real time.',mission_d:"Student, freelancer, business owner or tourist. Complete missions, earn VV Coins and unlock free months of VV ONYX.",concept_label:'THE CONCEPT',concept_title:'Three steps. One mission.',concept_sub:'Explore, act, build reputation.',card1_title:'Explore',card1_desc:'Open the map and see active contracts. Each pin is an opportunity.',card1_tag:'SCAN · DISCOVER',card2_title:'Action',card2_desc:'Accept the mission, go there, submit live proof via VV Proof camera.',card2_tag:'GO · CAPTURE · PROVE',card3_title:'Accumulate',card3_desc:'Approved proof = VV Coins. Accumulate during Beta, unlock free ONYX at VV 1.0.',card3_tag:'EARN · CLIMB · UNLOCK',sol_label:'VV SOLUTIONS',sol_title:'Not just for Insiders',sol_sub:'VV solves real problems — for tourists and businesses.',tour_title:'Just passing through? Get the truth from the ground.',tour_desc:'Stop wasting time in huge queues or empty venues. Launch a mission and an Insider shows you the real situation on-site. Zero fake reviews.',tour_tag:'TOURISTS · TRAVELERS · PUBLIC',b2b_title:"VV VENUE: Show them you're the real deal.",b2b_desc:'Be transparent and attract clients that matter. Claim your location on the VV map, prove your venue is packed with VV Proof.',b2b_tag:'CLUBS · RESTAURANTS · MUSEUMS · EVENTS',who_label:'WHO ARE THE INSIDERS?',who_title:'Anyone who values time, reputation, and truth',who_sub:'Earn VV Coins, climb ranks, unlock ONYX.',w1_title:'Students',w1_desc:'Missions between classes. 5 min = VV Coins.',w2_title:'Freelancers',w2_desc:'Contracts on breaks. No schedule.',w3_title:'Urban Explorers',w3_desc:'Know the city? VV Coins + Elite.',w5_title:'Night Owls',w5_desc:'Night = premium rewards.',w7_title:'Beta Objective',w7_desc:'500 VV = 1 free month ONYX at VV 1.0.',w7_target:'TARGET: 500 VV → 1 FREE MONTH ONYX',steps_label:'HOW IT WORKS',steps_title:'From zero to first VV Coin',steps_sub:'You need a key from an Insider or VV team.',s1_t:'Get an access key',s1_d:'Ask an Insider or VV team.',s2_t:'Open VV Beta',s2_d:'Enter key, choose your name. Get 100 VV.',s3_t:'Explore the map',s3_d:'Active contracts with VV rewards.',s4_t:'Complete the mission',s4_d:'VV Proof camera, live evidence.',s5_t:'Accumulate VV Coins',s5_d:'500 VV = 1 free month ONYX.',pr_label:'EARLY ACCESS',pr_title:'Be an Insider from day one',pr_sub:'Beta is free. VV Coins = free ONYX at VV 1.0.',p1_l:'BETA ACCESS',p1_p:'Free with invite key',p1_f1:'100 VV Coins gift',p1_f2:'3 invite keys',p1_f3:'Full mission access',p1_f4:'VV Proof Camera',p1_f5:'Top Insiders',p1_btn:'START NOW',p2_p:'Or free with 500 VV from Beta',p2_f1:'Everything in Insider',p2_f2:'Priority premium',p2_f3:'Extended radius',p2_f4:'ONYX badge',p2_f5:'Global Feed',p2_btn:'UNLOCK WITH VV COINS',f1:'Concept',f2:'Solutions',f3:'Insiders',f4:'How it works',f5:'Pricing',prive_title:'VV PRIVÉ',prive_sub:"There's a level you can't see. Yet.",prive_desc:"Private events. Exclusive venues. Schedules that don't appear on any app. VV PRIVÉ is a separate ecosystem, built for those who operate in a different reality — where privacy and access are everything.",prive_f1:'MONACO · DUBAI · MYKONOS',prive_f2:'VERIFIED MEMBERS ONLY',prive_btn:'INVITE-ONLY ACCESS',prive_note:'Details available exclusively to verified members.',p2_m1:'1 FREE MONTH ONYX',p2_m2:'2 FREE MONTHS ONYX',p2_m3:'3 FREE MONTHS ONYX',v_label:'VENUE SUBSCRIPTION',v_name:'VV VENUE',v_desc:'Your premium digital presence on the VV map. Free web page with menus, photos and real-time updated feed.',v_t1:'FREE WEB PAGE',v_t2:'GLOBAL FEED',v_t3:'30-DAY UPDATES',v_f1:'Premium pin on VV map',v_f2:'Web page with menus & photos',v_f3:'Global Feed — live events',v_f4:'Content updated every 30 days',v_f5:'VV Proof — verified attraction',v_btn:'AVAILABLE AT VV 1.0',int_label:'VV COMMUNITY',int_title:'Be the first to know.',int_sub:'Leave your email and be among the first Insiders to get access, updates and exclusive benefits at official launch.',int_btn:'JOIN THE WAITLIST',int_gdpr:'I agree to be contacted via email regarding the official launch, updates and benefits within the VV HYBRID UNIVERS ecosystem.',int_success:'Welcome to the community! We will contact you soon.',int_count:'people signed up',int_note:'Your data is protected under GDPR (EU Regulation 679/2016). We do not sell or share your email with third parties.',vt_title:'VV TOURIST: Discover the real city.',vt_desc:'New in town and want to know what really happens? Drop a Spot on any location — a local Explorer sends you a live, GPS-verified capture in minutes. No old reviews, no filters. Just reality, now.',vt_tag:'LIVE FEED · GPS VERIFIED · VERIFIED ACCESS',hero_activate:'ACTIVATE VV',hero_activate_sub:'Limited access. Thank you for helping build the world\'s largest verified reality ecosystem.',f7:'Community',f6:'VV Privé'}
+ro:{nav_cta:'DESCHIDE APP',hero_badge:'BETA ACTIV · BUCUREȘTI',hero_t1:'The Future of',hero_t2:'Urban Intelligence',hero_sub:'Strânge VV Coins rezolvând misiuni reale. Fii printre primii Insideri care deblochează statutul exclusiv ONYX la lansarea VV 1.0.',hero_btn1:'LANSEAZĂ VV BETA',hero_btn2:'Cum funcționează',pil1:'TIMP',pil1s:'Economisești ore',pil2:'REPUTAȚIE',pil2s:'Devino Insider Elite',pil3:'ADEVĂR',pil3s:'Zero fake, zero filtre',mission_q:'Într-o lume plină de fake, VV e singurul loc unde vezi realitatea — dovedită la fața locului, în timp real.',mission_d:'Nu contează cine ești — student, freelancer, patron sau turist. Rezolvă misiuni, strânge VV Coins și deblochează luni gratuite de VV ONYX.',concept_label:'CONCEPTUL',concept_title:'Trei pași. O singură misiune.',concept_sub:'Explorează, acționează, câștigă reputație.',card1_title:'Explorează',card1_desc:'Deschide harta și vezi contractele active. Fiecare pin e o oportunitate.',card1_tag:'SCANEAZĂ · DESCOPERĂ',card2_title:'Acționează',card2_desc:'Acceptă misiunea, deplasează-te și trimite dovada live prin camera VV Proof.',card2_tag:'MERGI · CAPTUREAZĂ · DOVEDEȘTE',card3_title:'Acumulează',card3_desc:'Dovada aprobată = VV Coins. Acumulează în Beta și deblochează ONYX gratuit la VV 1.0.',card3_tag:'STRÂNGE · URCĂ · DEBLOCHEAZĂ',sol_label:'SOLUȚII VV',sol_title:'Nu doar pentru Insideri',sol_sub:'VV rezolvă probleme reale — pentru turiști și business-uri.',tour_title:'Ești în trecere? Află adevărul de la fața locului.',tour_desc:'Nu mai pierde timpul la cozi uriașe sau în locații goale. Lansează o misiune și un Insider îți arată situația reală din teren. Zero recenzii false, doar realitatea necenzurată.',tour_tag:'TURIȘTI · CĂLĂTORI · PUBLICUL LARG',b2b_title:'VV VENUE: Arată-le că ești pe val.',b2b_desc:'Fii transparent și atrage clienții care contează. Revendică-ți locația pe harta VV, demonstrează că ai casa plină cu VV Proof.',b2b_tag:'CLUBURI · RESTAURANTE · MUZEE · EVENTS',who_label:'CINE SUNT INSIDERII?',who_title:'Oricine prețuiește timpul, reputația și adevărul',who_sub:'Strânge VV Coins, urcă în clasament și deblochează ONYX.',w1_title:'Studenți',w1_desc:'Misiuni între cursuri. 5 min = VV Coins.',w2_title:'Freelanceri',w2_desc:'Contracte în pauze. Fără program.',w3_title:'Exploratori Urbani',w3_desc:'Cunoști orașul? VV Coins + Elite.',w5_title:'Night Owls',w5_desc:'Noapte = recompense premium.',w7_title:'Obiectivul Beta',w7_desc:'500 VV = 1 lună ONYX gratuit la VV 1.0.',w7_target:'ȚINTA: 500 VV → 1 LUNĂ ONYX GRATUIT',steps_label:'CUM FUNCȚIONEAZĂ',steps_title:'De la 0 la primul VV Coin',steps_sub:'Ai nevoie de cheie de la un Insider sau echipa VV.',s1_t:'Primește o cheie',s1_d:'Cere de la un Insider sau echipa VV.',s2_t:'Deschide VV Beta',s2_d:'Introdu cheia, alege-ți numele. Primești 100 VV.',s3_t:'Explorează harta',s3_d:'Contracte active cu recompense VV.',s4_t:'Completează misiunea',s4_d:'Camera VV Proof, dovadă live.',s5_t:'Acumulează VV Coins',s5_d:'500 VV = 1 lună ONYX gratuit.',pr_label:'ACCES TIMPURIU',pr_title:'Fii Insider de la început',pr_sub:'Beta e gratuit. VV Coins = ONYX gratuit la VV 1.0.',p1_l:'ACCES BETA',p1_p:'Gratuit cu cheie',p1_f1:'100 VV Coins cadou',p1_f2:'3 chei invitație',p1_f3:'Acces complet misiuni',p1_f4:'Camera VV Proof',p1_f5:'Top Insideri',p1_btn:'ÎNCEPE ACUM',p2_p:'Sau gratuit cu 500 VV din Beta',p2_f1:'Tot din Insider',p2_f2:'Prioritate premium',p2_f3:'Rază extinsă',p2_f4:'Badge ONYX',p2_f5:'Global Feed',p2_btn:'DEBLOCHEAZĂ CU VV COINS',f1:'Concept',f2:'Soluții',f3:'Insideri',f4:'Cum funcționează',f5:'Prețuri',prive_title:'VV PRIVÉ',prive_sub:'Există un nivel pe care nu-l vezi. Încă.',prive_desc:'Evenimente private. Locații exclusiviste. Orare care nu apar pe nicio aplicație. VV PRIVÉ este un ecosistem separat, construit pentru cei care operează într-o altă realitate — unde confidențialitatea și accesul sunt totul.',prive_f1:'MONACO · DUBAI · MYKONOS',prive_f2:'DOAR MEMBRI VERIFICAȚI',prive_btn:'ACCES PRIN INVITAȚIE',prive_note:'Detalii disponibile exclusiv membrilor verificați.',p2_m1:'1 LUNĂ ONYX GRATUIT',p2_m2:'2 LUNI ONYX GRATUIT',p2_m3:'3 LUNI ONYX GRATUIT',v_label:'ABONAMENT LOCAȚII',v_name:'VV VENUE',v_desc:'Prezența ta digitală premium pe harta VV. Pagină web gratuită cu meniuri, poze și feed actualizat în timp real.',v_t1:'PAGINĂ WEB GRATUITĂ',v_t2:'GLOBAL FEED',v_t3:'30 ZILE ACTUALIZARE',v_f1:'Pin premium pe harta VV',v_f2:'Pagină web cu meniuri & poze',v_f3:'Feed Global — evenimente live',v_f4:'Conținut actualizat max 30 zile',v_f5:'VV Proof — atracție verificată',v_btn:'DISPONIBIL LA VV 1.0',int_label:'COMUNITATEA VV',int_title:'Fii primul care află.',int_sub:'Lasă-ți emailul și vei fi printre primii Insideri care primesc acces, actualizări și beneficii exclusive.',int_btn:'ALĂTURĂ-TE LISTEI DE AȘTEPTARE',int_gdpr:'Sunt de acord să fiu contactat pe email cu privire la lansarea oficială, actualizări și beneficii în cadrul ecosistemului VV HYBRID UNIVERS.',int_success:'Bine ai venit în comunitate! Te vom contacta curând.',int_count:'persoane înscrise',int_note:'Datele tale sunt protejate conform GDPR (Regulamentul UE 679/2016). Nu vindem și nu distribuim adresa ta de email terților.',cr_title:'VV CREATORS',cr_desc:'Ești influencer, artist sau creator de conținut? VV îți oferă un nou mod de a arăta realitatea publicului tău. Fără filtre, fără fake — doar tu și orașul. Aplică pentru acces anticipat.',cr_btn:'DISPONIBIL LA VV 1.0',vt_title:'VV TURIST: Descoperă orașul real.',vt_desc:'Ești într-un oraș nou și vrei să știi ce se întâmplă cu adevărat? Pune un Spot pe locația care te interesează — un Explorator local îți trimite o captură live, verificată GPS. Fără recenzii vechi, fără filtre. Doar realitatea, acum.',vt_tag:'LIVE FEED · GPS VERIFIED · ACCES VERIFICAT',hero_activate:'ACTIVEAZĂ VV',hero_activate_sub:'Acces limitat. Mulțumim că ajuți la construcția celui mai mare ecosistem de realitate verificată din lume.',f7:'Comunitate',f6:'VV Privé'},
+en:{nav_cta:'OPEN APP',hero_badge:'BETA LIVE · BUCHAREST',hero_t1:'The Future of',hero_t2:'Urban Intelligence',hero_sub:'Earn VV Coins completing real missions. Be among the first Insiders to unlock exclusive ONYX at VV 1.0.',hero_btn1:'LAUNCH VV BETA',hero_btn2:'How it works',pil1:'TIME',pil1s:'Save hours',pil2:'REPUTATION',pil2s:'Become Elite Insider',pil3:'TRUTH',pil3s:'Zero fake, zero filters',mission_q:'In a world full of fake, VV is the only place where you see reality — proven on-site, in real time.',mission_d:"Student, freelancer, business owner or tourist. Complete missions, earn VV Coins and unlock free months of VV ONYX.",concept_label:'THE CONCEPT',concept_title:'Three steps. One mission.',concept_sub:'Explore, act, build reputation.',card1_title:'Explore',card1_desc:'Open the map and see active contracts. Each pin is an opportunity.',card1_tag:'SCAN · DISCOVER',card2_title:'Action',card2_desc:'Accept the mission, go there, submit live proof via VV Proof camera.',card2_tag:'GO · CAPTURE · PROVE',card3_title:'Accumulate',card3_desc:'Approved proof = VV Coins. Accumulate during Beta, unlock free ONYX at VV 1.0.',card3_tag:'EARN · CLIMB · UNLOCK',sol_label:'VV SOLUTIONS',sol_title:'Not just for Insiders',sol_sub:'VV solves real problems — for tourists and businesses.',tour_title:'Just passing through? Get the truth from the ground.',tour_desc:'Stop wasting time in huge queues or empty venues. Launch a mission and an Insider shows you the real situation on-site. Zero fake reviews.',tour_tag:'TOURISTS · TRAVELERS · PUBLIC',b2b_title:"VV VENUE: Show them you're the real deal.",b2b_desc:'Be transparent and attract clients that matter. Claim your location on the VV map, prove your venue is packed with VV Proof.',b2b_tag:'CLUBS · RESTAURANTS · MUSEUMS · EVENTS',who_label:'WHO ARE THE INSIDERS?',who_title:'Anyone who values time, reputation, and truth',who_sub:'Earn VV Coins, climb ranks, unlock ONYX.',w1_title:'Students',w1_desc:'Missions between classes. 5 min = VV Coins.',w2_title:'Freelancers',w2_desc:'Contracts on breaks. No schedule.',w3_title:'Urban Explorers',w3_desc:'Know the city? VV Coins + Elite.',w5_title:'Night Owls',w5_desc:'Night = premium rewards.',w7_title:'Beta Objective',w7_desc:'500 VV = 1 free month ONYX at VV 1.0.',w7_target:'TARGET: 500 VV → 1 FREE MONTH ONYX',steps_label:'HOW IT WORKS',steps_title:'From zero to first VV Coin',steps_sub:'You need a key from an Insider or VV team.',s1_t:'Get an access key',s1_d:'Ask an Insider or VV team.',s2_t:'Open VV Beta',s2_d:'Enter key, choose your name. Get 100 VV.',s3_t:'Explore the map',s3_d:'Active contracts with VV rewards.',s4_t:'Complete the mission',s4_d:'VV Proof camera, live evidence.',s5_t:'Accumulate VV Coins',s5_d:'500 VV = 1 free month ONYX.',pr_label:'EARLY ACCESS',pr_title:'Be an Insider from day one',pr_sub:'Beta is free. VV Coins = free ONYX at VV 1.0.',p1_l:'BETA ACCESS',p1_p:'Free with invite key',p1_f1:'100 VV Coins gift',p1_f2:'3 invite keys',p1_f3:'Full mission access',p1_f4:'VV Proof Camera',p1_f5:'Top Insiders',p1_btn:'START NOW',p2_p:'Or free with 500 VV from Beta',p2_f1:'Everything in Insider',p2_f2:'Priority premium',p2_f3:'Extended radius',p2_f4:'ONYX badge',p2_f5:'Global Feed',p2_btn:'UNLOCK WITH VV COINS',f1:'Concept',f2:'Solutions',f3:'Insiders',f4:'How it works',f5:'Pricing',prive_title:'VV PRIVÉ',prive_sub:"There's a level you can't see. Yet.",prive_desc:"Private events. Exclusive venues. Schedules that don't appear on any app. VV PRIVÉ is a separate ecosystem, built for those who operate in a different reality — where privacy and access are everything.",prive_f1:'MONACO · DUBAI · MYKONOS',prive_f2:'VERIFIED MEMBERS ONLY',prive_btn:'INVITE-ONLY ACCESS',prive_note:'Details available exclusively to verified members.',p2_m1:'1 FREE MONTH ONYX',p2_m2:'2 FREE MONTHS ONYX',p2_m3:'3 FREE MONTHS ONYX',v_label:'VENUE SUBSCRIPTION',v_name:'VV VENUE',v_desc:'Your premium digital presence on the VV map. Free web page with menus, photos and real-time updated feed.',v_t1:'FREE WEB PAGE',v_t2:'GLOBAL FEED',v_t3:'30-DAY UPDATES',v_f1:'Premium pin on VV map',v_f2:'Web page with menus & photos',v_f3:'Global Feed — live events',v_f4:'Content updated every 30 days',v_f5:'VV Proof — verified attraction',v_btn:'AVAILABLE AT VV 1.0',int_label:'VV COMMUNITY',int_title:'Be the first to know.',int_sub:'Leave your email and be among the first Insiders to get access, updates and exclusive benefits at official launch.',int_btn:'JOIN THE WAITLIST',int_gdpr:'I agree to be contacted via email regarding the official launch, updates and benefits within the VV HYBRID UNIVERS ecosystem.',int_success:'Welcome to the community! We will contact you soon.',int_count:'people signed up',int_note:'Your data is protected under GDPR (EU Regulation 679/2016). We do not sell or share your email with third parties.',cr_title:'VV CREATORS',cr_desc:'Are you an influencer, artist or content creator? VV gives you a new way to show reality to your audience. No filters, no fake — just you and the city, GPS verified in real time. Apply for early access.',cr_btn:'AVAILABLE AT VV 1.0',vt_title:'VV TOURIST: Discover the real city.',vt_desc:'New in town and want to know what really happens? Drop a Spot on any location — a local Explorer sends you a live, GPS-verified capture in minutes. No old reviews, no filters. Just reality, now.',vt_tag:'LIVE FEED · GPS VERIFIED · VERIFIED ACCESS',hero_activate:'ACTIVATE VV',hero_activate_sub:'Limited access. Thank you for helping build the world\'s largest verified reality ecosystem.',f7:'Community',f6:'VV Privé'}
 };
 var currentLang='ro';
 function setLang(l){currentLang=l;document.querySelectorAll('.lang-btn').forEach(function(b){var a=b.textContent.trim()===l.toUpperCase();b.classList.toggle('active',a);});document.querySelectorAll('[data-t]').forEach(function(el){var k=el.getAttribute('data-t');if(T[l]&&T[l][k])el.textContent=T[l][k];});document.documentElement.lang=l;}
@@ -539,6 +733,89 @@ function loadWaitlistCount(){
     }
 }
 document.addEventListener('DOMContentLoaded',function(){initReveal();initWaitlistForm();loadWaitlistCount();});
+</script>
+
+
+<!-- KEY MODAL LOGIC -->
+<script>
+var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbx1T8_uL8FoN6C9_SbT8YRiDF72lsqHD3d-sDpAhQMdLl97xpyhp-Xk3rSCnBSxbyEcBA/exec';
+
+function openKeyModal(){
+    var modal=document.getElementById('key-modal');
+    var mc=document.getElementById('modal-content');
+    var savedKey=localStorage.getItem('vv_activation_key');
+    var savedDate=localStorage.getItem('vv_key_date');
+    var today=new Date().toDateString();
+    // Already has key today
+    if(savedKey&&savedDate===today){
+        mc.innerHTML=renderActiveConnection(savedKey);
+        modal.classList.add('open');
+        return;
+    }
+    // Show loading
+    mc.innerHTML=renderLoading();
+    modal.classList.add('open');
+    // Fetch key
+    fetch(APPS_SCRIPT_URL+'?action=getKey')
+        .then(function(r){return r.json();})
+        .then(function(data){
+            if(data.status==='ok'&&data.key){
+                localStorage.setItem('vv_activation_key',data.key);
+                localStorage.setItem('vv_key_date',today);
+                mc.innerHTML=renderSuccess(data.key);
+            } else {
+                mc.innerHTML=renderNoKeys();
+            }
+        })
+        .catch(function(){mc.innerHTML=renderError();});
+}
+function closeKeyModal(){document.getElementById('key-modal').classList.remove('open');}
+document.getElementById('key-modal').addEventListener('click',function(e){if(e.target===this)closeKeyModal();});
+
+function renderLoading(){
+    return '<div class="vv-modal-icon modal-icon-gold"><i class="fas fa-key" style="color:#D4AF37;"></i></div>'+
+    '<div class="vv-modal-title">SE VERIFICĂ...</div>'+
+    '<div class="vv-spinner"></div>'+
+    '<div class="vv-modal-text">Se generează acreditarea ta...</div>';
+}
+function renderSuccess(key){
+    return '<div class="vv-modal-icon modal-icon-green"><i class="fas fa-check" style="color:#34c759;"></i></div>'+
+    '<div class="vv-modal-title" style="color:#34c759;">IDENTITATE CONFIRMATĂ</div>'+
+    '<div class="vv-modal-text">Codul tău de acces a fost generat. Mulțumim că alegi să construiești viitorul alături de VV.</div>'+
+    '<div class="vv-key-display"><div class="vv-key-label">CODUL TĂU DE ACCES</div><div class="vv-key-value">'+key+'</div></div>'+
+    '<div class="vv-key-sub">Păstrează acest cod — el reprezintă legătura ta cu un nou standard de Adevăr.</div>'+
+    '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:20px;">'+
+    '<button onclick="copyModalKey(''+key+'')" class="vv-modal-close" id="btn-copy-key" style="background:rgba(212,175,55,0.1);border-color:rgba(212,175,55,0.3);color:#D4AF37;margin:0;"><i class="fas fa-copy"></i> COPIAZĂ</button>'+
+    '<button onclick="closeKeyModal()" class="vv-modal-close" style="margin:0;">ÎNCHIDE</button></div>';
+}
+function renderNoKeys(){
+    return '<div class="vv-modal-icon modal-icon-red"><i class="fas fa-lock" style="color:#ff3b30;"></i></div>'+
+    '<div class="vv-modal-title" style="color:#ff3b30;">ACCES EPUIZAT</div>'+
+    '<div class="vv-modal-text">Toate acreditările din acest lot au fost revendicate. Revino mâine pentru o nouă sesiune.</div>'+
+    '<button onclick="closeKeyModal()" class="vv-modal-close">ÎNȚELES</button>';
+}
+function renderActiveConnection(key){
+    return '<div class="vv-modal-icon modal-icon-gold"><i class="fas fa-wifi" style="color:#D4AF37;"></i></div>'+
+    '<div class="vv-modal-title">CONEXIUNE ACTIVĂ</div>'+
+    '<div class="vv-modal-text">Acest dispozitiv are deja un acces activ.</div>'+
+    '<div class="vv-key-display"><div class="vv-key-label">CODUL TĂU ACTIV</div><div class="vv-key-value">'+key+'</div></div>'+
+    '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:20px;">'+
+    '<button onclick="copyModalKey(''+key+'')" class="vv-modal-close" id="btn-copy-key" style="background:rgba(212,175,55,0.1);border-color:rgba(212,175,55,0.3);color:#D4AF37;margin:0;"><i class="fas fa-copy"></i> COPIAZĂ</button>'+
+    '<button onclick="closeKeyModal()" class="vv-modal-close" style="margin:0;">ÎNCHIDE</button></div>';
+}
+function renderError(){
+    return '<div class="vv-modal-icon modal-icon-red"><i class="fas fa-exclamation-triangle" style="color:#ff3b30;"></i></div>'+
+    '<div class="vv-modal-title" style="color:#ff3b30;">EROARE</div>'+
+    '<div class="vv-modal-text">Nu s-a putut conecta la server. Verifică conexiunea.</div>'+
+    '<button onclick="closeKeyModal()" class="vv-modal-close">ÎNCHIDE</button>';
+}
+function copyModalKey(key){
+    navigator.clipboard.writeText(key).then(function(){
+        var btn=document.getElementById('btn-copy-key');
+        if(btn){btn.innerHTML='<i class="fas fa-check"></i> COPIAT!';btn.style.color='#34c759';
+        setTimeout(function(){btn.innerHTML='<i class="fas fa-copy"></i> COPIAZĂ';btn.style.color='#D4AF37';},2000);}
+    }).catch(function(){alert('Cheia ta: '+key);});
+}
 </script>
 
 <!-- VISIT LOGGER — Google Sheets -->
