@@ -739,6 +739,7 @@ document.addEventListener('DOMContentLoaded',function(){initReveal();initWaitlis
 <!-- KEY MODAL LOGIC -->
 <script>
 var APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbx1T8_uL8FoN6C9_SbT8YRiDF72lsqHD3d-sDpAhQMdLl97xpyhp-Xk3rSCnBSxbyEcBA/exec';
+var currentModalKey=null;
 
 function openKeyModal(){
     var modal=document.getElementById('key-modal');
@@ -746,20 +747,19 @@ function openKeyModal(){
     var savedKey=localStorage.getItem('vv_activation_key');
     var savedDate=localStorage.getItem('vv_key_date');
     var today=new Date().toDateString();
-    // Already has key today
     if(savedKey&&savedDate===today){
+        currentModalKey=savedKey;
         mc.innerHTML=renderActiveConnection(savedKey);
         modal.classList.add('open');
         return;
     }
-    // Show loading
     mc.innerHTML=renderLoading();
     modal.classList.add('open');
-    // Fetch key
     fetch(APPS_SCRIPT_URL+'?action=getKey')
         .then(function(r){return r.json();})
         .then(function(data){
             if(data.status==='ok'&&data.key){
+                currentModalKey=data.key;
                 localStorage.setItem('vv_activation_key',data.key);
                 localStorage.setItem('vv_key_date',today);
                 mc.innerHTML=renderSuccess(data.key);
@@ -773,48 +773,26 @@ function closeKeyModal(){document.getElementById('key-modal').classList.remove('
 document.getElementById('key-modal').addEventListener('click',function(e){if(e.target===this)closeKeyModal();});
 
 function renderLoading(){
-    return '<div class="vv-modal-icon modal-icon-gold"><i class="fas fa-key" style="color:#D4AF37;"></i></div>'+
-    '<div class="vv-modal-title">SE VERIFICĂ...</div>'+
-    '<div class="vv-spinner"></div>'+
-    '<div class="vv-modal-text">Se generează acreditarea ta...</div>';
+    return '<div class="vv-modal-icon modal-icon-gold"><i class="fas fa-key" style="color:#D4AF37;"></i></div><div class="vv-modal-title">SE VERIFICĂ...</div><div class="vv-spinner"></div><div class="vv-modal-text">Se generează acreditarea ta...</div>';
 }
 function renderSuccess(key){
-    return '<div class="vv-modal-icon modal-icon-green"><i class="fas fa-check" style="color:#34c759;"></i></div>'+
-    '<div class="vv-modal-title" style="color:#34c759;">IDENTITATE CONFIRMATĂ</div>'+
-    '<div class="vv-modal-text">Codul tău de acces a fost generat. Mulțumim că alegi să construiești viitorul alături de VV.</div>'+
-    '<div class="vv-key-display"><div class="vv-key-label">CODUL TĂU DE ACCES</div><div class="vv-key-value">'+key+'</div></div>'+
-    '<div class="vv-key-sub">Păstrează acest cod — el reprezintă legătura ta cu un nou standard de Adevăr.</div>'+
-    '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:20px;">'+
-    '<button onclick="copyModalKey(''+key+'')" class="vv-modal-close" id="btn-copy-key" style="background:rgba(212,175,55,0.1);border-color:rgba(212,175,55,0.3);color:#D4AF37;margin:0;"><i class="fas fa-copy"></i> COPIAZĂ</button>'+
-    '<button onclick="closeKeyModal()" class="vv-modal-close" style="margin:0;">ÎNCHIDE</button></div>';
+    return '<div class="vv-modal-icon modal-icon-green"><i class="fas fa-check" style="color:#34c759;"></i></div><div class="vv-modal-title" style="color:#34c759;">IDENTITATE CONFIRMATĂ</div><div class="vv-modal-text">Codul tău de acces a fost generat. Mulțumim că alegi să construiești viitorul alături de VV.</div><div class="vv-key-display"><div class="vv-key-label">CODUL TĂU DE ACCES</div><div class="vv-key-value" id="key-text">'+key+'</div></div><div class="vv-key-sub">Păstrează acest cod — el reprezintă legătura ta cu un nou standard de Adevăr.</div><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:20px;"><button onclick="copyModalKey()" class="vv-modal-close" id="btn-copy-key" style="background:rgba(212,175,55,0.1);border-color:rgba(212,175,55,0.3);color:#D4AF37;margin:0;"><i class="fas fa-copy"></i> COPIAZĂ</button><button onclick="closeKeyModal()" class="vv-modal-close" style="margin:0;">ÎNCHIDE</button></div>';
 }
 function renderNoKeys(){
-    return '<div class="vv-modal-icon modal-icon-red"><i class="fas fa-lock" style="color:#ff3b30;"></i></div>'+
-    '<div class="vv-modal-title" style="color:#ff3b30;">ACCES EPUIZAT</div>'+
-    '<div class="vv-modal-text">Toate acreditările din acest lot au fost revendicate. Revino mâine pentru o nouă sesiune.</div>'+
-    '<button onclick="closeKeyModal()" class="vv-modal-close">ÎNȚELES</button>';
+    return '<div class="vv-modal-icon modal-icon-red"><i class="fas fa-lock" style="color:#ff3b30;"></i></div><div class="vv-modal-title" style="color:#ff3b30;">ACCES EPUIZAT</div><div class="vv-modal-text">Toate acreditările au fost revendicate. Revino mâine.</div><button onclick="closeKeyModal()" class="vv-modal-close">ÎNȚELES</button>';
 }
 function renderActiveConnection(key){
-    return '<div class="vv-modal-icon modal-icon-gold"><i class="fas fa-wifi" style="color:#D4AF37;"></i></div>'+
-    '<div class="vv-modal-title">CONEXIUNE ACTIVĂ</div>'+
-    '<div class="vv-modal-text">Acest dispozitiv are deja un acces activ.</div>'+
-    '<div class="vv-key-display"><div class="vv-key-label">CODUL TĂU ACTIV</div><div class="vv-key-value">'+key+'</div></div>'+
-    '<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:20px;">'+
-    '<button onclick="copyModalKey(''+key+'')" class="vv-modal-close" id="btn-copy-key" style="background:rgba(212,175,55,0.1);border-color:rgba(212,175,55,0.3);color:#D4AF37;margin:0;"><i class="fas fa-copy"></i> COPIAZĂ</button>'+
-    '<button onclick="closeKeyModal()" class="vv-modal-close" style="margin:0;">ÎNCHIDE</button></div>';
+    return '<div class="vv-modal-icon modal-icon-gold"><i class="fas fa-wifi" style="color:#D4AF37;"></i></div><div class="vv-modal-title">CONEXIUNE ACTIVĂ</div><div class="vv-modal-text">Acest dispozitiv are deja un acces activ.</div><div class="vv-key-display"><div class="vv-key-label">CODUL TĂU ACTIV</div><div class="vv-key-value" id="key-text">'+key+'</div></div><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:20px;"><button onclick="copyModalKey()" class="vv-modal-close" id="btn-copy-key" style="background:rgba(212,175,55,0.1);border-color:rgba(212,175,55,0.3);color:#D4AF37;margin:0;"><i class="fas fa-copy"></i> COPIAZĂ</button><button onclick="closeKeyModal()" class="vv-modal-close" style="margin:0;">ÎNCHIDE</button></div>';
 }
 function renderError(){
-    return '<div class="vv-modal-icon modal-icon-red"><i class="fas fa-exclamation-triangle" style="color:#ff3b30;"></i></div>'+
-    '<div class="vv-modal-title" style="color:#ff3b30;">EROARE</div>'+
-    '<div class="vv-modal-text">Nu s-a putut conecta la server. Verifică conexiunea.</div>'+
-    '<button onclick="closeKeyModal()" class="vv-modal-close">ÎNCHIDE</button>';
+    return '<div class="vv-modal-icon modal-icon-red"><i class="fas fa-exclamation-triangle" style="color:#ff3b30;"></i></div><div class="vv-modal-title" style="color:#ff3b30;">EROARE</div><div class="vv-modal-text">Nu s-a putut conecta la server.</div><button onclick="closeKeyModal()" class="vv-modal-close">ÎNCHIDE</button>';
 }
-function copyModalKey(key){
-    navigator.clipboard.writeText(key).then(function(){
+function copyModalKey(){
+    if(!currentModalKey)return;
+    navigator.clipboard.writeText(currentModalKey).then(function(){
         var btn=document.getElementById('btn-copy-key');
-        if(btn){btn.innerHTML='<i class="fas fa-check"></i> COPIAT!';btn.style.color='#34c759';
-        setTimeout(function(){btn.innerHTML='<i class="fas fa-copy"></i> COPIAZĂ';btn.style.color='#D4AF37';},2000);}
-    }).catch(function(){alert('Cheia ta: '+key);});
+        if(btn){btn.innerHTML='<i class="fas fa-check"></i> COPIAT!';btn.style.color='#34c759';setTimeout(function(){btn.innerHTML='<i class="fas fa-copy"></i> COPIAZĂ';btn.style.color='#D4AF37';},2000);}
+    }).catch(function(){alert('Cheia ta: '+currentModalKey);});
 }
 </script>
 
