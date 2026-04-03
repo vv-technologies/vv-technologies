@@ -540,5 +540,22 @@ function loadWaitlistCount(){
 }
 document.addEventListener('DOMContentLoaded',function(){initReveal();initWaitlistForm();loadWaitlistCount();});
 </script>
+
+<!-- VISIT LOGGER — Google Sheets -->
+<script>
+(function(){
+    try{
+        var ua=navigator.userAgent;
+        var device='Other';
+        if(/iPhone/.test(ua))device='iPhone';
+        else if(/iPad/.test(ua))device='iPad';
+        else if(/Android/.test(ua))device='Android';
+        else if(/Mac/.test(ua))device='Mac';
+        else if(/Windows/.test(ua))device='Windows';
+        fetch('https://script.google.com/macros/s/AKfycbx1T8_uL8FoN6C9_SbT8YRiDF72lsqHD3d-sDpAhQMdLl97xpyhp-Xk3rSCnBSxbyEcBA/exec?action=logVisit&device='+encodeURIComponent(device),{mode:'no-cors'}).catch(function(){});
+    }catch(e){}
+})();
+</script>
+
 </body>
 </html>
