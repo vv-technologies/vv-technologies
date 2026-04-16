@@ -1,0 +1,27 @@
+/* PATCH: VV-UI-FIX-001 */
+body {
+    /* Asigurăm că întreg corpul ocupă tot ecranul */
+    min-height: 100vh;
+    padding-bottom: env(safe-area-inset-bottom);
+    margin: 0;
+}
+
+#nav-footer, .footer-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Ajustare pentru iPhone X */
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    background: rgba(5, 5, 7, 0.95); /* Glassmorphism */
+    backdrop-filter: blur(10px);
+    border-top: 1px solid #D4AF37;
+    z-index: 9999;
+}
+
+/* Asigurăm că butoanele sunt clickabile */
+button {
+    pointer-events: auto;
+    cursor: pointer;
+    min-height: 44px;
+}
