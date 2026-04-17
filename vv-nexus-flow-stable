@@ -1,0 +1,50 @@
+/* 1. VV-FLOW: Liquid Geometry & Pointer Fix */
+// Aplicăm stiluri critice pentru iPhone X și UI-uri moderne
+const style = document.createElement('style');
+style.innerHTML = `
+    :root { --safe-top: env(safe-area-inset-top); --safe-bottom: env(safe-area-inset-bottom); }
+    body { 
+        height: 100dvh; 
+        padding-top: var(--safe-top); 
+        padding-bottom: var(--safe-bottom);
+        overscroll-behavior: none; /* Blochează bounce-ul enervant */
+    }
+    button, .interactive { 
+        min-height: 48px; 
+        touch-action: manipulation; 
+        -webkit-tap-highlight-color: transparent; 
+        pointer-events: auto !important;
+        position: relative;
+        z-index: 100;
+    }
+    .glass-overlay { backdrop-filter: blur(10px); pointer-events: none; }
+`;
+document.head.appendChild(style);
+
+/* 2. Sincronizare Robustă (Smart Queue) */
+const firestoreQueue = [];
+const processQueue = async () => {
+    if (navigator.onLine && firestoreQueue.length > 0) {
+        const task = firestoreQueue.shift();
+        await task();
+        processQueue();
+    }
+};
+
+window.addEventListener('online', processQueue);
+
+const safeSet = async (docRef, data) => {
+    if (!navigator.onLine) {
+        firestoreQueue.push(() => docRef.set(data, { merge: true }));
+        return console.warn("VV-FLOW: Offline. Task queued.");
+    }
+    await docRef.set(data, { merge: true });
+};
+
+/* 3. Memory Guard (VVhi Shadow) */
+const limitLocalStorage = () => {
+    if (JSON.stringify(localStorage).length > 2000000) { // 2MB limit
+        const keys = Object.keys(localStorage);
+        localStorage.removeItem(keys[0]); // Purjare FIFO
+    }
+};
