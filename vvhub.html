@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="description" content="VV Hub Beta — Urban Intelligence Ecosystem.">
+<title>VV HUB · Beta Access</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;900&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg:#03030a; --gold:#D4AF37; --gd:rgba(212,175,55,0.10);
+    --gb:rgba(212,175,55,0.20); --green:#34c759; --red:#ff3b30;
+    --glass:rgba(255,255,255,0.04); --border:rgba(255,255,255,0.08);
+    --text:rgba(255,255,255,0.82); --muted:rgba(255,255,255,0.35);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+background-image:linear-gradient(rgba(212,175,55,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,0.025) 1px,transparent 1px);
+background-size:60px 60px;}
+.wrap{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 20px;}
+
+/* HEADER */
+header{padding:calc(env(safe-area-inset-top,16px) + 14px) 0 14px;border-bottom:1px solid var(--border);
+position:sticky;top:0;z-index:100;background:rgba(3,3,10,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);}
+.hdr-inner{max-width:680px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;}
+.hdr-logo{font-family:'Syne',sans-serif;font-weight:900;font-size:17px;letter-spacing:3px;color:var(--gold);}
+.hdr-badge{font-size:10px;padding:4px 10px;background:rgba(52,199,89,0.1);border:1px solid rgba(52,199,89,0.25);
+border-radius:20px;color:var(--green);font-weight:700;letter-spacing:2px;}
+
+/* HERO */
+.hero{padding:70px 0 50px;text-align:center;}
+.eyebrow{font-size:10px;letter-spacing:5px;color:rgba(212,175,55,0.5);font-weight:700;margin-bottom:18px;
+display:flex;align-items:center;justify-content:center;gap:12px;}
+.eyebrow::before,.eyebrow::after{content:'';width:36px;height:1px;background:rgba(212,175,55,0.25);}
+h1{font-family:'Syne',sans-serif;font-size:clamp(30px,7vw,50px);font-weight:900;line-height:1.1;
+letter-spacing:-1px;margin-bottom:18px;
+background:linear-gradient(135deg,#fff 0%,rgba(255,255,255,0.55) 100%);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--gold),#f0d060);
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:13px;color:var(--muted);line-height:1.9;max-width:440px;margin:0 auto 28px;}
+.counter-pill{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;
+background:rgba(255,59,48,0.07);border:1px solid rgba(255,59,48,0.2);border-radius:12px;
+font-size:11px;color:rgba(255,59,48,0.75);font-weight:700;letter-spacing:1px;}
+.cnt{font-family:'Syne',sans-serif;font-size:18px;font-weight:900;color:#ff3b30;}
+
+/* SECTIONS */
+.sec{padding:36px 0;border-top:1px solid var(--border);}
+.sec-num{font-size:10px;color:rgba(212,175,55,0.4);letter-spacing:3px;font-weight:700;margin-bottom:10px;}
+.sec-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:900;margin-bottom:10px;color:#fff;}
+.sec-text{font-size:12px;color:var(--muted);line-height:1.9;margin-bottom:14px;}
+
+/* CARDS */
+.cards{display:flex;flex-direction:column;gap:10px;}
+.card{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:16px 18px;
+display:flex;align-items:flex-start;gap:14px;}
+.card-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
+.card-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;}
+.card-text{font-size:11px;color:var(--muted);line-height:1.7;}
+
+/* WARNING */
+.warn{background:rgba(255,149,0,0.05);border:1px solid rgba(255,149,0,0.18);border-radius:12px;
+padding:14px 16px;font-size:12px;color:rgba(255,149,0,0.75);line-height:1.8;margin-top:14px;}
+
+/* FORM */
+.form-wrap{background:var(--glass);border:1px solid var(--gb);border-radius:20px;padding:26px 22px;
+position:relative;overflow:hidden;margin-top:36px;}
+.form-wrap::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;
+background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.form-title{font-family:'Syne',sans-serif;font-size:19px;font-weight:900;margin-bottom:6px;}
+.form-sub{font-size:11px;color:var(--muted);margin-bottom:22px;line-height:1.7;}
+.lbl{display:block;font-size:9px;color:var(--muted);letter-spacing:2.5px;font-weight:700;margin-bottom:6px;}
+.lbl span{color:rgba(212,175,55,0.5);}
+.finput{display:block;width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+border-radius:11px;padding:13px 15px;color:#fff;font-size:15px;font-family:'DM Mono',monospace;
+outline:none;-webkit-appearance:none;transition:border-color .2s;margin-bottom:14px;letter-spacing:.3px;}
+.finput::placeholder{color:rgba(255,255,255,0.15);}
+.finput:focus{border-color:rgba(212,175,55,0.4);}
+.hint{font-size:10px;color:rgba(255,255,255,0.18);margin-top:-10px;margin-bottom:14px;line-height:1.6;}
+.terms-row{display:flex;align-items:flex-start;gap:11px;padding:13px;background:rgba(255,255,255,0.02);
+border:1px solid rgba(255,255,255,0.05);border-radius:11px;margin-bottom:18px;cursor:pointer;}
+.tcb{width:18px;height:18px;flex-shrink:0;margin-top:1px;accent-color:var(--gold);cursor:pointer;}
+.ttext{font-size:11px;color:var(--muted);line-height:1.7;cursor:pointer;}
+.ttext strong{color:rgba(255,255,255,0.5);}
+.msg{display:none;margin-top:10px;padding:11px 14px;border-radius:11px;font-size:11px;text-align:center;line-height:1.6;}
+.msg.err{background:rgba(255,59,48,0.08);border:1px solid rgba(255,59,48,0.2);color:#ff3b30;}
+.msg.ok{background:rgba(52,199,89,0.08);border:1px solid rgba(52,199,89,0.2);color:var(--green);}
+.btn-main{width:100%;padding:17px;background:rgba(255,255,255,0.94);color:#000;border:none;
+border-radius:14px;font-family:'Syne',sans-serif;font-weight:900;font-size:14px;letter-spacing:1px;
+cursor:pointer;touch-action:manipulation;transition:all .2s;min-height:54px;-webkit-appearance:none;}
+.btn-main:hover{background:#fff;}
+.btn-main:disabled{opacity:.4;pointer-events:none;}
+
+/* SUCCESS */
+.success{display:none;text-align:center;padding:36px 16px;}
+.s-icon{width:68px;height:68px;background:rgba(52,199,89,0.1);border:1px solid rgba(52,199,89,0.25);
+border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:28px;}
+.s-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:900;margin-bottom:8px;}
+.s-text{font-size:12px;color:var(--muted);line-height:1.8;}
+
+/* BUG REPORT */
+.bug-section{background:rgba(10,132,255,0.04);border:1px solid rgba(10,132,255,0.15);
+border-radius:16px;padding:20px;margin-top:36px;}
+.bug-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:900;color:#fff;margin-bottom:8px;}
+.bug-text{font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:14px;}
+.bug-input{display:block;width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+border-radius:11px;padding:12px 14px;color:#fff;font-size:14px;font-family:'DM Mono',monospace;
+outline:none;resize:none;min-height:70px;line-height:1.5;margin-bottom:10px;-webkit-appearance:none;}
+.btn-bug{width:100%;padding:13px;background:rgba(10,132,255,0.1);border:1px solid rgba(10,132,255,0.25);
+border-radius:11px;color:#0A84FF;font-size:12px;font-weight:700;cursor:pointer;touch-action:manipulation;
+min-height:44px;-webkit-appearance:none;font-family:'DM Mono',monospace;}
+
+/* FOOTER */
+footer{padding:36px 0 calc(36px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--border);
+margin-top:40px;text-align:center;}
+.f-logo{font-family:'Syne',sans-serif;font-weight:900;font-size:13px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;}
+.f-text{font-size:10px;color:rgba(255,255,255,0.18);line-height:1.9;}
+.f-text a{color:rgba(212,175,55,0.35);text-decoration:none;}
+
+/* TOAST */
+#toast{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;
+transform:translateX(-50%);z-index:9999;padding:11px 20px;border-radius:13px;font-size:12px;
+font-weight:700;white-space:nowrap;max-width:90vw;pointer-events:none;}
+#toast.g{background:rgba(52,199,89,0.2);border:1px solid rgba(52,199,89,0.4);color:var(--green);}
+#toast.r{background:rgba(255,59,48,0.2);border:1px solid rgba(255,59,48,0.4);color:#ff3b30;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.wrap>*{animation:fadeUp .5s cubic-bezier(.16,1,.3,1) both;}
+</style>
+</head>
+<body>
+
+<div id="toast" style="display:none;"></div>
+
+<header>
+    <div class="hdr-inner">
+        <div class="hdr-logo">VV HUB</div>
+        <div class="hdr-badge">BETA ACTIV</div>
+    </div>
+</header>
+
+<div class="wrap">
+
+    <div class="hero">
+        <div class="eyebrow">VV TECHNOLOGIES · URBAN INTELLIGENCE</div>
+        <h1>Un ecosistem.<br><em>Construit în realitate.</em></h1>
+        <p class="hero-sub">
+            Infrastructura digitală pentru orașele de mâine.
+            Fără abonamente ascunse. Fără date vândute. Fără corporații în spate.
+        </p>
+        <div class="counter-pill">
+            LOCURI RĂMASE &nbsp;<span class="cnt" id="spots">47</span>&nbsp;/ 50
+        </div>
+    </div>
+
+    <div class="sec">
+        <div class="sec-num">01 · SISTEMUL</div>
+        <div class="sec-title">Energie proprie. Control total.</div>
+        <p class="sec-text">Nu îți vom cere niciodată cardul bancar. Nu există planuri tarifare. Modulele AI rulează pe chei gratuite pe care le aduci tu — de la Google sau Groq. Tu controlezi consumul. Tu controlezi datele.</p>
+        <div class="cards">
+            <div class="card"><div class="card-icon">🔑</div><div><div class="card-title">BYOK — Bring Your Own Key</div><div class="card-text">Cheia ta API nu ajunge niciodată pe serverele noastre. Se salvează local în browser-ul tău. Zero transmitere externă.</div></div></div>
+            <div class="card"><div class="card-icon">⚡</div><div><div class="card-title">Dual-Core AI</div><div class="card-text">Gemini pentru analize complexe. Groq + LLaMA 3 pentru viteză maximă. Sistemul alege automat ce motor folosește.</div></div></div>
+            <div class="card"><div class="card-icon">🌍</div><div><div class="card-title">Urban Intelligence P2P</div><div class="card-text">Rețea de Insideri care validează locații și informații urbane în timp real. Contribui, câștigi VV Coins.</div></div></div>
+        </div>
+    </div>
+
+    <div class="sec">
+        <div class="sec-num">02 · SECURITATE & LEGAL</div>
+        <div class="sec-title">Datele tale. Regulile tale.</div>
+        <div class="cards">
+            <div class="card"><div class="card-icon">🛡</div><div><div class="card-title">GDPR Complet</div><div class="card-text">Datele se șterg automat după 6 luni de inactivitate. Poți cere ștergerea oricând la vv.ep.team@gmail.com — GDPR Art. 17.</div></div></div>
+            <div class="card"><div class="card-icon">📋</div><div><div class="card-title">DSA Compliant</div><div class="card-text">Conținutul generat trece prin moderare. Respectăm Digital Services Act pentru platformele europene.</div></div></div>
+            <div class="card"><div class="card-icon">🔒</div><div><div class="card-title">Zero Date Vândute</div><div class="card-text">Nu monetizăm profiluri, nu vindem comportament, nu facem publicitate țintită.</div></div></div>
+        </div>
+    </div>
+
+    <div class="sec">
+        <div class="sec-num">03 · REALITATEA BETA</div>
+        <div class="sec-title">Un șantier tehnologic activ.</div>
+        <p class="sec-text">Acesta nu este un produs finit. Este infrastructura în construcție. Vei întâlni bug-uri. Uneori AI-ul va da erori. Sistemul evoluează în timp real.</p>
+        <p class="sec-text">Dacă ești aici pentru perfecțiune — mai așteaptă. Dacă ești aici să testezi tehnologie nefiltrată și să ajuți la construcție — ești în locul potrivit.</p>
+        <div class="warn">⚠️ Raportează orice problemă în secțiunea de mai jos. Fiecare bug raportat valid este recompensat cu <strong>VV Coins</strong>.</div>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-wrap" id="form-wrap">
+        <div class="form-title">Cere acces Beta</div>
+        <p class="form-sub">Acces limitat la <strong style="color:#fff;">50 persoane</strong>. Cheile tale rămân pe dispozitivul tău.</p>
+
+        <div id="form-body">
+            <label class="lbl" for="h-name">NUME / ALIAS <span>*</span></label>
+            <input class="finput" type="text" id="h-name" placeholder="Cum vrei să te știm?" autocomplete="off">
+
+            <label class="lbl" for="h-city">ORAȘ <span>*</span></label>
+            <input class="finput" type="text" id="h-city" placeholder="București, Cluj, Iași..." autocomplete="off">
+
+            <label class="lbl" for="h-gk">GEMINI API KEY <span>*</span></label>
+            <input class="finput" type="password" id="h-gk" placeholder="AIzaSy..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            <div class="hint">aistudio.google.com → Get API Key → Create (gratuit)</div>
+
+            <label class="lbl" for="h-groq">GROQ API KEY (opțional)</label>
+            <input class="finput" type="password" id="h-groq" placeholder="gsk_..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            <div class="hint">console.groq.com → API Keys → Create (gratuit, motor rapid)</div>
+
+            <label class="terms-row" for="h-terms">
+                <input type="checkbox" class="tcb" id="h-terms">
+                <span class="ttext">
+                    Înțeleg că aceasta este o versiune Beta în dezvoltare activă.
+                    Sunt de acord ca alias-ul și orașul meu să fie salvate pentru coordonarea accesului.
+                    <strong>Cheile API rămân exclusiv pe dispozitivul meu.</strong>
+                    VV le șterge după 6 luni — GDPR Art. 17.
+                </span>
+            </label>
+
+            <div class="msg" id="form-msg"></div>
+            <button class="btn-main" id="btn-sub" onclick="doSubmit()">VALIDEAZĂ ȘI INTRĂ ÎN ECOSISTEM</button>
+        </div>
+
+        <div class="success" id="success">
+            <div class="s-icon">✓</div>
+            <div class="s-title">Acces acordat.</div>
+            <div class="s-text">
+                Ești în ecosistemul VV.<br>
+                Cheile tale sunt salvate local — nu le vede nimeni altcineva.<br><br>
+                <span style="color:rgba(255,255,255,0.2);font-size:11px;">Redirecționare în <span id="redirect-cnt">3</span> secunde...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- BUG REPORT -->
+    <div class="bug-section" id="bug-section" style="display:none;">
+        <div class="bug-title">🐛 Raportează un Bug</div>
+        <p class="bug-text">Găsești ceva care nu merge? Descrie problema și primești VV Coins.</p>
+        <textarea class="bug-input" id="bug-text" placeholder="Ce ai făcut → Ce ar fi trebuit să se întâmple → Ce s-a întâmplat de fapt..."></textarea>
+        <button class="btn-bug" onclick="submitBug()">TRIMITE RAPORTUL (+ VV Coins)</button>
+        <div class="msg" id="bug-msg"></div>
+    </div>
+
+    <footer>
+        <div class="f-logo">VV TECHNOLOGIES</div>
+        <div class="f-text">
+            Urban Intelligence Platform · Beta 2025<br>
+            <a href="mailto:vv.ep.team@gmail.com">vv.ep.team@gmail.com</a><br><br>
+            GDPR Compliant · DSA Compliant · Cookie-uri: doar funcționale<br>
+            Cheile API stocate exclusiv local. Nu sunt transmise pe niciun server VV.<br><br>
+            © 2025 VV Technologies · Toate drepturile rezervate
+        </div>
+    </footer>
+
+</div>
+
+<script>
+// ── SPOTS ────────────────────────────────────────────────────
+(function(){
+    var reg = 0;
+    try { reg = parseInt(localStorage.getItem('vv_hub_reg') || '0'); } catch(e){}
+    var left = Math.max(50 - reg, 1);
+    var el = document.getElementById('spots');
+    if (el) { el.textContent = left; if (left < 10) el.style.color = '#ff3b30'; }
+
+    // Dacă e deja înregistrat, arătăm bug section
+    if (localStorage.getItem('nx_gk')) {
+        var fb = document.getElementById('form-body');
+        if (fb) fb.innerHTML = '<div style="text-align:center;padding:20px;font-size:13px;color:rgba(255,255,255,0.4);">✅ Ai deja acces. <a href="nexus.html" style="color:#D4AF37;text-decoration:none;">Deschide NEXUS →</a></div>';
+        var bs = document.getElementById('bug-section');
+        if (bs) bs.style.display = 'block';
+    }
+})();
+
+// ── SUBMIT ────────────────────────────────────────────────────
+function doSubmit() {
+    var name  = (document.getElementById('h-name')||{value:''}).value.trim();
+    var city  = (document.getElementById('h-city')||{value:''}).value.trim();
+    var gk    = (document.getElementById('h-gk')||{value:''}).value.trim();
+    var groq  = (document.getElementById('h-groq')||{value:''}).value.trim();
+    var terms = document.getElementById('h-terms') && document.getElementById('h-terms').checked;
+
+    if (!name)  { showMsg('form-msg','Introdu numele sau alias-ul tău.','err'); return; }
+    if (!city)  { showMsg('form-msg','Introdu orașul tău.','err'); return; }
+    if (!gk)    { showMsg('form-msg','Cheia Gemini API este obligatorie.','err'); return; }
+    if (!terms) { showMsg('form-msg','Acceptă termenii pentru a continua.','err'); return; }
+
+    var btn = document.getElementById('btn-sub');
+    if (btn) { btn.disabled=true; btn.textContent='SE PROCESEAZĂ...'; }
+
+    // Salvăm LOCAL — nu trimitem nicăieri
+    try {
+        localStorage.setItem('nx_gk', gk);
+        if (groq) localStorage.setItem('nx_groq', groq);
+        localStorage.setItem('vv_hub_name', name);
+        localStorage.setItem('vv_hub_city', city);
+        var d = new Date(); d.setFullYear(d.getFullYear()+1);
+        document.cookie = 'nx_gk='+encodeURIComponent(gk)+';expires='+d.toUTCString()+';path=/;SameSite=Lax';
+        if (groq) document.cookie = 'nx_groq='+encodeURIComponent(groq)+';expires='+d.toUTCString()+';path=/;SameSite=Lax';
+        var cnt = parseInt(localStorage.getItem('vv_hub_reg')||'0')+1;
+        localStorage.setItem('vv_hub_reg', cnt);
+    } catch(e){}
+
+    setTimeout(function(){
+        document.getElementById('form-body').style.display = 'none';
+        document.getElementById('success').style.display = 'block';
+        document.getElementById('bug-section').style.display = 'block';
+
+        // Countdown redirect
+        var n = 3;
+        var iv = setInterval(function(){
+            n--;
+            var el = document.getElementById('redirect-cnt');
+            if (el) el.textContent = n;
+            if (n <= 0) { clearInterval(iv); window.location.href = 'nexus.html'; }
+        }, 1000);
+    }, 700);
+}
+
+// ── BUG REPORT ────────────────────────────────────────────────
+function submitBug() {
+    var text = (document.getElementById('bug-text')||{value:''}).value.trim();
+    if (!text) { showMsg('bug-msg','Descrie problema înainte să trimiți.','err'); return; }
+
+    // Salvăm local
+    var bugs = [];
+    try { bugs = JSON.parse(localStorage.getItem('vv_bugs')||'[]'); } catch(e){}
+    bugs.unshift({ text:text, ts:Date.now(), date:new Date().toLocaleDateString('ro-RO') });
+    localStorage.setItem('vv_bugs', JSON.stringify(bugs));
+
+    document.getElementById('bug-text').value = '';
+    showMsg('bug-msg','✅ Bug raportat! VV Coins vor fi acordate după validare.','ok');
+    toast('Bug raportat! Mulțumim.','g');
+}
+
+function showMsg(id, text, type) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = text; el.className = 'msg ' + type; el.style.display = 'block';
+    setTimeout(function(){ el.style.display='none'; }, 5000);
+}
+
+function toast(msg, type) {
+    var t = document.getElementById('toast');
+    if (!t) return;
+    t.textContent = msg; t.className = type; t.style.display = 'block';
+    setTimeout(function(){ t.style.display='none'; }, 3000);
+}
+</script>
+</body>
+</html>
