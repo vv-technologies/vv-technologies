@@ -4,335 +4,909 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="description" content="VV Hybrid Univers — Urban Intelligence Ecosystem. Beta access.">
-<title>VV HUB · Beta Access</title>
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="theme-color" content="#000000">
+<title>VV · Hybrid Univers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;900&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800;900&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#03030a;--gold:#D4AF37;--gd:rgba(212,175,55,0.10);--gb:rgba(212,175,55,0.20);--green:#34c759;--blue:#0A84FF;--red:#ff3b30;--glass:rgba(255,255,255,0.04);--border:rgba(255,255,255,0.08);--text:rgba(255,255,255,0.82);--muted:rgba(255,255,255,0.35);}
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-height:100vh;overflow-x:hidden;}
-body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(212,175,55,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,0.025) 1px,transparent 1px);background-size:60px 60px;}
-.wrap{position:relative;z-index:1;max-width:680px;margin:0 auto;padding:0 20px;}
-header{padding:calc(env(safe-area-inset-top,16px) + 14px) 0 14px;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;background:rgba(3,3,10,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);}
-.hdr-inner{max-width:680px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;}
-.hdr-logo{font-family:'Syne',sans-serif;font-weight:900;font-size:17px;letter-spacing:3px;color:var(--gold);}
-.hdr-badge{font-size:10px;padding:4px 10px;background:rgba(52,199,89,0.1);border:1px solid rgba(52,199,89,0.25);border-radius:20px;color:var(--green);font-weight:700;letter-spacing:2px;}
-.hero{padding:70px 0 50px;text-align:center;}
-.eyebrow{font-size:10px;letter-spacing:5px;color:rgba(212,175,55,0.5);font-weight:700;margin-bottom:18px;display:flex;align-items:center;justify-content:center;gap:12px;}
-.eyebrow::before,.eyebrow::after{content:'';width:36px;height:1px;background:rgba(212,175,55,0.25);}
-h1{font-family:'Syne',sans-serif;font-size:clamp(30px,7vw,50px);font-weight:900;line-height:1.1;letter-spacing:-1px;margin-bottom:18px;background:linear-gradient(135deg,#fff 0%,rgba(255,255,255,0.55) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-h1 em{font-style:normal;background:linear-gradient(135deg,var(--gold),#f0d060);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-.hero-sub{font-size:13px;color:var(--muted);line-height:1.9;max-width:440px;margin:0 auto 28px;}
-.counter-pill{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;background:rgba(255,59,48,0.07);border:1px solid rgba(255,59,48,0.2);border-radius:12px;font-size:11px;color:rgba(255,59,48,0.75);font-weight:700;letter-spacing:1px;}
-.cnt{font-family:'Syne',sans-serif;font-size:18px;font-weight:900;color:#ff3b30;}
-.sec{padding:36px 0;border-top:1px solid var(--border);}
-.sec-num{font-size:10px;color:rgba(212,175,55,0.4);letter-spacing:3px;font-weight:700;margin-bottom:10px;}
-.sec-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:900;margin-bottom:10px;color:#fff;}
-.sec-text{font-size:12px;color:var(--muted);line-height:1.9;margin-bottom:14px;}
-.cards{display:flex;flex-direction:column;gap:10px;}
-.card{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:16px 18px;display:flex;align-items:flex-start;gap:14px;}
-.card-icon{font-size:18px;flex-shrink:0;margin-top:1px;}
-.card-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px;}
-.card-text{font-size:11px;color:var(--muted);line-height:1.7;}
+:root {
+  --black: #000;
+  --gold: #D4AF37;
+  --gold2: rgba(212,175,55,0.6);
+  --gold-dim: rgba(212,175,55,0.08);
+  --gold-line: rgba(212,175,55,0.2);
+  --green: #34c759;
+  --blue: #0A84FF;
+  --w80: rgba(255,255,255,0.8);
+  --w50: rgba(255,255,255,0.5);
+  --w30: rgba(255,255,255,0.3);
+  --w12: rgba(255,255,255,0.12);
+  --w06: rgba(255,255,255,0.06);
+  --w03: rgba(255,255,255,0.03);
+  --border: rgba(255,255,255,0.08);
+  --font: 'Syne', sans-serif;
+  --mono: 'DM Mono', monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);
+  color:#fff;
+  font-family:var(--mono);
+  min-height:100vh;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
 
-/* MODULE LINKS */
-.modules{display:flex;flex-direction:column;gap:12px;margin-top:8px;}
-.module-link{display:flex;align-items:center;gap:16px;background:var(--glass);border:1px solid var(--border);border-radius:16px;padding:18px 20px;text-decoration:none;transition:all .2s;position:relative;overflow:hidden;}
-.module-link::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.06),transparent);}
-.module-link:active{background:rgba(255,255,255,0.06);}
-.module-link.gold{border-color:rgba(212,175,55,0.2);}
-.module-link.gold:active{border-color:rgba(212,175,55,0.4);}
-.module-link.blue{border-color:rgba(10,132,255,0.2);}
-.module-link.green{border-color:rgba(52,199,89,0.2);}
-.mod-icon{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
-.mod-icon.gold{background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.2);}
-.mod-icon.blue{background:rgba(10,132,255,0.1);border:1px solid rgba(10,132,255,0.2);}
-.mod-icon.green{background:rgba(52,199,89,0.1);border:1px solid rgba(52,199,89,0.2);}
-.mod-icon.purple{background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.2);}
-.mod-info{flex:1;}
-.mod-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:900;color:#fff;margin-bottom:4px;letter-spacing:.5px;}
-.mod-desc{font-size:11px;color:var(--muted);line-height:1.6;}
-.mod-badge{font-size:9px;padding:3px 8px;border-radius:6px;font-weight:700;letter-spacing:1px;flex-shrink:0;}
-.badge-live{background:rgba(52,199,89,0.1);border:1px solid rgba(52,199,89,0.25);color:var(--green);}
-.badge-beta{background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.2);color:var(--gold);}
-.badge-soon{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:var(--muted);}
+/* Grid background subtil */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(212,175,55,0.015) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(212,175,55,0.015) 1px,transparent 1px);
+  background-size:48px 48px;
+  pointer-events:none;z-index:0;
+}
 
-/* STATS */
-.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;}
-.stat-card{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:16px;text-align:center;}
-.stat-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:900;color:#fff;margin-bottom:4px;}
-.stat-lbl{font-size:10px;color:var(--muted);letter-spacing:2px;font-weight:700;}
-.stat-card.gold .stat-num{color:var(--gold);}
-.stat-card.green .stat-num{color:var(--green);}
-.stat-card.blue .stat-num{color:var(--blue);}
+.wrap{position:relative;z-index:1;max-width:640px;margin:0 auto;padding:0 20px}
 
-/* PILLARS */
-.pillar{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:10px;}
-.pillar-num{font-size:9px;color:rgba(212,175,55,0.4);letter-spacing:3px;font-weight:700;margin-bottom:8px;}
-.pillar-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:900;color:#fff;margin-bottom:8px;}
-.pillar-text{font-size:11px;color:var(--muted);line-height:1.8;}
+/* ── HEADER ── */
+.site-header{
+  position:sticky;top:0;z-index:900;
+  background:rgba(0,0,0,0.88);
+  backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+  border-bottom:1px solid var(--border);
+  padding:calc(env(safe-area-inset-top,8px) + 8px) 0 8px;
+}
+.hdr-inner{
+  max-width:640px;margin:0 auto;padding:0 20px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.hdr-brand{
+  display:flex;flex-direction:column;
+}
+.hdr-vv{
+  font-family:var(--font);font-weight:900;font-size:20px;
+  letter-spacing:5px;color:var(--gold);line-height:1;
+}
+.hdr-sub{font-size:7px;color:var(--w30);letter-spacing:4px;font-weight:400;margin-top:2px}
+.hdr-pills{display:flex;align-items:center;gap:6px}
+.pill{
+  display:flex;align-items:center;gap:5px;
+  padding:5px 11px;
+  background:var(--w03);border:0.5px solid var(--border);
+  border-radius:20px;font-size:10px;color:var(--w50);
+  font-family:var(--mono);
+}
+.dot-live{
+  width:5px;height:5px;border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 6px rgba(52,199,89,.9);
+  animation:livePulse 2s ease-in-out infinite;
+}
+@keyframes livePulse{0%,100%{opacity:1}50%{opacity:.2}}
 
-/* LEGAL */
-.legal-card{background:rgba(10,132,255,0.04);border:1px solid rgba(10,132,255,0.15);border-radius:14px;padding:18px;margin-bottom:10px;}
-.legal-title{font-size:12px;font-weight:700;color:#fff;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
-.legal-text{font-size:11px;color:var(--muted);line-height:1.8;}
+/* ── HERO ── */
+.hero{
+  min-height:88vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:70px 0 50px;
+  position:relative;
+}
 
-.warn{background:rgba(255,149,0,0.05);border:1px solid rgba(255,149,0,0.18);border-radius:12px;padding:14px 16px;font-size:12px;color:rgba(255,149,0,0.75);line-height:1.8;margin-top:14px;}
+/* SEMNATURA VV — hexagon pulsant */
+.hex-signature{
+  position:relative;
+  width:100px;height:100px;
+  margin:0 auto 44px;
+  display:flex;align-items:center;justify-content:center;
+}
+.hex-ring{
+  position:absolute;
+  border-radius:50%;
+  border:1px solid;
+  animation:ringPulse 3.5s ease-in-out infinite;
+}
+.hex-ring:nth-child(1){
+  inset:0;border-color:rgba(212,175,55,.55);
+  animation-delay:0s;
+}
+.hex-ring:nth-child(2){
+  inset:-14px;border-color:rgba(212,175,55,.2);
+  animation-delay:.7s;
+}
+.hex-ring:nth-child(3){
+  inset:-28px;border-color:rgba(212,175,55,.08);
+  animation-delay:1.4s;
+}
+@keyframes ringPulse{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.07);opacity:.5}
+}
+.hex-core{
+  width:64px;height:64px;
+  background:rgba(212,175,55,.07);
+  border:1px solid rgba(212,175,55,.3);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;
+  position:relative;z-index:1;
+  box-shadow:0 0 32px rgba(212,175,55,.08),inset 0 0 16px rgba(212,175,55,.04);
+}
 
-footer{padding:36px 0 calc(36px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--border);margin-top:40px;text-align:center;}
-.f-logo{font-family:'Syne',sans-serif;font-weight:900;font-size:13px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;}
-.f-text{font-size:10px;color:rgba(255,255,255,0.18);line-height:1.9;}
-.f-text a{color:rgba(212,175,55,0.35);text-decoration:none;}
+.hero-eyebrow{
+  font-size:8px;letter-spacing:5px;
+  color:rgba(212,175,55,.45);font-weight:700;
+  margin-bottom:18px;
+  display:flex;align-items:center;gap:12px;justify-content:center;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{
+  content:'';width:24px;height:1px;
+  background:rgba(212,175,55,.2);
+}
+
+.hero-title{
+  font-family:var(--font);
+  font-size:clamp(38px,10vw,62px);
+  font-weight:900;line-height:1.04;
+  letter-spacing:-2px;
+  margin-bottom:20px;
+}
+.hero-title .gold-text{
+  background:linear-gradient(135deg,#D4AF37 0%,#ffe88a 50%,#D4AF37 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.hero-sub{
+  font-size:13px;color:var(--w50);
+  line-height:1.85;max-width:340px;
+  margin:0 auto 28px;
+}
+
+/* Greeting personalizat */
+.hero-greeting{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:7px 16px;
+  background:var(--gold-dim);
+  border:0.5px solid var(--gold-line);
+  border-radius:20px;
+  font-size:12px;color:var(--w80);
+  margin-bottom:28px;
+}
+
+.hero-actions{
+  display:flex;gap:10px;justify-content:center;flex-wrap:wrap;
+  margin-bottom:40px;
+}
+.btn-gold{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;
+  background:var(--gold);color:#000;
+  border:none;border-radius:14px;
+  font-family:var(--font);font-weight:800;font-size:14px;
+  letter-spacing:.5px;cursor:pointer;
+  text-decoration:none;min-height:50px;
+  transition:opacity .15s,transform .15s;
+  -webkit-appearance:none;
+}
+.btn-gold:active{opacity:.82;transform:scale(.97)}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 22px;
+  background:var(--w03);border:0.5px solid var(--w12);
+  border-radius:14px;color:var(--w80);
+  font-family:var(--mono);font-size:12px;
+  cursor:pointer;text-decoration:none;min-height:50px;
+  transition:background .15s;
+  -webkit-appearance:none;
+}
+.btn-outline:active{background:var(--w06)}
+
+/* Stats live */
+.stats-row{
+  display:flex;gap:6px;flex-wrap:wrap;justify-content:center;
+}
+.stat-chip{
+  display:flex;align-items:center;gap:6px;
+  padding:6px 13px;
+  background:var(--w03);border:0.5px solid var(--border);
+  border-radius:20px;font-size:11px;color:var(--w50);
+}
+.stat-chip b{font-weight:700}
+.stat-chip.c-gold b{color:var(--gold)}
+.stat-chip.c-green b{color:var(--green)}
+.stat-chip.c-blue b{color:var(--blue)}
+
+/* ── SECTIONS ── */
+.sec{
+  padding:44px 0;
+  border-top:1px solid var(--border);
+}
+.sec-eyebrow{
+  font-size:8px;letter-spacing:4px;color:var(--w30);
+  font-weight:700;margin-bottom:10px;
+  display:flex;align-items:center;gap:10px;
+}
+.sec-eyebrow::after{content:'';flex:1;height:1px;background:var(--border)}
+.sec-title{
+  font-family:var(--font);
+  font-size:clamp(22px,5vw,30px);
+  font-weight:900;letter-spacing:-.5px;
+  margin-bottom:8px;line-height:1.15;
+}
+.sec-sub{
+  font-size:12px;color:var(--w50);
+  line-height:1.8;margin-bottom:24px;
+}
+
+/* ── NEXUS WIDGET ── */
+.nexus-widget{
+  background:rgba(10,132,255,.04);
+  border:0.5px solid rgba(10,132,255,.15);
+  border-radius:20px;padding:20px;
+  position:relative;overflow:hidden;
+}
+.nexus-widget::before{
+  content:'';position:absolute;
+  top:0;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(10,132,255,.35),transparent);
+}
+.nexus-greeting{
+  font-size:15px;font-weight:700;
+  color:#fff;margin-bottom:5px;line-height:1.5;
+}
+.nexus-mode{
+  font-size:10px;color:rgba(10,132,255,.7);
+  letter-spacing:2px;font-weight:700;margin-bottom:12px;
+}
+.nexus-bar-row{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:14px;
+}
+.nexus-track{
+  flex:1;height:3px;
+  background:var(--w06);border-radius:3px;overflow:hidden;
+}
+.nexus-fill{
+  height:100%;border-radius:3px;
+  background:linear-gradient(90deg,var(--blue),rgba(10,132,255,.4));
+  transition:width .8s cubic-bezier(.16,1,.3,1);
+}
+.nexus-xp{font-size:10px;color:var(--w30);white-space:nowrap}
+.nexus-btns{display:flex;gap:8px}
+.nexus-btn{
+  flex:1;padding:11px 10px;
+  background:rgba(10,132,255,.08);
+  border:0.5px solid rgba(10,132,255,.18);
+  border-radius:11px;color:var(--blue);
+  font-size:11px;font-weight:700;
+  cursor:pointer;text-align:center;
+  text-decoration:none;font-family:var(--mono);
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  min-height:42px;transition:background .15s;
+}
+.nexus-btn:active{background:rgba(10,132,255,.16)}
+.nexus-btn.gold{
+  background:var(--gold-dim);
+  border-color:var(--gold-line);color:var(--gold);
+}
+
+/* ── RAMURI / CARDURI ── */
+.branches{display:flex;flex-direction:column;gap:10px}
+.branch{
+  display:block;text-decoration:none;
+  background:var(--w03);
+  border:0.5px solid var(--border);
+  border-radius:22px;padding:20px;
+  position:relative;overflow:hidden;
+  transition:background .2s,transform .15s;
+}
+.branch::before{
+  content:'';position:absolute;
+  top:0;left:15%;right:15%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.05),transparent);
+}
+.branch:active{background:var(--w06);transform:scale(.99)}
+.branch.gold-b{border-color:rgba(212,175,55,.2)}
+.branch.gold-b::before{background:linear-gradient(90deg,transparent,rgba(212,175,55,.1),transparent)}
+.branch.blue-b{border-color:rgba(10,132,255,.15)}
+.branch.green-b{border-color:rgba(52,199,89,.15)}
+.branch.dim{opacity:.55;cursor:default}
+
+.b-head{display:flex;align-items:flex-start;gap:13px;margin-bottom:13px}
+.b-icon{
+  width:42px;height:42px;border-radius:13px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.b-icon.gold{background:rgba(212,175,55,.08);border:0.5px solid rgba(212,175,55,.18)}
+.b-icon.blue{background:rgba(10,132,255,.08);border:0.5px solid rgba(10,132,255,.18)}
+.b-icon.green{background:rgba(52,199,89,.08);border:0.5px solid rgba(52,199,89,.18)}
+.b-icon.purple{background:rgba(167,139,250,.08);border:0.5px solid rgba(167,139,250,.18)}
+
+.b-label{font-size:8px;letter-spacing:3px;color:var(--w30);font-weight:700;margin-bottom:3px}
+.b-name{font-family:var(--font);font-size:17px;font-weight:900;color:#fff}
+.b-badge{
+  margin-left:auto;flex-shrink:0;
+  padding:3px 9px;border-radius:20px;
+  font-size:8px;font-weight:700;letter-spacing:1.5px;
+}
+.badge-live{background:rgba(52,199,89,.08);border:0.5px solid rgba(52,199,89,.2);color:var(--green)}
+.badge-beta{background:rgba(212,175,55,.08);border:0.5px solid rgba(212,175,55,.18);color:var(--gold)}
+.badge-lock{background:var(--w03);border:0.5px solid var(--border);color:var(--w30)}
+
+.b-desc{font-size:12px;color:var(--w50);line-height:1.7;margin-bottom:12px}
+.b-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
+.b-tag{
+  padding:3px 9px;
+  background:var(--w03);border:0.5px solid var(--border);
+  border-radius:20px;font-size:10px;color:var(--w30);
+}
+.b-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:12px;border-top:1px solid var(--border);
+}
+.b-cta{font-size:12px;font-weight:700;color:var(--w80)}
+.b-arrow{font-size:14px;color:var(--w30)}
+
+/* ── FEED ── */
+.feed{display:flex;flex-direction:column;gap:7px}
+.feed-row{
+  display:flex;align-items:center;gap:11px;
+  padding:11px 13px;
+  background:var(--w03);border:0.5px solid var(--border);
+  border-radius:12px;
+}
+.feed-ico{
+  width:30px;height:30px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;flex-shrink:0;
+}
+.feed-body{flex:1;min-width:0}
+.feed-t{font-size:12px;color:var(--w80);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.feed-s{font-size:10px;color:var(--w30);margin-top:1px}
+.feed-tag{
+  font-size:8px;font-weight:700;letter-spacing:1.5px;
+  padding:3px 7px;border-radius:5px;flex-shrink:0;
+}
+.ft-gold{background:rgba(212,175,55,.08);color:var(--gold);border:0.5px solid rgba(212,175,55,.18)}
+.ft-blue{background:rgba(10,132,255,.08);color:var(--blue);border:0.5px solid rgba(10,132,255,.18)}
+.ft-green{background:rgba(52,199,89,.08);color:var(--green);border:0.5px solid rgba(52,199,89,.18)}
+.ft-dim{background:var(--w03);color:var(--w30);border:0.5px solid var(--border)}
+
+/* ── INNER CIRCLE ── */
+.circle-card{
+  background:linear-gradient(135deg,rgba(212,175,55,.06) 0%,rgba(212,175,55,.02) 100%);
+  border:0.5px solid rgba(212,175,55,.22);
+  border-radius:22px;padding:24px 20px;
+  position:relative;overflow:hidden;
+}
+.circle-card::before{
+  content:'';position:absolute;
+  top:0;left:8%;right:8%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(212,175,55,.35),transparent);
+}
+.circle-price-big{
+  font-family:var(--font);
+  font-size:56px;font-weight:900;
+  color:var(--gold);line-height:1;
+  margin:14px 0 4px;
+}
+.circle-price-sub{font-size:12px;color:var(--w50)}
+.circle-features{margin:16px 0;display:flex;flex-direction:column;gap:9px}
+.circle-feat{
+  display:flex;align-items:center;gap:10px;
+  font-size:13px;color:var(--w80);
+}
+.circle-feat::before{content:'⬡';color:var(--gold);font-size:9px;flex-shrink:0}
+.circle-spots-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:9px 13px;
+  background:rgba(212,175,55,.05);
+  border:0.5px solid rgba(212,175,55,.12);
+  border-radius:10px;margin-bottom:14px;
+  font-size:11px;color:var(--w50);
+}
+.circle-spots-row b{color:var(--gold)}
+
+/* ── CHARTER GRID ── */
+.charter-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.charter-card{
+  padding:14px;
+  background:var(--w03);border:0.5px solid var(--border);
+  border-radius:13px;
+}
+.charter-art{font-size:8px;letter-spacing:2px;color:rgba(212,175,55,.45);font-weight:700;margin-bottom:4px}
+.charter-title{font-size:12px;font-weight:700;color:#fff}
+
+/* ── SEMNATURA ── */
+.signature{
+  text-align:center;
+  padding:52px 0 calc(52px + env(safe-area-inset-bottom,0px));
+  border-top:1px solid var(--border);
+}
+.sig-hex{font-size:28px;margin-bottom:18px;opacity:.35}
+.sig-quote{
+  font-family:var(--font);
+  font-size:16px;font-weight:700;
+  font-style:italic;
+  color:var(--w80);line-height:1.55;
+  max-width:280px;margin:0 auto 12px;
+}
+.sig-by{font-size:9px;color:var(--w30);letter-spacing:3px;font-weight:700;margin-bottom:24px}
+.sig-legal{font-size:10px;color:rgba(255,255,255,.14);line-height:2}
+.sig-legal a{color:rgba(212,175,55,.28);text-decoration:none}
+
+/* ── TOAST ── */
+#vv-hub-toast{
+  position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));
+  left:50%;transform:translateX(-50%) translateY(8px);
+  background:rgba(14,14,18,.97);
+  border:0.5px solid var(--w12);border-radius:14px;
+  padding:9px 18px;font-size:12px;font-weight:600;
+  white-space:nowrap;max-width:92vw;
+  opacity:0;transition:all .28s;pointer-events:none;z-index:9999;
+}
+#vv-hub-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── ANIMATIONS ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-.wrap>*{animation:fadeUp .5s cubic-bezier(.16,1,.3,1) both;}
+.hero>*{animation:fadeUp .55s cubic-bezier(.16,1,.3,1) both}
+.hero>*:nth-child(1){animation-delay:.08s}
+.hero>*:nth-child(2){animation-delay:.16s}
+.hero>*:nth-child(3){animation-delay:.24s}
+.hero>*:nth-child(4){animation-delay:.32s}
+.hero>*:nth-child(5){animation-delay:.40s}
+.hero>*:nth-child(6){animation-delay:.48s}
 </style>
 </head>
 <body>
 
-<header>
-    <div class="hdr-inner">
-        <div class="hdr-logo">VV HUB</div>
-        <div class="hdr-badge">BETA ACTIV</div>
+<div id="vv-hub-toast"></div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="hdr-inner">
+    <div class="hdr-brand">
+      <div class="hdr-vv">VV</div>
+      <div class="hdr-sub">HYBRID UNIVERS</div>
     </div>
+    <div class="hdr-pills">
+      <div class="pill" id="hdr-user-pill" style="display:none">
+        <span id="hdr-user-text">—</span>
+      </div>
+      <div class="pill">
+        <span class="dot-live"></span>
+        <span>Beta</span>
+      </div>
+    </div>
+  </div>
 </header>
 
 <div class="wrap">
 
-    <!-- HERO -->
-    <div class="hero">
-        <div class="eyebrow">VV TECHNOLOGIES · URBAN INTELLIGENCE</div>
-        <h1>Un ecosistem.<br><em>Construit în realitate.</em></h1>
-        <p class="hero-sub">
-            Infrastructura digitală pentru orașele de mâine.
-            Identitate verificată uman. Prezențe fizice validate.
-            Fără date vândute. Fără corporații în spate.
-        </p>
-        <div class="counter-pill">
-            FONDATORI RĂMAȘI &nbsp;<span class="cnt" id="spots">—</span>&nbsp;/ 100
-        </div>
+  <!-- HERO -->
+  <div class="hero">
+
+    <!-- Semnatura ⬡ -->
+    <div class="hex-signature">
+      <div class="hex-ring"></div>
+      <div class="hex-ring"></div>
+      <div class="hex-ring"></div>
+      <div class="hex-core">⬡</div>
     </div>
 
-    <!-- MODULE -->
-    <div class="sec">
-        <div class="sec-num">01 · ECOSISTEMUL</div>
-        <div class="sec-title">Intră în rețea.</div>
-        <p class="sec-text">Patru module. Un singur ecosistem. Fiecare piesă se conectează la celelalte.</p>
+    <!-- Eyebrow -->
+    <div class="hero-eyebrow">VV HYBRID UNIVERS · 2026</div>
 
-        <div class="modules">
-            <a href="https://vv-technologies.github.io/vv-beta" class="module-link gold">
-                <div class="mod-icon gold">⬡</div>
-                <div class="mod-info">
-                    <div class="mod-title">VV BETA</div>
-                    <div class="mod-desc">Harta misiunilor, VV Pulse GPS, cameră VV PROOF, economie de Coins. Intră cu cheie de acces.</div>
-                </div>
-                <div class="mod-badge badge-live">LIVE</div>
-            </a>
+    <!-- Titlu -->
+    <h1 class="hero-title">
+      Un singur<br>univers.<br>
+      <span class="gold-text">O intenție.</span>
+    </h1>
 
-            <a href="https://vv-technologies.github.io/vv-nexus/vv-inner-circle.html" class="module-link gold">
-                <div class="mod-icon" style="background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.2);font-size:20px;width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;">💎</div>
-                <div class="mod-info">
-                    <div class="mod-title">VV INNER CIRCLE</div>
-                    <div class="mod-desc">Devino Fondator. 100 locuri. VV·CORE·ID unic. Card digital glassmorphism. 29 RON contribuție.</div>
-                </div>
-                <div class="mod-badge badge-beta">BETA</div>
-            </a>
+    <!-- Sub -->
+    <p class="hero-sub">Misiuni urbane verificate fizic. AI care crește prin efortul tău. Identitate anonimă de statut. Construit în România.</p>
 
-            <a href="https://vv-technologies.github.io/vv-nexus/vv-pulse.html" class="module-link blue">
-                <div class="mod-icon blue">🗺</div>
-                <div class="mod-info">
-                    <div class="mod-title">VV PULSE MAP</div>
-                    <div class="mod-desc">Harta vie a orașului. Locații validate de comunitate. Insideri activi în timp real.</div>
-                </div>
-                <div class="mod-badge badge-live">LIVE</div>
-            </a>
-
-            <a href="#" class="module-link" style="opacity:.5;pointer-events:none;">
-                <div class="mod-icon" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);font-size:20px;width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;">🧠</div>
-                <div class="mod-info">
-                    <div class="mod-title">VVhi</div>
-                    <div class="mod-desc">Inteligența ecosistemului. Antrenat pe comportament urban real. VV 1.0.</div>
-                </div>
-                <div class="mod-badge badge-soon">SOON</div>
-            </a>
-        </div>
+    <!-- Greeting personalizat — injectat JS -->
+    <div class="hero-greeting" id="hero-greeting" style="display:none">
+      <span id="greeting-icon">⬡</span>
+      <span id="greeting-text"></span>
     </div>
 
-    <!-- STATS -->
-    <div class="sec">
-        <div class="sec-num">02 · STATUS LIVE</div>
-        <div class="sec-title">Ce am construit.</div>
-        <div class="stats-grid">
-            <div class="stat-card gold">
-                <div class="stat-num" id="stat-founders">—</div>
-                <div class="stat-lbl">FONDATORI</div>
-            </div>
-            <div class="stat-card blue">
-                <div class="stat-num" id="stat-pulse">—</div>
-                <div class="stat-lbl">PULSE-URI</div>
-            </div>
-            <div class="stat-card green">
-                <div class="stat-num">15+</div>
-                <div class="stat-lbl">COLECȚII DB</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-num" style="color:#fff;">Beta</div>
-                <div class="stat-lbl">VERSIUNE</div>
-            </div>
-        </div>
+    <!-- CTA -->
+    <div class="hero-actions">
+      <a href="https://vv-technologies.github.io/vv-beta" class="btn-gold">
+        ⬡ Intră în VV
+      </a>
+      <a href="#ecosistem" class="btn-outline">
+        Descoperă ↓
+      </a>
     </div>
 
-    <!-- PILONI -->
-    <div class="sec">
-        <div class="sec-num">03 · PILONII</div>
-        <div class="sec-title">Cum funcționează.</div>
-
-        <div class="pillar">
-            <div class="pillar-num">PILONUL 1 · NEXUS</div>
-            <div class="pillar-title">Nexus este Totul</div>
-            <div class="pillar-text">Nexus nu e un chatbot. E o entitate care crește prin acțiunile tale fizice și digitale. La Level 1-5 răspunde simplu. La Level 6+ se activează Nexus Sense — AI-ul simte contextul urban. La Level 11+ Nexus Sense Pro anticipează. La Level 16+ Nexus Vision propune singur. Efort fizic = putere digitală.</div>
-        </div>
-
-        <div class="pillar">
-            <div class="pillar-num">PILONUL 2 · XP UNIVERSAL</div>
-            <div class="pillar-title">Oricine poate crește</div>
-            <div class="pillar-text">XP vine din misiuni fizice, validări digitale, invitații sociale și loialitate zilnică. Nicio capabilitate nu e condiționată exclusiv de capacitatea fizică — conform ART-13 și Directivei UE 2019/882. Ieși în oraș pentru Coins. Contribui digital pentru Nexus. Ambele duc la același Level.</div>
-        </div>
-
-        <div class="pillar">
-            <div class="pillar-num">PILONUL 3 · VV PULSE</div>
-            <div class="pillar-title">Motorul de Proximitate</div>
-            <div class="pillar-text">GPS Proximity Logic — detectare Insideri în raza de 50m, confirmare automată bilaterală. Ghost Mode pentru invizibilitate 30 minute. Pulse Echo înregistrează intersecțiile cu nivel, specializare și ora exactă. Privacy by design — coordonate rotunjite, șterse după 90s.</div>
-        </div>
-
-        <div class="pillar">
-            <div class="pillar-num">PILONUL 4 · VV CHARTER</div>
-            <div class="pillar-title">Legea Internă v1.3</div>
-            <div class="pillar-text">14 articole. Anonimat absolut, moderare automată, accesibilitate universală, responsabilitate socială. VV Charter guvernează fiecare linie de cod și fiecare răspuns al lui Nexus. Editabil din CEO Panel fără deploy nou — legile ecosistemului evoluează cu comunitatea.</div>
-        </div>
+    <!-- Stats live -->
+    <div class="stats-row" id="stats-row">
+      <div class="stat-chip c-gold"><b id="s-founders">—</b>&nbsp;fondatori</div>
+      <div class="stat-chip c-green"><b id="s-pulse">—</b>&nbsp;pulse azi</div>
+      <div class="stat-chip c-blue"><b id="s-missions">—</b>&nbsp;misiuni</div>
+      <div class="stat-chip"><b>Charter</b>&nbsp;v1.3</div>
     </div>
 
-    <!-- LEGAL -->
-    <div class="sec">
-        <div class="sec-num">04 · SECURITATE & LEGAL</div>
-        <div class="sec-title">Datele tale. Regulile tale.</div>
+  </div><!-- /hero -->
 
-        <div class="legal-card">
-            <div class="legal-title">🛡 GDPR Complet</div>
-            <div class="legal-text">Datele se șterg automat după 6 luni de inactivitate. Poți cere ștergerea oricând la vv.ep.team@gmail.com — GDPR Art. 17. Nu stocăm date PII — alias, nu nume real.</div>
+  <!-- NEXUS WIDGET personalizat — apare doar daca e user cunoscut -->
+  <section class="sec" id="nexus-sec" style="display:none">
+    <div class="sec-eyebrow">NEXUS SENSE · PROFILUL TĂU</div>
+    <div class="nexus-widget">
+      <div class="nexus-greeting" id="nx-greeting">Bine ai revenit.</div>
+      <div class="nexus-mode" id="nx-mode">NEXUS · LEVEL 1</div>
+      <div class="nexus-bar-row">
+        <div class="nexus-track">
+          <div class="nexus-fill" id="nx-bar" style="width:0%"></div>
         </div>
-
-        <div class="legal-card">
-            <div class="legal-title">📋 DSA Compliant</div>
-            <div class="legal-text">Respectăm Digital Services Act pentru platformele europene. VVTeam acționează exclusiv ca intermediar tehnic — Safe Harbor.</div>
-        </div>
-
-        <div class="legal-card">
-            <div class="legal-title">📍 VV Pulse — GPS Anonim</div>
-            <div class="legal-text">Detectare proximitate prin GPS anonimizat. Coordonate rotunjite la 4 zecimale. Șterse automat după 90 secunde. Activare manuală, opt-in, maxim 3 utilizări pe zi.</div>
-        </div>
-
-        <div class="legal-card">
-            <div class="legal-title">🔒 Zero Date Vândute</div>
-            <div class="legal-text">Nu monetizăm profiluri, nu vindem comportament, nu facem publicitate țintită. Economia VV rulează exclusiv intern prin VV Coins.</div>
-        </div>
-
-        <div class="warn">⚠️ VV Beta este un produs în construcție activă. Vei întâlni bug-uri. Sistemul evoluează în timp real. Fiecare bug raportat valid este recompensat cu VV Coins.</div>
+        <div class="nexus-xp" id="nx-xp">0 XP</div>
+      </div>
+      <div class="nexus-btns">
+        <a href="https://vv-technologies.github.io/vv-beta" class="nexus-btn">
+          ⬡ Lansează misiune
+        </a>
+        <a href="https://vv-technologies.github.io/vv-beta" class="nexus-btn gold">
+          🗺 Harta live
+        </a>
+      </div>
     </div>
+  </section>
 
-    <!-- FILOZOFIE -->
-    <div class="sec">
-        <div class="sec-num">05 · FILOZOFIE</div>
-        <div class="sec-title">Ce vindem de fapt.</div>
-        <div class="cards">
-            <div class="card">
-                <div class="card-icon">🎭</div>
-                <div>
-                    <div class="card-title">Anonimatul ca Lux</div>
-                    <div class="card-text">Într-o lume care te spionează, VV este singurul loc unde ești important, dar invizibil. VV·ID în loc de nume real.</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-icon">⚡</div>
-                <div>
-                    <div class="card-title">Economia Atenției Fizice</div>
-                    <div class="card-text">VV nu te plătește să dai scroll. Te recompensează să fii prezent în lumea reală. Misiuni GPS, VV Pulse, dovezi live.</div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-icon">🌆</div>
-                <div>
-                    <div class="card-title">Hybrid Living</div>
-                    <div class="card-text">Nu fugim în Metaverse. Aducem magia digitală peste asfaltul real. Slobozia, București, oriunde există Insideri.</div>
-                </div>
-            </div>
+  <!-- ECOSISTEM -->
+  <section class="sec" id="ecosistem">
+    <div class="sec-eyebrow">ECOSISTEMUL VV</div>
+    <h2 class="sec-title">Patru porți.<br>Un singur univers.</h2>
+    <p class="sec-sub">Fiecare ramură se hrănește din celelalte. Pulse alimentează harta. Harta generează misiuni. Misiunile antrenează Nexus. Nexus evoluează cu tine.</p>
+
+    <div class="branches">
+
+      <!-- VV Beta -->
+      <a href="https://vv-technologies.github.io/vv-beta" class="branch gold-b">
+        <div class="b-head">
+          <div class="b-icon gold">⬡</div>
+          <div style="flex:1">
+            <div class="b-label">MOTORUL URBAN</div>
+            <div class="b-name">VV</div>
+          </div>
+          <div class="b-badge badge-live">LIVE</div>
         </div>
+        <p class="b-desc">Harta misiunilor verificate fizic. VV Pulse GPS — detectare Insideri în 50m. Camera VV PROOF cu watermark. Nexus Sense evoluează cu nivelul tău.</p>
+        <div class="b-tags">
+          <span class="b-tag">⬡ VV Pulse</span>
+          <span class="b-tag">📸 VV PROOF</span>
+          <span class="b-tag">🧠 Nexus Sense</span>
+          <span class="b-tag">👁 Ghost Mode</span>
+          <span class="b-tag">⚡ Edge Profile</span>
+        </div>
+        <div class="b-footer">
+          <span class="b-cta">Intră în VV Beta</span>
+          <span class="b-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- VV Pulse Map -->
+      <a href="https://vv-technologies.github.io/vv-nexus/vv-pulse.html" class="branch gold-b">
+        <div class="b-head">
+          <div class="b-icon gold">🗺</div>
+          <div style="flex:1">
+            <div class="b-label">THE PRESENCE LAYER</div>
+            <div class="b-name">VV Pulse Map</div>
+          </div>
+          <div class="b-badge badge-live">LIVE</div>
+        </div>
+        <p class="b-desc">Harta vie a ecosistemului. Fiecare punct auriu — o locație validată în ultimele 24h de un Insider real. Nu e o hartă obișnuită. E dovada că ecosistemul respiră.</p>
+        <div class="b-tags">
+          <span class="b-tag">📍 Locații validate</span>
+          <span class="b-tag">🔵 Insideri live</span>
+          <span class="b-tag">⭐ Premium spots</span>
+        </div>
+        <div class="b-footer">
+          <span class="b-cta">Deschide Pulse Map</span>
+          <span class="b-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Inner Circle -->
+      <a href="https://vv-technologies.github.io/vv-nexus/vv-inner-circle.html" class="branch gold-b">
+        <div class="b-head">
+          <div class="b-icon gold">💎</div>
+          <div style="flex:1">
+            <div class="b-label">NUCLEUL FONDATOR</div>
+            <div class="b-name">Inner Circle</div>
+          </div>
+          <div class="b-badge badge-beta">100 LOCURI</div>
+        </div>
+        <p class="b-desc">Nu cumperi un produs. Pui o cărămidă la fundația a ceva ce nu a existat încă. VV·CORE·ID unic. Recunoștința noastră e permanentă.</p>
+        <div class="b-tags">
+          <span class="b-tag">⬡ VV·CORE·ID</span>
+          <span class="b-tag">🔑 3 chei exclusive</span>
+          <span class="b-tag">29 lei · o singură dată</span>
+        </div>
+        <div class="b-footer">
+          <span class="b-cta">Intră în Nucleu</span>
+          <span class="b-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- VV Studios — locked -->
+      <div class="branch dim" id="studios-branch">
+        <div class="b-head">
+          <div class="b-icon purple">🧠</div>
+          <div style="flex:1">
+            <div class="b-label">CREATORUL URBAN</div>
+            <div class="b-name">VV Studios</div>
+          </div>
+          <div class="b-badge badge-lock" id="studios-badge">Level 11+</div>
+        </div>
+        <p class="b-desc">Nexus generează site-uri, carduri digitale și utilitare urbane în 2 minute. Fără programatori. Fără agenții. Deblocat prin XP — nu prin bani.</p>
+        <div class="b-tags">
+          <span class="b-tag">🌐 Site generator</span>
+          <span class="b-tag">⚡ 2 minute</span>
+          <span class="b-tag">🔒 Efort fizic = putere digitală</span>
+        </div>
+        <div class="b-footer">
+          <span class="b-cta" id="studios-cta">Deblocat la Level 11 prin XP</span>
+          <span class="b-arrow" id="studios-arrow">🔒</span>
+        </div>
+      </div>
+
     </div>
+  </section>
 
-    <footer>
-        <div class="f-logo">VV TECHNOLOGIES</div>
-        <div class="f-text">
-            Urban Intelligence Platform · Beta 2025<br>
-            <a href="mailto:vv.ep.team@gmail.com">vv.ep.team@gmail.com</a><br><br>
-            GDPR Compliant · DSA Compliant · Cookie-uri: doar funcționale<br>
-            Alias și comportament anonim — zero date PII stocate.<br><br>
-            © 2025 VV Technologies · Toate drepturile rezervate
+  <!-- LIVE FEED -->
+  <section class="sec">
+    <div class="sec-eyebrow">UNIVERSUL VV · LIVE</div>
+    <h2 class="sec-title">Ecosistemul respiră.</h2>
+    <p class="sec-sub">Activitate anonimă în timp real. Niciun utilizator identificabil — conform VV Charter ART-1.</p>
+    <div class="feed" id="live-feed">
+      <div class="feed-row">
+        <div class="feed-ico" style="background:rgba(212,175,55,.08)">⬡</div>
+        <div class="feed-body">
+          <div class="feed-t">Se încarcă activitatea live...</div>
+          <div class="feed-s">acum</div>
         </div>
-    </footer>
+        <div class="feed-tag ft-dim">VV</div>
+      </div>
+    </div>
+  </section>
 
-</div>
+  <!-- INNER CIRCLE CARD -->
+  <section class="sec">
+    <div class="sec-eyebrow">VV INNER CIRCLE · ACT DE CONTRIBUȚIE</div>
+    <div class="circle-card">
+      <div style="font-family:var(--font);font-size:22px;font-weight:900;line-height:1.2">
+        Nucleul<br><span style="color:var(--gold)">Universului VV.</span>
+      </div>
+      <p style="font-size:12px;color:var(--w50);margin-top:10px;line-height:1.7">
+        Nu cumperi un produs. Pui o cărămidă la fundația a ceva ce nu a existat încă. Recunoștința noastră e permanentă.
+      </p>
 
+      <div class="circle-spots-row" style="margin-top:14px">
+        <span>LOCURI REZERVATE</span>
+        <b id="circle-spots">— / 100 locuri</b>
+      </div>
+
+      <div class="circle-price-big">29 <span style="font-size:14px;color:var(--w50);font-family:var(--mono);font-weight:400">lei</span></div>
+      <div class="circle-price-sub">o singură dată · contribuție voluntară</div>
+
+      <div class="circle-features">
+        <div class="circle-feat">Identitate VV·CORE unică în ecosistem</div>
+        <div class="circle-feat">Prezență pe Ziua Contribuitorilor live</div>
+        <div class="circle-feat">3 chei de invitație exclusive</div>
+        <div class="circle-feat">Early access la fiecare update VV</div>
+      </div>
+
+      <a href="https://vv-technologies.github.io/vv-nexus/vv-inner-circle.html" class="btn-gold" style="width:100%;justify-content:center;margin-top:4px">
+        ⬡ INTRĂ ÎN NUCLEUL VV
+      </a>
+      <div style="text-align:center;font-size:10px;color:var(--w30);margin-top:10px">
+        Susținere benevolă · GDPR conform · maxim 100 locuri
+      </div>
+    </div>
+  </section>
+
+  <!-- VV CHARTER -->
+  <section class="sec">
+    <div class="sec-eyebrow">VV CHARTER v1.3 · LEGEA ECOSISTEMULUI</div>
+    <h2 class="sec-title">14 legi.<br>Un univers curat.</h2>
+    <p class="sec-sub">Codul etic al ecosistemului VV. Guvernează fiecare linie de cod și fiecare răspuns al lui Nexus. Editat fără deploy nou.</p>
+    <div class="charter-grid">
+      <div class="charter-card">
+        <div class="charter-art">ART-1</div>
+        <div class="charter-title">Anonimat Absolut</div>
+      </div>
+      <div class="charter-card">
+        <div class="charter-art">ART-3</div>
+        <div class="charter-title">Filtru Etic Auto</div>
+      </div>
+      <div class="charter-card">
+        <div class="charter-art">ART-9</div>
+        <div class="charter-title">Evoluție Core AI</div>
+      </div>
+      <div class="charter-card">
+        <div class="charter-art">ART-10</div>
+        <div class="charter-title">Ghost Mode</div>
+      </div>
+      <div class="charter-card">
+        <div class="charter-art">ART-11</div>
+        <div class="charter-title">Voice Input</div>
+      </div>
+      <div class="charter-card">
+        <div class="charter-art">ART-13</div>
+        <div class="charter-title">XP Universal</div>
+      </div>
+      <div class="charter-card" style="grid-column:span 2">
+        <div class="charter-art">ART-14</div>
+        <div class="charter-title">Responsabilitate Socială · Misiuni Civice</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEMNATURA -->
+  <div class="signature">
+    <div class="sig-hex">⬡</div>
+    <div class="sig-quote">"Adevărul se validează pe stradă, nu pe ecran."</div>
+    <div class="sig-by">— VV HYBRID UNIVERS</div>
+    <div class="sig-legal">
+      GDPR Compliant · DSA Compliant · VV Charter v1.3<br>
+      Cookie-uri: doar funcționale · Zero date PII stocate central<br>
+      <a href="mailto:vv.ep.team@gmail.com">vv.ep.team@gmail.com</a><br>
+      © 2026 VV Technologies · Made in România
+    </div>
+  </div>
+
+</div><!-- /wrap -->
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 <script>
-// ── COUNTER FONDATORI DIN FIREBASE ───────────────────────────
-(function(){
-    var reg=0;
-    try{reg=parseInt(localStorage.getItem('vv_hub_reg')||'0');}catch(e){}
-    var left=Math.max(100-reg,1);
-    var el=document.getElementById('spots');
-    if(el){el.textContent=left;if(left<10)el.style.color='#ff3b30';}
-})();
+if (!firebase.apps.length) {
+  firebase.initializeApp({
+    apiKey:"AIzaSyDGv4kEClO0RHCLvXVLOT-vyPHw6bsxYVc",
+    authDomain:"vv-ep-beta.firebaseapp.com",
+    projectId:"vv-ep-beta"
+  });
+}
+var db = firebase.firestore();
 
-// Firebase compat pentru stats
-(function(){
-    var script=document.createElement('script');
-    script.src='https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js';
-    script.onload=function(){
-        var script2=document.createElement('script');
-        script2.src='https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js';
-        script2.onload=function(){
-            try{
-                if(!firebase.apps.length){
-                    firebase.initializeApp({
-                        apiKey:"AIzaSyDGv4kEClO0RHCLvXVLOT-vyPHw6bsxYVc",
-                        authDomain:"vv-ep-beta.firebaseapp.com",
-                        projectId:"vv-ep-beta"
-                    });
-                }
-                var db=firebase.firestore();
-                // Fondatori activi
-                db.collection('stats').doc('founders').get().then(function(doc){
-                    if(doc.exists){
-                        var n=doc.data().total||0;
-                        var el=document.getElementById('stat-founders');
-                        if(el)el.textContent=n;
-                        var spots=document.getElementById('spots');
-                        if(spots){spots.textContent=Math.max(100-n,0);if(100-n<10)spots.style.color='#ff3b30';}
-                    }
-                }).catch(function(){});
-                // Pulse events totale
-                db.collection('stats').doc('pulse_total').get().then(function(doc){
-                    if(doc.exists){
-                        var el=document.getElementById('stat-pulse');
-                        if(el)el.textContent=doc.data().total||0;
-                    }
-                }).catch(function(){});
-            }catch(e){}
-        };
-        document.head.appendChild(script2);
+// Toast
+function hubToast(msg) {
+  var t=document.getElementById('vv-hub-toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('show');},2800);
+}
+
+// ── PERSONALIZARE din localStorage ──────────────────────────
+function personalizeHub() {
+  var alias = localStorage.getItem('vv_alias');
+  var statsRaw = localStorage.getItem('vv_core_stats') || localStorage.getItem('vvhi_core_stats');
+  var coreStats = null;
+  try { coreStats = JSON.parse(statsRaw); } catch(e) {}
+
+  if (!alias) return;
+
+  // Header pill
+  var hdrPill = document.getElementById('hdr-user-pill');
+  var hdrTxt = document.getElementById('hdr-user-text');
+  if (hdrPill && hdrTxt) { hdrTxt.textContent = alias; hdrPill.style.display='flex'; }
+
+  // Hero greeting
+  var greetEl = document.getElementById('hero-greeting');
+  var greetTxt = document.getElementById('greeting-text');
+  if (greetEl && greetTxt) {
+    var h = new Date().getHours();
+    var sal = h<12?'Bună dimineața':h<18?'Bună ziua':h<22?'Bună seara':'Bună noaptea';
+    greetTxt.textContent = sal + ', ' + alias + '.';
+    greetEl.style.display = 'inline-flex';
+  }
+
+  // Nexus widget
+  var lvl = coreStats ? (coreStats.experience_level||1) : 1;
+  var xp  = coreStats ? (coreStats.total_xp||0) : 0;
+  var spec= coreStats ? (coreStats.specialization||'explorer') : 'explorer';
+  var specMap = {explorer:'🗺 Explorer',connector:'⬡ Connector',analyst:'🧠 Analyst',ghost:'👁 Ghost'};
+  var modeStr = lvl>=16?'NEXUS VISION':lvl>=11?'NEXUS SENSE PRO':lvl>=6?'NEXUS SENSE':'NEXUS · BASE';
+  var h2 = new Date().getHours();
+  var salNx = h2<12?'dimineața':h2<18?'după-amiaza':h2<22?'seara':'noaptea';
+
+  var nxSec = document.getElementById('nexus-sec');
+  if (nxSec) nxSec.style.display='block';
+  var nxG = document.getElementById('nx-greeting');
+  var nxM = document.getElementById('nx-mode');
+  var nxBar = document.getElementById('nx-bar');
+  var nxXp = document.getElementById('nx-xp');
+  if (nxG) nxG.textContent = 'Bună ' + salNx + ', ' + alias + '. ' + (lvl>=6?'Nexus Sense activ.':'Nexus crește cu tine.');
+  if (nxM) nxM.textContent = modeStr + ' · Level ' + lvl + ' · ' + (specMap[spec]||'Explorer');
+  if (nxBar) nxBar.style.width = (xp%100) + '%';
+  if (nxXp) nxXp.textContent = xp + ' XP';
+
+  // Studios — deblocat la Level 11+
+  if (lvl >= 11) {
+    var sb = document.getElementById('studios-branch');
+    var sbadge = document.getElementById('studios-badge');
+    var scta = document.getElementById('studios-cta');
+    var sarr = document.getElementById('studios-arrow');
+    if (sb) { sb.classList.remove('dim'); sb.style.cursor='pointer'; sb.onclick=function(){window.location.href='https://vv-technologies.github.io/vv-beta';}; }
+    if (sbadge) { sbadge.textContent='DEBLOCAT'; sbadge.className='b-badge badge-live'; }
+    if (scta) scta.textContent='Deschide VV Studios';
+    if (sarr) sarr.textContent='→';
+  }
+}
+
+// ── STATS LIVE ───────────────────────────────────────────────
+async function loadStats() {
+  try {
+    var statsDoc = await db.collection('stats').doc('founders').get();
+    var f = statsDoc.exists ? (statsDoc.data().total||0) : 0;
+    document.getElementById('s-founders').textContent = f;
+    document.getElementById('circle-spots').textContent = f + ' / 100 locuri';
+
+    var today = new Date(); today.setHours(0,0,0,0);
+    var ts = firebase.firestore.Timestamp.fromDate(today);
+
+    var mSnap = await db.collection('missions').where('createdAt','>=',ts).get();
+    document.getElementById('s-missions').textContent = mSnap.size;
+
+    var pSnap = await db.collection('vvhi_dataset')
+      .where('action','==','VV_PULSE_CONNECT')
+      .where('timestamp','>=',ts).get();
+    document.getElementById('s-pulse').textContent = pSnap.size;
+  } catch(e) {
+    ['s-founders','s-missions','s-pulse'].forEach(function(id){
+      var el=document.getElementById(id); if(el) el.textContent='—';
+    });
+  }
+}
+
+// ── LIVE FEED ────────────────────────────────────────────────
+async function loadFeed() {
+  try {
+    var snap = await db.collection('vvhi_dataset')
+      .orderBy('timestamp','desc').limit(6).get();
+    if (snap.empty) return;
+
+    var cfg = {
+      'VV_PULSE_CONNECT': {ico:'⬡',bg:'rgba(10,132,255,.1)',t:'Pulse confirmat în ecosistem',cls:'ft-blue',lbl:'PULSE'},
+      'NEXUS_QUERY':      {ico:'🧠',bg:'rgba(255,255,255,.05)',t:'Nexus a primit o cerere urbană',cls:'ft-dim',lbl:'NEXUS'},
+      'CIRCLE_DEPLOY':    {ico:'💎',bg:'rgba(212,175,55,.1)',t:'Nou Fondator activat',cls:'ft-gold',lbl:'INNER'},
+      'APPROVE_MISSION':  {ico:'✅',bg:'rgba(52,199,89,.08)',t:'Misiune validată cu VV PROOF',cls:'ft-green',lbl:'BETA'},
+      'EDGE_PROFILE_SET': {ico:'⬡',bg:'rgba(255,255,255,.04)',t:'Nexus personalizat de un Insider',cls:'ft-dim',lbl:'NEXUS'},
+      'PULSE_ECHO':       {ico:'🔵',bg:'rgba(10,132,255,.08)',t:'Echo Pulse înregistrat',cls:'ft-blue',lbl:'ECHO'}
     };
-    document.head.appendChild(script);
-})();
+
+    var html = '';
+    snap.forEach(function(doc){
+      var d=doc.data();
+      var c=cfg[d.action]||{ico:'⬡',bg:'rgba(255,255,255,.04)',t:d.action,cls:'ft-dim',lbl:'VV'};
+      var ago='';
+      if(d.timestamp){
+        var diff=Math.floor((Date.now()-d.timestamp.toDate().getTime())/60000);
+        ago=diff<1?'acum':diff<60?diff+' min ago':Math.floor(diff/60)+'h ago';
+      }
+      html+='<div class="feed-row">' +
+        '<div class="feed-ico" style="background:'+c.bg+'">'+c.ico+'</div>' +
+        '<div class="feed-body"><div class="feed-t">'+c.t+'</div><div class="feed-s">'+ago+'</div></div>' +
+        '<div class="feed-tag '+c.cls+'">'+c.lbl+'</div>' +
+      '</div>';
+    });
+    document.getElementById('live-feed').innerHTML = html;
+  } catch(e) {}
+}
+
+// ── INIT ─────────────────────────────────────────────────────
+personalizeHub();
+loadStats();
+loadFeed();
 </script>
 </body>
 </html>
