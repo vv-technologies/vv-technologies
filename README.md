@@ -39,6 +39,10 @@ The ecosystem is now being presented in four clear layers:
 - system core: `vv-nexus`
 - products: `vv-lea`, `vv-pulse`, `vv-team`, `VNEX`
 
+Official wording reference:
+
+- [`OFFICIAL_ECOSYSTEM_WORDING.md`](./OFFICIAL_ECOSYSTEM_WORDING.md)
+
 ## Status
 
 This account contains active products, system repositories and experiments that are being refined into a clearer public ecosystem.
